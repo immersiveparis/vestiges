@@ -1,0 +1,257 @@
+{
+  "style": "Photograph of a vintage explorer's notebook lying open on a dark wooden desk, seen from above at a slight three-quarter angle, soft daylight from a window at the upper left, long soft shadows, shallow depth of field at the far edges. Ivory paper with a fine grain, slightly warm, clean (no stains, no burnt edges). Illustrations on the pages are watercolor washes and fine ink line drawings with graphite construction lines and small night-blue ink notes. Palette: ivory, pale limestone, graphite grey, night-blue ink, discreet brass, a few Mediterranean blue accents; golden light only where stated. Photorealistic materials, editorial restraint, the quality of a fine illustrated atlas.",
+  "negative": "No readable text, no letters, no numbers, no labels, no pins, no buttons, no cards, no user interface, no hands, no people, no sepia filter, no heavy vignette, no fantasy ornaments.",
+  "refs": {
+    "style": "img/da/atlas-key.jpg"
+  },
+  "shots": [
+    {
+      "id": "atl-backplate-blank",
+      "group": "atlas",
+      "size": "1536x1024",
+      "quality": "high",
+      "refs": ["style"],
+      "prompt": "Same notebook, same desk, same lighting and camera as the reference. Both pages of the open spread are EMPTY ivory paper with only faint graphite grid lines and a few pencil construction circles in the margins. No map, no drawings, no text. Around the book on the desk: a brass compass at the left edge, a small stack of old photographic prints at the right edge, a pencil. This image is a background plate: everything on the pages will be drawn by software."
+    },
+    {
+      "id": "atl-map-flat",
+      "group": "atlas",
+      "size": "1536x1024",
+      "quality": "high",
+      "refs": ["style"],
+      "prompt": "Flat scan, exactly top-down, no perspective, no shadows, no desk: a watercolor world map painted on ivory paper, centred on the Pacific Ocean (Americas on the right, Asia and Africa on the left, Europe at the upper left), pale sage and ochre continents with soft edges, pale blue-grey oceans, fine ink coastlines, graphite graticule lines. No country borders, no names, no text, no pins. The paper fills the whole frame edge to edge."
+    },
+    {
+      "id": "atl-sketch-moai",
+      "group": "atlas",
+      "size": "1024x1024",
+      "quality": "medium",
+      "refs": ["style"],
+      "background": "transparent",
+      "prompt": "Fine ink line drawing with light graphite shading of a single Easter Island moai head and shoulders, seen from the front-left, in the style of a nineteenth-century explorer's field sketch. Isolated on a transparent background. No text."
+    },
+    {
+      "id": "atl-sketch-pyramid",
+      "group": "atlas",
+      "size": "1024x1024",
+      "quality": "medium",
+      "refs": ["style"],
+      "background": "transparent",
+      "prompt": "Fine ink line drawing with light graphite shading of a Maya stepped pyramid with its temple on top, seen from a low three-quarter angle, explorer's field sketch, a few construction lines left visible. Isolated on a transparent background. No text."
+    },
+    {
+      "id": "atl-sketch-menhirs",
+      "group": "atlas",
+      "size": "1024x1024",
+      "quality": "medium",
+      "refs": ["style"],
+      "background": "transparent",
+      "prompt": "Fine ink line drawing with light graphite shading of three tall carved T-shaped stone pillars standing in a circle, as at an early Neolithic sanctuary, explorer's field sketch. Isolated on a transparent background. No text."
+    },
+    {
+      "id": "atl-sketch-palm-island",
+      "group": "atlas",
+      "size": "1024x1024",
+      "quality": "medium",
+      "refs": ["style"],
+      "background": "transparent",
+      "prompt": "Fine ink line drawing with a touch of watercolor of a small Pacific islet with two palm trees and a low basalt wall at the waterline, explorer's field sketch. Isolated on a transparent background. No text."
+    },
+
+    {
+      "id": "mt-bg-lab",
+      "group": "malte",
+      "size": "1536x1024",
+      "quality": "high",
+      "refs": ["style"],
+      "prompt": "Same notebook, same desk, same lighting and camera as the reference. The open spread is mostly EMPTY ivory paper, ready to receive documents. In the outer margins only: a small ink sketch of a photographic glass plate with its black border, a sketch of a magnifying loupe, a few graphite notes lines (no letters). On the desk beside the book: a brass loupe, a small paper envelope, a pencil. Background plate for a darkroom chapter: dim, cool, quiet."
+    },
+    {
+      "id": "mt-bg-temple",
+      "group": "malte",
+      "size": "1536x1024",
+      "quality": "high",
+      "refs": ["style"],
+      "prompt": "Same notebook, same desk, same lighting and camera as the reference. The open spread is mostly EMPTY ivory paper. In the margins: a fine ink and watercolor sketch of a Maltese megalithic temple facade made of pale limestone blocks (trefoil plan, rounded apses), a small plan drawing of a cloverleaf temple layout, graphite construction lines. A warm golden light touches the right page edge as if from a sunrise. On the desk: a small limestone fragment, a brass compass."
+    },
+    {
+      "id": "mt-bg-horizon",
+      "group": "malte",
+      "size": "1536x1024",
+      "quality": "high",
+      "refs": ["style"],
+      "prompt": "Same notebook, same desk, same lighting and camera as the reference. The open spread is mostly EMPTY ivory paper. In the margins: a long thin ink and watercolor sketch of a sea horizon seen from a Mediterranean cliff with a small rocky islet, a wind rose drawn in graphite, a folded accordion paper edge peeking from the gutter. On the desk: a brass sighting instrument, a pencil."
+    },
+    {
+      "id": "mt-bg-sun",
+      "group": "malte",
+      "size": "1536x1024",
+      "quality": "high",
+      "refs": ["style"],
+      "prompt": "Same notebook, same desk, same lighting and camera as the reference. The open spread is mostly EMPTY ivory paper. In the margins: graphite technical sketches of a brass astronomical instrument (a graduated ring, a curved slide, a wheel with notches), a small sun diagram with rays, a few arcs. On the desk: small brass gears and a screwdriver. A touch of warm gold on the brass only."
+    },
+    {
+      "id": "mt-bg-geo",
+      "group": "malte",
+      "size": "1536x1024",
+      "quality": "high",
+      "refs": ["style"],
+      "prompt": "Same notebook, same desk, same lighting and camera as the reference. The open spread is mostly EMPTY ivory paper with a faint graphite grid on the right page like a surveyor's field book. In the margins: a small ink survey sketch of two post holes and sight lines, a protractor drawing, a tracing-paper corner. On the desk: a steel ruler, a protractor, a pencil."
+    },
+    {
+      "id": "mt-bg-final",
+      "group": "malte",
+      "size": "1536x1024",
+      "quality": "high",
+      "refs": ["style"],
+      "prompt": "Same notebook, same desk, same lighting and camera as the reference. The open spread is mostly EMPTY ivory paper. Across the top of both pages, a wide painted strip: a watercolor dawn over a Maltese limestone temple on a cliff above the sea, a small islet at sea, golden sunrise light, the only strong gold in the image. The rest of the pages is clean paper. On the desk: four small photographic prints fanned out at the lower right, a brass instrument at the upper right."
+    },
+
+    {
+      "id": "mt-desk-wood",
+      "group": "malte",
+      "size": "1536x1024",
+      "quality": "high",
+      "refs": ["style"],
+      "prompt": "Flat top-down photograph of the same dark wooden desk as in the reference, empty, filling the whole frame, same window light from the upper left with a soft gradient, fine wood grain, a few faint scratches and graphite dust. No objects, no paper. Background plate for a work surface."
+    },
+    {
+      "id": "mt-desk-lightbox",
+      "group": "malte",
+      "size": "1536x1024",
+      "quality": "high",
+      "refs": ["style"],
+      "prompt": "Flat top-down photograph of the same dark wooden desk as in the reference, filling the frame, with a rectangular frosted-glass light table set into the desk slightly left of centre, glowing a cool even white, its brass frame catching the window light. No objects on it, no paper, no text."
+    },
+
+    {
+      "id": "mt-mat-limestone",
+      "group": "malte",
+      "size": "1024x1024",
+      "quality": "medium",
+      "refs": ["style"],
+      "prompt": "Flat top-down texture scan of pale Maltese globigerina limestone, honey-cream colour with fine pitting and small fossil shells, weathered surface, even diffuse light, no shadows, fills the frame edge to edge, seamless-looking. No text."
+    },
+    {
+      "id": "mt-mat-plate",
+      "group": "malte",
+      "size": "1024x1024",
+      "quality": "medium",
+      "refs": ["style"],
+      "prompt": "Flat top-down scan of an empty vintage glass photographic plate: a thin black emulsion border with slightly uneven edges around a transparent grey centre, light scratches, tiny dust specks, a pencil mark corner. Even light, no shadows, fills the frame. No text."
+    },
+    {
+      "id": "mt-mat-brass",
+      "group": "malte",
+      "size": "1024x1024",
+      "quality": "medium",
+      "refs": ["style"],
+      "prompt": "Flat top-down texture scan of brushed aged brass with faint engraved graduation ticks around the border, soft patina, even diffuse light, no strong highlights, fills the frame. No text, no numbers."
+    },
+    {
+      "id": "mt-mat-calque",
+      "group": "malte",
+      "size": "1024x1024",
+      "quality": "medium",
+      "refs": ["style"],
+      "prompt": "Flat top-down scan of a sheet of translucent tracing paper over ivory paper, slightly milky, with a soft crease and one folded corner, even light, fills the frame. No text."
+    },
+    {
+      "id": "mt-mat-pano-paper",
+      "group": "malte",
+      "size": "1536x1024",
+      "quality": "medium",
+      "refs": ["style"],
+      "prompt": "Flat top-down scan of a long accordion-folded panorama sheet of ivory paper, six vertical fold lines casting very faint shadows, a pale watercolor wash of sky above and sea below at the horizon line, no landmarks, no text. Fills the frame."
+    },
+    {
+      "id": "mt-mat-sky",
+      "group": "malte",
+      "size": "1024x1024",
+      "quality": "medium",
+      "refs": ["style"],
+      "prompt": "Flat top-down scan of an old star chart printed in night-blue ink on cream paper: fine stars of different sizes, a few constellation lines, a graduated circular border, no names, no letters, no numbers. Even light, fills the frame."
+    },
+    {
+      "id": "mt-reveal-dawn",
+      "group": "malte",
+      "size": "1536x1024",
+      "quality": "high",
+      "refs": ["style"],
+      "prompt": "Watercolor and ink landscape painting on ivory paper, flat scan: dawn over the megalithic temples of Mnajdra on the south coast of Malta, pale limestone ruins with rounded apses on a slope above the sea, the small islet of Filfla on the horizon, the sun just rising at the left of the islet, golden light spreading over the stones, long shadows, calm sea. No people, no text. Painted with restraint, the gold is the hero."
+    },
+
+    {
+      "id": "atl-vignette-sacsay",
+      "group": "vignettes",
+      "size": "1024x1024",
+      "quality": "medium",
+      "refs": ["style"],
+      "prompt": "A small vintage photographic print, flat scan with a thin white border: the great zigzag megalithic walls of Sacsayhuamán above Cusco, enormous fitted polygonal stones, morning light, warm faded tones. No text."
+    },
+    {
+      "id": "atl-vignette-nanmadol",
+      "group": "vignettes",
+      "size": "1024x1024",
+      "quality": "medium",
+      "refs": ["style"],
+      "prompt": "A small vintage photographic print, flat scan with a thin white border: the basalt log walls of Nan Madol rising from a mangrove canal, stacked prismatic columns, still water, warm faded tones. No text."
+    },
+    {
+      "id": "atl-vignette-malte",
+      "group": "vignettes",
+      "size": "1024x1024",
+      "quality": "medium",
+      "refs": ["style"],
+      "prompt": "A small vintage photographic print, flat scan with a thin white border: the limestone megalithic temple of Mnajdra on the Maltese coast, rounded apses of pale stone, the sea and a small islet behind, warm faded tones. No text."
+    },
+    {
+      "id": "atl-vignette-dogger",
+      "group": "vignettes",
+      "size": "1024x1024",
+      "quality": "medium",
+      "refs": ["style"],
+      "prompt": "A small vintage photographic print, flat scan with a thin white border: a grey North Sea seen from the deck of a trawler, a dredge net being hauled, low light, warm faded tones. No text."
+    },
+    {
+      "id": "atl-vignette-sirius",
+      "group": "vignettes",
+      "size": "1024x1024",
+      "quality": "medium",
+      "refs": ["style"],
+      "prompt": "A small vintage photographic print, flat scan with a thin white border: the Egyptian desert night sky over the Giza plateau with one very bright star low on the horizon before dawn, silhouettes of pyramids, warm faded tones. No text."
+    },
+    {
+      "id": "atl-vignette-deluge",
+      "group": "vignettes",
+      "size": "1024x1024",
+      "quality": "medium",
+      "refs": ["style"],
+      "prompt": "A small vintage photographic print, flat scan with a thin white border: a wide Mesopotamian river in flood between mud-brick ruins and reed beds, hazy light, warm faded tones. No text."
+    },
+    {
+      "id": "atl-vignette-gobekli",
+      "group": "vignettes",
+      "size": "1024x1024",
+      "quality": "medium",
+      "refs": ["style"],
+      "prompt": "A small vintage photographic print, flat scan with a thin white border: the excavated T-shaped limestone pillars of Göbekli Tepe in their circular enclosures on a bare Anatolian hill, warm faded tones. No text."
+    },
+    {
+      "id": "atl-vignette-rapa",
+      "group": "vignettes",
+      "size": "1024x1024",
+      "quality": "medium",
+      "refs": ["style"],
+      "prompt": "A small vintage photographic print, flat scan with a thin white border: a row of moai statues on a grassy slope of Easter Island with the ocean behind, wind-bent grass, warm faded tones. No text."
+    },
+    {
+      "id": "atl-vignette-maya",
+      "group": "vignettes",
+      "size": "1024x1024",
+      "quality": "medium",
+      "refs": ["style"],
+      "prompt": "A small vintage photographic print, flat scan with a thin white border: a Maya temple pyramid of Tikal rising above the jungle canopy in morning mist, warm faded tones. No text."
+    }
+  ]
+}
