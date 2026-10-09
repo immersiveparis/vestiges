@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="fr">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -126,7 +126,7 @@ button{font:inherit;color:inherit}
 .itc{position:absolute;right:30%;bottom:calc(5.5% + 8px);font-family:var(--f-type);font-size:11px;letter-spacing:.14em;color:rgba(233,214,172,.42);opacity:0;transition:opacity .6s;font-variant-numeric:tabular-nums}
 .intro.playing .ibar,.intro.playing .itc{opacity:1}
 .iskip{position:absolute;right:22px;bottom:18px;border:0;background:none;color:#cdb68b;font-family:var(--f-type);font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;opacity:.38;transition:opacity .3s;padding:8px}
-.iskip:hover,.iskip:focus-visible{opacity:1}
+.iskip:hover,.iskip:focus-visible,.intro.poke .iskip{opacity:1}
 .intro:not(.playing):not(.seen) .iskip{display:none}
 .ftab{top:214px;height:96px;background-color:#3b2a1e}
 
@@ -674,7 +674,7 @@ select.blank:disabled{color:var(--green);border-bottom-color:var(--green);backgr
   .tube{width:52px}
   .hud .hg b{font-size:18px}
   .ic{width:30px;height:30px}
-  .iskip{right:10px;bottom:10px}
+  .iskip{right:8px;top:calc(8px + env(safe-area-inset-top));bottom:auto;opacity:.75;font-size:13px;padding:12px 14px;border:1px solid rgba(233,214,172,.35);border-radius:20px;background:rgba(0,0,0,.35)}
   .gsheet{position:fixed;inset:0;z-index:35;display:block;overflow-y:auto;background:#0a0706}
   .gsheet .page{height:auto;min-height:0;overflow:visible}
   .gsheet .page.R{padding-bottom:110px}
@@ -787,7 +787,7 @@ const clamp=v=>Math.max(0,Math.min(100,v));
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const fmt=n=>Math.round(n).toLocaleString(LANG==='en'?'en-US':'fr-FR');
 /* =================================================================== LANGUE */
-let LANG='fr';try{LANG=localStorage.getItem('strates-lang')||((navigator.language||'fr').toLowerCase().startsWith('fr')?'fr':'en');}catch(e){LANG=(navigator.language||'fr').toLowerCase().startsWith('fr')?'fr':'en';}
+let LANG='en';try{const q=new URLSearchParams(location.search).get('lang');LANG=(q==='fr'||q==='en')?q:(localStorage.getItem('ghn-lang')||'en');}catch(e){LANG='en';}
 const T={
  fr:{brand:'STRATES',brandSub:'Carnet de terrain · H. Varga',rig:'Rigueur',mer:'Émerveillement',sndOn:'Bruitages : activés',sndOff:'Bruitages : coupés',other:'EN',otherLabel:'Read in English',
   hint:'Clique sur la couverture pour ouvrir le carnet',coverAria:'Ouvrir le carnet',tabs:['Atlas','<b>I</b>&nbsp;Observer','<b>II</b>&nbsp;Enquêter','<b>III</b>&nbsp;Reconstituer','<b>IV</b>&nbsp;Débattre','<b>V</b>&nbsp;Trancher'],
@@ -1036,7 +1036,7 @@ function applyLang(){if($('#gtab'))renderGraham();if($('#intro'))introUI();
   $('#paste').textContent=tr('paste');
 }
 function switchLang(){
-  if(busy)return;LANG=LANG==='fr'?'en':'fr';try{localStorage.setItem('strates-lang',LANG);}catch(e){}
+  if(busy)return;LANG=LANG==='fr'?'en':'fr';try{localStorage.setItem('ghn-lang',LANG);}catch(e){}
   applyLang();
   if(!$('#book').hidden){
     if(E){E=EPS()[E.id];const cur=S.cur;stopRaftLoop();buildEpisode(E);rebuildAtlas();show(cur);renderEnd.silent=true;if(cur>=1)enter(cur);if(S.max>=7&&cur!==7)renderEnd();renderEnd.silent=false;if(cur===4&&E.atelier==='raft')startRaftLoop();}
@@ -1413,7 +1413,7 @@ function introOpen(mode){IMODE=mode;const it=$('#intro'),v=$('#ivid');introUI();
   it.hidden=false;it.classList.remove('out');it.classList.toggle('seen',seenIntro()||mode==='replay');
   try{v.currentTime=0;}catch(e){}
   if(mode==='replay'){introPlay();}else{it.classList.remove('playing');}}
-function introPlay(){const it=$('#intro'),v=$('#ivid');A();v.muted=!SND;it.classList.add('playing');
+function introPlay(){const it=$('#intro'),v=$('#ivid');A();v.muted=!SND;it.classList.add('playing');delete it.dataset.skipped;
   try{localStorage.setItem('ghn-intro','1');}catch(e){}
   const pr=v.play();if(pr&&pr.catch)pr.catch(()=>introEnd());$('#iskip').focus({preventScroll:true});}
 function introEnd(){const it=$('#intro'),v=$('#ivid');if(it.hidden||it.classList.contains('out'))return;try{v.pause();}catch(e){}
@@ -1426,9 +1426,12 @@ function introEnd(){const it=$('#intro'),v=$('#ivid');if(it.hidden||it.classList
 const NB_AT=69.32;
 function introSkip(){const it=$('#intro'),v=$('#ivid');
   if(!it.classList.contains('playing')){introPlay();try{v.currentTime=NB_AT;}catch(e){}return;}
-  if(v.currentTime<NB_AT-0.5){it.classList.add('cut');setTimeout(()=>{try{v.currentTime=NB_AT;}catch(e){}it.classList.remove('cut');},260);}
+  if(v.currentTime<NB_AT-0.5&&!it.dataset.skipped){it.dataset.skipped='1';it.classList.add('cut');
+    setTimeout(()=>{let ok=true;try{v.currentTime=NB_AT;}catch(e){ok=false;}it.classList.remove('cut');
+      setTimeout(()=>{if(!ok||v.currentTime<NB_AT-1)introEnd();},900);},260);}
   else introEnd();}
-$('#istart').onclick=introPlay;$('#iskip').onclick=introSkip;$('#ivid').addEventListener('ended',introEnd);
+$('#istart').onclick=introPlay;$('#iskip').onclick=introSkip;
+$('#intro').addEventListener('pointerdown',ev=>{if(ev.target.closest('#iskip')||ev.target.closest('#istart'))return;const it=$('#intro');it.classList.add('poke');clearTimeout(it._pk);it._pk=setTimeout(()=>it.classList.remove('poke'),3500);});$('#ivid').addEventListener('ended',introEnd);
 $('#ivid').addEventListener('error',()=>{if(IMODE==='first'&&!$('#intro').classList.contains('playing'))return;introEnd();},true);
 introOpen('first');
 
