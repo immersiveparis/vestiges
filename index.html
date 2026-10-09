@@ -222,6 +222,22 @@ select.blank:disabled{color:var(--green);border-bottom-color:var(--green);backgr
 .sealbox{display:flex;flex-direction:column;align-items:center;gap:12px;margin-top:120px;text-align:center}
 .sealbox svg{width:130px;height:130px}
 
+
+/* ---------- Repères sheet ---------- */
+.ctab{top:322px;height:110px;background-color:#27463a}
+.locwrap{position:relative;box-shadow:0 2px 6px rgba(60,35,10,.22);background:#f6efdc;padding:6px}
+.locator{display:block;width:100%;height:auto;max-height:250px}
+.locmini{position:absolute;right:12px;bottom:12px;width:30%;height:auto;box-shadow:0 1px 4px rgba(0,0,0,.3);border:2px solid #f6efdc}
+.ctxfacts{display:flex;flex-direction:column;gap:7px;font-size:15px;line-height:1.35}
+.ctxfacts div{display:grid;grid-template-columns:62px 1fr;gap:10px}
+.ctxfacts b{font-family:var(--f-sc);font-size:14px;letter-spacing:.08em;color:var(--red)}
+.ctxtl{list-style:none;margin:0;padding:0 0 0 18px;border-left:2px solid #3b2a1e;display:flex;flex-direction:column;gap:10px}
+.ctxtl li{position:relative;display:grid;grid-template-columns:96px 1fr;gap:10px;font-size:15px;line-height:1.35}
+.ctxtl li::before{content:"";position:absolute;left:-24px;top:6px;width:10px;height:10px;border-radius:50%;background:#3b2a1e}
+.ctxtl b{font-family:var(--f-title);font-weight:700;font-size:18px;color:var(--red)}
+.ctxwhy{margin-top:4px;background:rgba(255,255,255,.35);padding:10px 14px;box-shadow:inset 0 0 0 1px rgba(60,35,10,.15)}
+@media (max-width:860px){.ctab{bottom:322px;top:auto;height:100px}}
+
 /* book revealed under the opening cover */
 .book.reveal{animation:bookIn 1s ease-out .1s both}
 @keyframes bookIn{from{opacity:0;transform:scale(.985)}}
@@ -738,6 +754,7 @@ select.blank:disabled{color:var(--green);border-bottom-color:var(--green);backgr
   </nav>
   <button class="gtab" id="gtab" aria-controls="gsheet" aria-expanded="false">Graham</button>
   <button class="gtab ftab" id="ftab">Film</button>
+  <button class="gtab ctab" id="ctab" hidden>Repères</button>
   <div class="stack" id="stack"></div>
   <section class="gsheet" id="gsheet" hidden aria-labelledby="gTitle"></section>
 </div>
@@ -1241,6 +1258,7 @@ function curMusic(){return S.cur===0||!E?'atlas':E.mus;}
 function chrome(){
   const r=rigueur(),m=merveille();
   $('#vR').style.setProperty('--v',Math.max(4,r)+'%');$('#vR b').textContent=r;$('#vM').style.setProperty('--v',Math.max(4,m)+'%');$('#vM b').textContent=m;
+  {const ct=$('#ctab');if(ct){ct.hidden=!(E&&CT()[E.id]);ct.textContent=CT().tab;}}
   $$('.tab').forEach(t=>{const n=+t.dataset.to;t.hidden=n>0&&!E;t.disabled=n>0&&n>S.max;t.classList.toggle('now',n===S.cur||(n===0&&S.cur===0));});
   $$('.spr').forEach(s=>{const n=+s.dataset.n,b=s.querySelector('.dogear.next');if(b&&n>0)b.hidden=!canLeave(n);});
 }
@@ -1356,7 +1374,7 @@ function goTo(n,cb){
 function openCase(id){
   if(busy||!EPS()[id])return;
   const from=G.last&&MAP.pts[G.last]&&G.last!==id?MAP.pts[G.last]:null,to=MAP.pts[id];
-  const go=()=>{E=EPS()[id];S=fresh(id);S.cur=0;S.max=1;buildEpisode(E);G.last=id;goTo(1);};
+  const go=()=>{E=EPS()[id];S=fresh(id);S.cur=0;S.max=1;buildEpisode(E);G.last=id;goTo(1);if(CT()[id])setTimeout(()=>{if(S&&S.id===id&&!S.ctxSeen)openCtx(true);},1250);};
   const route=$('#route'),trav=$('#traveler');
   if(!route||reduce){go();return;}
   play('route');
@@ -1368,6 +1386,7 @@ function openCase(id){
 document.addEventListener('click',ev=>{
   const d=ev.target.closest('.dogear');if(d){const n=+d.closest('.spr').dataset.n;goTo(d.classList.contains('prev')?n-1:n+1);return;}
   if(ev.target.closest('#gtab')){toggleGraham();return;}
+  if(ev.target.closest('#ctab')){if(!$('#gsheet').hidden)toggleGraham(false);openCtx(false);return;}
   if(ev.target.closest('#ftab')){if(!$('#gsheet').hidden)toggleGraham(false);introOpen('replay');return;}
   const t=ev.target.closest('.tab');if(t&&!t.disabled){if(!$('#gsheet').hidden)toggleGraham(false);if(typeof closeSheet==='function')closeSheet();goTo(+t.dataset.to);return;}
   const c=ev.target.closest('[data-case]');if(c&&EPS()[c.dataset.case]){openCase(c.dataset.case);return;}
@@ -1627,6 +1646,51 @@ function renderEnd(){
     <div class="row"><span>${tr('rWs')}</span><b>${ate}</b></div><div class="row"><span>${tr('rRight')}</span><b>${right} / ${E.claims.length}</b></div>
     <div class="row"><span>${tr('rig')}</span><b>${rigueur()}</b></div><div class="row"><span>${tr('mer')}</span><b>${merveille()}</b></div><div style="height:60px"></div><div class="bigstamp">${tr('prof')[p]}</div>`;
   $('#endtext').textContent=tr('profT')[p];if(!renderEnd.silent)setTimeout(()=>play(p==='inv'?'fanfare':'thud'),700);}
+
+
+/* ---------- REPÈRES : context sheet before (and during) each case ---------- */
+const CTX={
+ fr:{tab:'Repères',start:"Commencer l'enquête",close:'Refermer les repères',where:'Où sommes-nous ?',brief:"L'essentiel",tl:'Repères dans le temps',why:'Pourquoi est-ce une énigme ?',
+  sacsay:{folio:['Repères','Avant d\'ouvrir le dossier'],title:'Sacsayhuamán',sub:'Cusco, Pérou · dans les Andes',say:'Se prononce à peu près « sak-say-oua-MANE ».',
+   facts:[['Où','Sur une colline qui domine Cusco, dans les Andes du Pérou, vers 3 700 m d\'altitude.'],
+    ['Cusco','La capitale de l\'Empire inca, qui s\'étendait au début du XVI<sup>e</sup> siècle de l\'actuel Équateur jusqu\'au Chili.'],
+    ['Quoi','Trois grandes terrasses de murs en zigzag, faites de blocs ajustés sans mortier, et les restes de tours et de bâtiments. Les Espagnols l\'appellent « la forteresse » ; ses usages exacts restent discutés.'],
+    ['Taille','Le mur le plus long mesure environ 400 m pour 6 m de haut. Le plus gros bloc pèserait de 128 à près de 200 tonnes.']],
+   tl:[['vers 900','La colline est déjà occupée : on y trouve des céramiques de la culture Killke, avant les Incas.'],
+    ['XV<sup>e</sup> s.','Grand chantier inca, sous Pachacuti et ses successeurs, d\'après les chroniques.'],
+    ['1533','Les Espagnols entrent à Cusco.'],
+    ['1536','Révolte de Manco Inca : ses troupes tiennent la forteresse, que les Espagnols reprennent. Juan Pizarro y est mortellement blessé.'],
+    ['ensuite','Les Espagnols démontent les murs pour bâtir la ville coloniale. Seuls les plus gros blocs restent en place.'],
+    ['aujourd\'hui','Le centre historique de Cusco est inscrit au patrimoine mondial de l\'UNESCO (1983). La fête de l\'Inti Raymi s\'y déroule chaque 24 juin.']],
+   why:'Des blocs de plusieurs dizaines de tonnes, taillés en formes irrégulières et emboîtés au millimètre, sans mortier, sans outils de fer, sans roue ni animal de trait capable de tirer de telles charges. Comment ? En combien de temps ? Et tout a-t-il été bâti à la même époque ? C\'est là que Graham commence à douter.'}},
+ en:{tab:'Background',start:'Start the investigation',close:'Close the background',where:'Where are we?',brief:'The essentials',tl:'Landmarks in time',why:'Why is it a riddle?',
+  sacsay:{folio:['Background','Before opening the file'],title:'Sacsayhuamán',sub:'Cusco, Peru · in the Andes',say:'Roughly pronounced "sak-sigh-wa-MAHN".',
+   facts:[['Where','On a hill above Cusco, in the Peruvian Andes, at about 3,700 m.'],
+    ['Cusco','The capital of the Inca Empire, which in the early 16th century stretched from present-day Ecuador to Chile.'],
+    ['What','Three great terraces of zigzag walls, built from blocks fitted without mortar, plus the remains of towers and buildings. The Spanish called it "the fortress"; what it was used for exactly is still debated.'],
+    ['Size','The longest wall runs about 400 m and stands about 6 m high. The biggest block is put at 128 to nearly 200 tonnes.']],
+   tl:[['c. 900','The hill is already occupied: Killke pottery is found there, from before the Incas.'],
+    ['15th c.','Major Inca building works, under Pachacuti and his successors, according to the chronicles.'],
+    ['1533','The Spanish enter Cusco.'],
+    ['1536','Manco Inca\'s revolt: his troops hold the fortress, which the Spanish retake. Juan Pizarro is fatally wounded there.'],
+    ['after','The Spanish take the walls apart to build the colonial city. Only the largest blocks stay in place.'],
+    ['today','Cusco\'s historic centre is a UNESCO World Heritage Site (1983). The Inti Raymi festival is held there every 24 June.']],
+   why:'Blocks of several dozen tonnes, cut into irregular shapes and locked together to the millimetre, without mortar, without iron tools, without the wheel or draught animals able to pull such loads. How? How long did it take? And was it all built at the same time? That is where Graham starts to doubt.'}}};
+const CT=()=>CTX[LANG]||CTX.fr;
+function locator(id){const p=MAP.pts[id];if(!p)return '';const W=300,H=250,x=Math.max(0,Math.min(MAP.W-W,p[0]-W/2)),y=Math.max(0,Math.min(MAP.H-H,p[1]-H/2));
+  return `<svg class="locator" viewBox="${x} ${y} ${W} ${H}"><rect x="${x}" y="${y}" width="${W}" height="${H}" fill="#cfdde0"/><path d="${MAP.land}" fill="#e6d7b0" stroke="#7a6a4a" stroke-width=".7"/>
+   <path d="${MAP.grat}" fill="none" stroke="#7d8f96" stroke-width=".35" opacity=".6"/>
+   <circle cx="${p[0]}" cy="${p[1]}" r="9" fill="none" stroke="#a3322a" stroke-width="1.6"/><circle cx="${p[0]}" cy="${p[1]}" r="3.2" fill="#a3322a"/>
+   <text x="${p[0]+12}" y="${p[1]+4}" font-family="Cedarville Cursive,cursive" font-size="13" fill="#2b2219">Cusco</text></svg>
+   <svg class="locmini" viewBox="0 0 ${MAP.W} ${MAP.H}"><path d="${MAP.sphere}" fill="#cfdde0"/><path d="${MAP.land}" fill="#d9c9a0"/><rect x="${x}" y="${y}" width="${W}" height="${H}" fill="none" stroke="#a3322a" stroke-width="6"/></svg>`;}
+function openCtx(first){if(!E||!CT()[E.id])return;const c=CT(),d=c[E.id];
+  sheet(`<div class="page L"><div class="folio"><span>${d.folio[0]}</span><span>${d.folio[1]}</span></div><h2 class="ptitle">${d.title}<small>${d.sub}</small></h2>
+    <div class="tiny">${c.where}</div><div class="locwrap">${locator(E.id)}</div><p class="gsrc">${d.say}</p>
+    <div class="ctxfacts">${d.facts.map(([k,v])=>`<div><b>${k}</b><span>${v}</span></div>`).join('')}</div></div>
+   <div class="page R"><div class="folio"><span>${c.tl}</span><span>${E.place}</span></div>
+    <ol class="ctxtl">${d.tl.map(([y,t])=>`<li><b>${y}</b><span>${t}</span></li>`).join('')}</ol>
+    <div class="ctxwhy"><div class="tiny">${c.why}</div><p class="hand" style="font-size:21px">${d.why}</p></div></div>`);
+  const b=$('#pclose');b.querySelector('span').textContent=first?c.start:c.close;S.ctxSeen=true;}
 
 /* =================================================================== V2 · ENQUÊTE NON LINÉAIRE (cas modèle : Sacsayhuamán) */
 const V2={
