@@ -648,7 +648,25 @@ function play(k){try{SFX[k]&&SFX[k]();}catch(e){}}
 
 /* generative ambiences, one per place */
 function stopMusic(){if(!MUS)return;clearInterval(MUS.iv);MUS.nodes.forEach(n=>{try{n.stop?n.stop():n.disconnect();}catch(e){}});const a=A();if(a&&MUS.g){MUS.g.gain.setTargetAtTime(.0001,a.currentTime,.4);}MUS=null;}
-function music(kind){
+/* recorded score: one track for the atlas, one for the investigations, crossfaded; generative ambience is the fallback */
+const TRACKS={atlas:'audio/archival-expedition.mp3',case:'audio/linconnu.mp3'},TRK={},TVOL=.62;let TCUR=null;
+function trackFor(kind){return kind==='atlas'?'atlas':'case';}
+function getTrack(id){if(TRK[id])return TRK[id];const a=A();if(!a)return null;
+  const el=new Audio();el.src=TRACKS[id];el.loop=true;el.preload='auto';el.crossOrigin='anonymous';
+  const g=a.createGain();g.gain.value=.0001;let src=null;try{src=a.createMediaElementSource(el);src.connect(g).connect(out());}catch(e){return null;}
+  const T={id,el,g,ok:true};el.addEventListener('error',()=>{T.ok=false;if(TCUR===T){TCUR=null;genMusic(MUS_KIND);}});TRK[id]=T;return T;}
+function fadeTrack(T,to,tc){const a=A();if(!a||!T)return;const g=T.g.gain;g.cancelScheduledValues(a.currentTime);g.setValueAtTime(Math.max(g.value,.0001),a.currentTime);g.setTargetAtTime(Math.max(to,.0001),a.currentTime,tc);
+  if(to<=.001){clearTimeout(T.pz);T.pz=setTimeout(()=>{if(TCUR!==T)try{T.el.pause();}catch(e){}},tc*6000);}}
+let MUS_KIND=null;
+function music(kind){MUS_KIND=kind;if(!SND){stopTracks();stopMusic();return;}
+  const T=getTrack(trackFor(kind));
+  if(!T||!T.ok){if(TCUR){fadeTrack(TCUR,0,.8);TCUR=null;}return genMusic(kind);}
+  stopMusic();if(TCUR===T)return;
+  if(TCUR)fadeTrack(TCUR,0,1.2);TCUR=T;clearTimeout(T.pz);
+  const pr=T.el.play();if(pr&&pr.catch)pr.catch(()=>{});fadeTrack(T,TVOL,1.6);}
+window.__audio=()=>({TRK,TCUR,gen:!!MUS});
+function stopTracks(){Object.values(TRK).forEach(T=>fadeTrack(T,0,.4));TCUR=null;}
+function genMusic(kind){
   if(MUS&&MUS.kind===kind)return;stopMusic();if(!SND)return;const a=A();if(!a)return;
   const g=a.createGain();g.gain.value=.0001;g.connect(out());g.gain.setTargetAtTime(1,a.currentTime,1.2);
   const M={kind,g,nodes:[],iv:0};MUS=M;
@@ -691,7 +709,7 @@ function music(kind){
     tick();M.iv=setInterval(tick,6400);
   }
 }
-$('#snd').onclick=()=>{SND=!SND;$('#snd').setAttribute('aria-pressed',SND);$('#snd').textContent=SND?tr('sndOn'):tr('sndOff');if(SND){play('pick');music(curMusic());}else stopMusic();};
+$('#snd').onclick=()=>{SND=!SND;$('#snd').setAttribute('aria-pressed',SND);$('#snd').textContent=SND?tr('sndOn'):tr('sndOff');if(SND){play('pick');music(curMusic());}else{stopMusic();stopTracks();}};
 
 /* =================================================================== DRAWINGS */
 function chakana(u){const p=[[-1,-3],[1,-3],[1,-2],[2,-2],[2,-1],[3,-1],[3,1],[2,1],[2,2],[1,2],[1,3],[-1,3],[-1,2],[-2,2],[-2,1],[-3,1],[-3,-1],[-2,-1],[-2,-2],[-1,-2]];return 'M'+p.map(q=>(q[0]*u).toFixed(1)+' '+(q[1]*u).toFixed(1)).join(' L')+'Z';}

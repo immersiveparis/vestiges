@@ -11,7 +11,8 @@ Jeu web interactif : les carnets d'enquête d'une exploratrice disparue, Hélèn
 - Cas 2 · **Nan Madol** (Pohnpei, Micronésie) : atelier de radeau de basalte avec marée
 - Cas à venir : Sirius, le Déluge, Göbekli Tepe, Rapa Nui, les Maya
 - Français et anglais, desktop et mobile
-- Sons et musique générés en direct (WebAudio), sans fichier audio
+- Bande originale : *Archival Expedition* sur l'atlas, *L'Inconnu* pendant les enquêtes, en fondu enchaîné
+- Bruitages générés en direct (WebAudio) ; ambiance générée en secours si la musique ne charge pas
 
 ## Lancer
 
@@ -29,7 +30,12 @@ Les polices sont chargées depuis Google Fonts.
 index.html     le jeu (HTML, CSS et JS dans un seul fichier)
 img/           photos et gravures du cas Sacsayhuamán
 img/nm/        photos du cas Nan Madol
+audio/         bande originale (MP3 128 kb/s, normalisés à -20 LUFS)
 ```
+
+## Musique
+
+*Archival Expedition* et *L'Inconnu*, générés avec Suno pour Atelier Daruma.
 
 ## Crédits photographiques
 
