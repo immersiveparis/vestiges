@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Vestiges : carnets d'enquête sur les mystères des bâtisseurs anciens. Jeu web interactif.">
+<meta name="description" content="Vestiges : le carnet d'enquête de Graham Hancock sur les sites archéologiques et leurs énigmes. Jeu web interactif.">
 <title>Graham Hancock's Notebook</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -450,6 +450,44 @@ select.blank:disabled{color:var(--green);border-bottom-color:var(--green);backgr
 #route{stroke-dasharray:6 6}
 .pitch{background:#fbf8ef;padding:16px 18px;box-shadow:0 3px 8px rgba(60,35,10,.2);transform:rotate(-.8deg);display:flex;flex-direction:column;gap:6px}
 
+
+/* ---------- atlas as one big map across the spread ---------- */
+.spr.atlas .page{gap:6px}
+.spr.atlas .ptitle{margin:0}
+.atl-note{position:absolute;right:46px;top:66px;width:440px;font-size:21px!important;line-height:1.25;transform:rotate(-1.2deg);margin:0}
+.bigmap{position:absolute;left:30px;right:30px;top:150px;bottom:54px;z-index:4;display:grid;place-items:center}
+.bm-scroll{width:100%;height:100%;display:grid;place-items:center}
+.bigmap svg{display:block;max-width:100%;max-height:100%;width:auto;height:100%;filter:drop-shadow(0 3px 6px rgba(60,35,10,.25))}
+.bigmap .pin text{transition:fill .2s}
+.bigmap .pin.sel text{fill:#a3322a}
+.bigmap .pin.sel circle:not(.pulse):not([fill="transparent"]){stroke:#2a2118;stroke-width:2.4}
+.bigmap .pin.lock{cursor:pointer}
+.atl-card{position:absolute;width:330px;display:grid;grid-template-columns:96px 1fr;gap:12px;align-items:start;background:#fbf7ec;padding:12px 14px 14px;
+  box-shadow:0 6px 16px rgba(60,35,10,.35);transform:rotate(-.6deg);transition:left .25s ease,top .25s ease;z-index:6}
+.atl-card:empty{display:none}
+.ac-img{width:96px;height:96px;object-fit:cover;filter:sepia(.35) contrast(1.05);box-shadow:0 0 0 4px #fff,0 2px 4px rgba(0,0,0,.2)}
+.ac-seal{width:84px;height:84px;margin:6px;border-radius:50%;background:radial-gradient(circle at 38% 32%,#c9b48a,#8b7c66 60%,#5d5243);box-shadow:inset 0 0 0 6px rgba(255,255,255,.12),0 2px 4px rgba(0,0,0,.3)}
+.ac-tx{display:flex;flex-direction:column;gap:2px;align-items:flex-start}
+.ac-no{font-family:var(--f-title);font-weight:700;color:var(--red);font-size:15px}
+.ac-nm{font-family:var(--f-title);font-weight:700;font-size:22px;line-height:1.05}
+.ac-pl{font-family:var(--f-body);font-size:14px;color:var(--ink-2)}
+.ac-hook{font-family:var(--f-body);font-size:15.5px;line-height:1.3;margin:6px 0 8px}
+.ac-go{font-size:14px!important;padding:6px 12px!important}
+.atl-card .chip{margin-top:6px;font-size:12px}
+.atl-how{position:absolute;left:8px;bottom:0;max-width:430px;background:#fbf8ef;padding:6px 12px;box-shadow:0 2px 6px rgba(60,35,10,.2);transform:rotate(.4deg);z-index:5}
+.atl-how summary{cursor:pointer;font-family:var(--f-sc);font-weight:700;letter-spacing:.08em;font-size:13px}
+.atl-how p{font-size:14.5px;line-height:1.35;margin:6px 0 2px}
+.vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media (max-width:860px){
+  .spr.atlas>.page.L{order:0}.spr.atlas>.bigmap{order:1}.spr.atlas>.page.R{order:2}
+  .atl-note{position:static;width:auto;font-size:20px!important}
+  .bigmap{position:relative;inset:auto;display:block;background:#e4dcc3;padding:0 0 16px}
+  .bm-scroll{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;height:auto}
+  .bigmap svg{width:780px;max-width:none;max-height:none;height:auto}
+  .atl-card{position:relative;left:auto!important;top:auto!important;width:auto;margin:10px 14px 0;transform:none}
+  .atl-how{position:relative;margin:12px 14px 0;max-width:none;transform:none}
+}
+
 /* ---------- observe ---------- */
 .wallfig{position:relative;transform:rotate(-.6deg)}
 .wallbox{position:relative;line-height:0}
@@ -870,7 +908,7 @@ const T={
  fr:{brand:'STRATES',brandSub:'Carnet de terrain · H. Varga',rig:'Rigueur',mer:'Émerveillement',sndOn:'Bruitages : activés',sndOff:'Bruitages : coupés',other:'EN',otherLabel:'Read in English',
   hint:'Clique sur la couverture pour ouvrir le carnet',coverAria:'Ouvrir le carnet',tabs:['Atlas','<b>I</b>&nbsp;Observer','<b>II</b>&nbsp;Enquêter','<b>III</b>&nbsp;Reconstituer','<b>IV</b>&nbsp;Débattre','<b>V</b>&nbsp;Trancher'],
   prev:'Page précédente',open:'Ouvert',sealedChip:'Scellé',
-  aFolio:['Sommaire','2009 – 2019'],aTitle:'Atlas des carnets',aSub:"Sept sites, sept pages arrachées à l'oubli.",aNote:"Si tu lis ceci, tu tiens mon carnet. J'y ai noté les énigmes que je n'ai pas su résoudre. Ne me crois pas sur parole : vérifie.",
+  aFolio:['Sommaire','2009 – 2019'],aTitle:'Atlas des sites archéologiques',aSub:"Sept lieux, sept énigmes, un seul carnet.",aNote:"Si tu lis ceci, tu tiens mon carnet. J'y ai noté les énigmes que je n'ai pas su résoudre. Ne me crois pas sur parole : vérifie.",
   aFolioR:['Planisphère','Centré sur le Pacifique'],mapcap:'Clique sur une épingle rouge pour partir.',howT:'Comment on joue',how:"Observe, mène les pistes dans l'ordre que tu veux, croise les sources, puis ouvre la page que Graham a scellée. Ta <b>Rigueur</b> monte quand tu prouves. Ton <b>Émerveillement</b> monte quand tu gardes ouvert un vrai mystère.",
   ocean:'Océan Pacifique',mapAria:'Planisphère ancien centré sur le Pacifique, avec les sept sites du carnet',pinAria:'Ouvrir le cas',
   openCase:"Ouvrir l'enquête",obsF:'I · Observer',wallAlt:'Photo rapprochée du mur, avec quatre détails entourés',obsHint:'Prends la loupe. Chaque cercle cache un indice.',rel:'Relevés',clues:'Indices',seen:"Ce que j'ai vu",turn:'Tourner la page',detail:'Détail',examine:'Examiner le détail',already:', déjà relevé',
@@ -908,9 +946,9 @@ const T={
  en:{brand:'STRATA',brandSub:'Field notebook · H. Varga',rig:'Rigour',mer:'Wonder',sndOn:'Sound effects: on',sndOff:'Sound effects: off',other:'FR',otherLabel:'Lire en français',
   hint:'Tap the cover to open the notebook',coverAria:'Open the notebook',tabs:['Atlas','<b>I</b>&nbsp;Observe','<b>II</b>&nbsp;Investigate','<b>III</b>&nbsp;Rebuild','<b>IV</b>&nbsp;Debate','<b>V</b>&nbsp;Decide'],
   prev:'Previous page',open:'Open',sealedChip:'Sealed',
-  aFolio:['Contents','2009 – 2019'],aTitle:'Atlas of the notebooks',aSub:'Seven sites, seven pages torn from oblivion.',aNote:"If you're reading this, you're holding my notebook. I wrote down the riddles I couldn't solve. Don't take my word for it: check.",
+  aFolio:['Contents','2009 – 2019'],aTitle:'Atlas of archaeological sites',aSub:'Seven places, seven riddles, one notebook.',aNote:"If you're reading this, you're holding my notebook. I wrote down the riddles I couldn't solve. Don't take my word for it: check.",
   aFolioR:['World map','Centred on the Pacific'],mapcap:'Tap a red pin to set off.',howT:'How to play',how:'Observe, follow the leads in any order, cross-check the sources, then open the page Graham sealed. Your <b>Rigour</b> rises when you prove things. Your <b>Wonder</b> rises when you keep a real mystery open.',
-  ocean:'Pacific Ocean',mapAria:'Old world map centred on the Pacific, showing the notebook\'s seven sites',pinAria:'Open case',
+  ocean:'Pacific Ocean',mapAria:'Old world map centred on the Pacific, showing the seven archaeological sites',pinAria:'Open case',
   openCase:'Open the case',obsF:'I · Observe',wallAlt:'Close-up photo of the wall, with four details circled',obsHint:'Take the magnifier. Each circle hides a clue.',rel:'Records',clues:'Clues',seen:'What I saw',turn:'Turn the page',detail:'Detail',examine:'Examine detail',already:', already recorded',
   measF:['II · Measure','Two days on site'],measT:'What I examine',measS:'Each examination costs a day. You only have two.',cards:'Index cards',learned:'What I learned',toWs:'To the workshop',empty:'Nothing yet. Pick an object on the left-hand page.',examined:'examined',
   ateF:'III · Rebuild',methJ:['Set down','Read the marks','Strike'],methR:['On deck','Under the raft','Wait for the tide'],
@@ -1348,28 +1386,63 @@ const pageno=(n)=>`<div class="pageno">${n}</div>`;
 const prev=()=>`<button class="dogear prev"><span>${tr('prev')}</span></button>`;
 const next=(tx,hide)=>`<button class="dogear next"${hide?' hidden':''}><span>${tx}</span></button>`;
 const credLic=l=>l==='domaine public'?tr('pd'):l;
+const HOOK={fr:{
+  sacsay:["Des blocs de plus de 100 tonnes, ajustés sans mortier. La lame d'un couteau n'entre pas dans les joints.","img/squier-vue.jpg"],
+  nanmadol:["Une ville de basalte posée sur un récif, au milieu du Pacifique. Qui a amené ces colonnes jusqu'ici ?","img/nm/ilot.jpg"],
+  sirius:["Pourquoi l'Égypte attendait-elle le retour d'une étoile pour annoncer la crue du Nil ?"],
+  deluge:["Le même récit d'un déluge, gravé sur des tablettes d'argile, mille ans avant la Bible."],
+  gobekli:["Des piliers sculptés, plus anciens que l'écriture d'environ six mille ans."],
+  rapa:["Près de mille statues sur une île sans arbres. Comment les a-t-on déplacées ?"],
+  maya:["Un calendrier qui compte les jours depuis une date de l'an 3114 avant notre ère."]},
+ en:{
+  sacsay:["Blocks of over 100 tonnes, fitted without mortar. A knife blade won't go into the joints.","img/squier-vue.jpg"],
+  nanmadol:["A basalt city set on a reef in the middle of the Pacific. Who brought these columns here?","img/nm/ilot.jpg"],
+  sirius:["Why did Egypt wait for a star's return to announce the Nile flood?"],
+  deluge:["The same flood story, pressed into clay tablets a thousand years before the Bible."],
+  gobekli:["Carved pillars, older than writing by some six thousand years."],
+  rapa:["Nearly a thousand statues on a treeless island. How were they moved?"],
+  maya:["A calendar that counts the days from a date in 3114 BCE."]}};
+const ATL={fr:{go:"Ouvrir l'enquête",soon:'Page encore scellée',again:'Rouvrir le cas',pick:'Survole ou touche un lieu.'},en:{go:'Open the investigation',soon:'Page still sealed',again:'Reopen the case',pick:'Hover or tap a place.'}};
+let atlSel=null;
+function atlInit(){atlSel=atlDefault();requestAnimationFrame(()=>{atlShow(atlSel,true);const sc=$('#atlMap .bm-scroll'),p=MAP.pts[atlSel];if(sc&&p&&sc.scrollWidth>sc.clientWidth)sc.scrollLeft=p[0]/MAP.W*sc.scrollWidth-sc.clientWidth/2;});}
+addEventListener('resize',()=>{if($('#atlCard')&&atlSel)atlShow(atlSel);});
+function atlDefault(){const open=SITES.map(x=>x[0]).filter(id=>EPS()[id]);return open.find(id=>!G.done[id])||open[0]||SITES[0][0];}
+function atlCard(id){const L=LANG==='en'?'en':'fr',[nm,pl]=tr('sites')[id],no=(SITES.find(x=>x[0]===id)||[])[1],h=HOOK[L][id]||[''],ok=!!EPS()[id],d=G.done[id],t=ATL[L];
+  return `${h[1]?`<img class="ac-img" src="${h[1]}" alt="">`:`<span class="ac-seal" aria-hidden="true"></span>`}
+   <div class="ac-tx"><span class="ac-no">${no}</span><b class="ac-nm">${nm}</b><i class="ac-pl">${pl}</i>
+   <p class="ac-hook">${h[0]}</p>
+   ${ok?`<button class="lbl red ac-go" data-case="${id}">${d?t.again:t.go}</button>${d?`<span class="chip done">${tr('prof')[d]}</span>`:''}`:`<span class="chip lock">${t.soon}</span>`}</div>`;}
+function atlShow(id,keep){const c=$('#atlCard');if(!c)return;if(keep)atlSel=id;c.innerHTML=atlCard(id);c.dataset.cur=id;
+  const p=MAP.pts[id],svg=$('#atlMap svg'),bm=$('#atlMap');
+  document.querySelectorAll('#atlMap .pin').forEach(g=>g.classList.toggle('sel',g.dataset.case===id));
+  if(!p||!svg||!bm||matchMedia('(max-width:860px)').matches){c.style.left=c.style.top='';const ld=$('#atlLead');ld&&ld.setAttribute('d','');return;}
+  const r=svg.getBoundingClientRect(),br=bm.getBoundingClientRect(),k=r.width/MAP.W,kk=br.width/bm.offsetWidth||1;
+  const x=(r.left-br.left)/kk+p[0]*k*1/kk,y=(r.top-br.top)/kk+p[1]*k/kk,W=c.offsetWidth,H=c.offsetHeight,BW=bm.offsetWidth,BH=bm.offsetHeight;
+  c.style.left=(BW/2-W-16)+'px';c.style.top=(BH-H-4)+'px';
+  const ld=$('#atlLead');if(ld){const cr=c.getBoundingClientRect(),k=r.width/MAP.W,ax=(cr.right-r.left)/k-4,ay=(cr.top-r.top)/k+30,mx=(ax+p[0])/2,my=Math.min(ay,p[1])-40;ld.setAttribute('d',`M${ax.toFixed(1)} ${ay.toFixed(1)} Q${mx.toFixed(1)} ${my.toFixed(1)} ${p[0]} ${p[1]}`);}}
 function atlasSpread(){
-  const toc=SITES.map(([id,no])=>{const [nm,pl]=tr('sites')[id];const ok=!!EPS()[id],d=G.done[id];return `<li><button data-case="${id}" ${ok?'':'disabled'}><span class="no">${no}</span><span class="nm">${nm}<i>${pl}</i></span>${d?`<span class="chip done">${tr('prof')[d]}</span>`:ok?`<span class="chip open">${tr('open')}</span>`:`<span class="chip lock">${tr('sealedChip')}</span>`}</button></li>`;}).join('');
-  return `<section class="spr" data-n="0">
+  const L=LANG==='en'?'en':'fr';
+  const list=SITES.map(([id,no])=>{const [nm]=tr('sites')[id];return `<li><button data-site="${id}" ${EPS()[id]?'':'aria-disabled="true"'}>${no} ${nm}</button></li>`;}).join('');
+  return `<section class="spr atlas" data-n="0">
    <div class="page L"><div class="folio"><span>${tr('aFolio')[0]}</span><span>${tr('aFolio')[1]}</span></div>
-    <h2 class="ptitle">${tr('aTitle')}<small>${tr('aSub')}</small></h2>
-    <p class="hand">${tr('aNote')}</p>
-    <ul class="toc" id="toc">${toc}</ul>${pageno('i')}</div>
+    <h2 class="ptitle">${tr('aTitle')}<small>${tr('aSub')}</small></h2>${pageno('i')}</div>
    <div class="page R"><div class="folio"><span>${tr('aFolioR')[0]}</span><span>${tr('aFolioR')[1]}</span></div>
-    <div class="mapwrap">${mapSvg()}</div><p class="mapcap">${tr('mapcap')}</p>
-    <div class="pitch"><span class="tiny">${tr('howT')}</span><p class="body" style="font-size:16.5px">${tr('how')}</p></div>
-    ${pageno('ii')}</div></section>`;
+    <p class="hand atl-note">${tr('aNote')}</p>${pageno('ii')}</div>
+   <div class="bigmap" id="atlMap"><div class="bm-scroll">${mapSvg()}</div>
+    <div class="atl-card" id="atlCard" aria-live="polite"></div>
+    <details class="atl-how"><summary>${tr('howT')}</summary><p>${tr('how')}</p></details>
+    <ul class="vh" aria-label="${tr('aTitle')}">${list}</ul></div></section>`;
 }
 function mapSvg(){
   const pins=SITES.map(([id,no])=>{const nm=tr('sites')[id][0];const p=MAP.pts[id];if(!p)return '';const ok=!!EPS()[id],d=G.done[id];const col=d?'#46653a':ok?'#a3322a':'#8b7c66';
     const o=LBL[id]||[10,5,'start'],lx=p[0]+o[0],ly=p[1]+o[1],anchor=o[2];
-    return `<g class="pin${ok?'':' lock'}" data-case="${id}" ${ok?`role="button" tabindex="0" aria-label="${tr('pinAria')} ${no}, ${nm}"`:''}>${ok&&!d?`<circle class="pulse" cx="${p[0]}" cy="${p[1]}" r="10" fill="none" stroke="${col}" stroke-width="2.5"/>`:''}<circle cx="${p[0]}" cy="${p[1]}" r="${ok?10:6}" fill="${col}" stroke="#f6ecd2" stroke-width="1.6"/><text x="${lx}" y="${ly}" text-anchor="${anchor}" font-family="La Belle Aurore,cursive" font-size="${ok?30:25}" fill="${ok?'#2a2118':'#7a6c58'}" stroke="#e9dbb5" stroke-width="6" paint-order="stroke">${no} ${nm}</text></g>`;}).join('');
+    return `<g class="pin${ok?'':' lock'}" data-case="${id}" role="button" tabindex="0" aria-label="${no}, ${nm}"><circle cx="${p[0]}" cy="${p[1]}" r="22" fill="transparent"/>${ok&&!d?`<circle class="pulse" cx="${p[0]}" cy="${p[1]}" r="10" fill="none" stroke="${col}" stroke-width="2.5"/>`:''}<circle cx="${p[0]}" cy="${p[1]}" r="${ok?10:6}" fill="${col}" stroke="#f6ecd2" stroke-width="1.6"/><text x="${lx}" y="${ly}" text-anchor="${anchor}" font-family="La Belle Aurore,cursive" font-size="${ok?30:25}" fill="${ok?'#2a2118':'#7a6c58'}" stroke="#e9dbb5" stroke-width="6" paint-order="stroke">${no} ${nm}</text></g>`;}).join('');
   const compass=`<g transform="translate(905 438)" opacity=".85"><circle r="34" fill="none" stroke="#6b5a40" stroke-width=".8"/><path d="M0 -40 L6 0 L0 40 L-6 0Z" fill="#6b5a40"/><path d="M-40 0 L0 6 L40 0 L0 -6Z" fill="#a39070"/><path d="M0 -40 L6 0 L-6 0Z" fill="#a3322a"/><text y="-46" text-anchor="middle" font-family="Cormorant SC,serif" font-weight="700" font-size="16" fill="#2a2118">N</text></g>`;
   return `<svg viewBox="0 0 ${MAP.W} ${MAP.H}" role="img" aria-label="${tr('mapAria')}">
    <path d="${MAP.sphere}" fill="#d9c9a0"/><path d="${MAP.sphere}" fill="url(#hatch)"/><path d="${MAP.grat}" fill="none" stroke="#9a8a62" stroke-width=".6" opacity=".55"/>
    <path d="${MAP.land}" fill="#f1e6c8" stroke="#5c4e3e" stroke-width="1" filter="url(#ink)"/><path d="${MAP.sphere}" fill="none" stroke="#5c4e3e" stroke-width="2"/>
    <text x="560" y="425" font-family="Cormorant Garamond,serif" font-style="italic" font-size="26" fill="#6b5a40" opacity=".8" letter-spacing="6">${tr('ocean')}</text>
-   ${compass}<path id="route" d="" fill="none" stroke="#a3322a" stroke-width="2.6"/><circle id="traveler" r="5" fill="#a3322a" opacity="0"/>${pins}</svg>`;
+   ${compass}<path id="route" d="" fill="none" stroke="#a3322a" stroke-width="2.6"/><circle id="traveler" r="5" fill="#a3322a" opacity="0"/><path id="atlLead" d="" fill="none" stroke="#a3322a" stroke-width="1.6" stroke-dasharray="3 5" stroke-linecap="round" opacity=".7"/>${pins}</svg>`;
 }
 function proSpread(e){const p=e.pro;return `<section class="spr" data-n="1" hidden>
   <div class="page L"><div class="folio"><span>${p.folio[0]}</span><span>${p.folio[1]}</span></div>
@@ -1425,7 +1498,7 @@ function endSpread(e){return `<section class="spr" data-n="7" hidden>
    <div class="controls"><button class="lbl red" id="toAtlas">${tr('toAtlas')}</button><button class="lbl" id="replay">${tr('replay')}</button></div>
    <div class="credits"><b>${tr('credits')}</b> (Wikimedia Commons) : ${e.credits.map(([a,l,u])=>`<a href="${u}" target="_blank" rel="noopener">${a}</a> (${credLic(l)})`).join(', ')}.</div>${pageno(14)}</div></section>`;}
 function buildEpisode(e){$$('.spr').forEach(s=>{if(+s.dataset.n>0)s.remove();});$('#stack').insertAdjacentHTML('beforeend',proSpread(e)+(e.v3?bureauSpread(e):obsSpread(e))+(e.v2?pistesSpread(e):measSpread(e))+ateSpread(e)+(e.v3?dossierSpread(e)+rewardSpread(e):debSpread(e)+verSpread(e))+endSpread(e));wireEpisode();}
-function rebuildAtlas(){const old=$('.spr[data-n="0"]');const hid=old?old.hidden:false;if(old)old.remove();$('#stack').insertAdjacentHTML('afterbegin',atlasSpread());$('.spr[data-n="0"]').hidden=hid;}
+function rebuildAtlas(){const old=$('.spr[data-n="0"]');const hid=old?old.hidden:false;if(old)old.remove();$('#stack').insertAdjacentHTML('afterbegin',atlasSpread());$('.spr[data-n="0"]').hidden=hid;atlInit();}
 
 /* =================================================================== NAVIGATION */
 const spr=n=>$(`.spr[data-n="${n}"]`);
@@ -1463,21 +1536,24 @@ function openCase(id){
     trav.setAttribute('opacity','1');const t0=performance.now();const step=t=>{const k=Math.min(1,(t-t0)/1400);const p=route.getPointAtLength(len*k);trav.setAttribute('cx',p.x);trav.setAttribute('cy',p.y);if(k<1)requestAnimationFrame(step);else setTimeout(go,350);};requestAnimationFrame(step);}
   else{trav.setAttribute('cx',to[0]);trav.setAttribute('cy',to[1]);trav.setAttribute('opacity','1');trav.animate([{r:5,opacity:1},{r:26,opacity:0}],{duration:900,easing:'ease-out'});setTimeout(go,800);}
 }
+document.addEventListener('mouseover',ev=>{if(matchMedia('(hover:none)').matches)return;const pn=ev.target.closest&&ev.target.closest('#atlMap .pin');if(pn&&$('#atlCard').dataset.cur!==pn.dataset.case)atlShow(pn.dataset.case);});
+document.addEventListener('mouseout',ev=>{if(matchMedia('(hover:none)').matches)return;const pn=ev.target.closest&&ev.target.closest('#atlMap .pin');if(pn&&!(ev.relatedTarget&&ev.relatedTarget.closest&&ev.relatedTarget.closest('#atlMap .pin, #atlCard'))&&atlSel&&$('#atlCard').dataset.cur!==atlSel)atlShow(atlSel);});
 document.addEventListener('click',ev=>{
   const d=ev.target.closest('.dogear');if(d){const n=+d.closest('.spr').dataset.n;goTo(d.classList.contains('prev')?n-1:n+1);return;}
   if(ev.target.closest('#gtab')){toggleGraham();return;}
   if(ev.target.closest('#ctab')){if(!$('#gsheet').hidden)toggleGraham(false);openCtx(false);return;}
   if(ev.target.closest('#ftab')){if(!$('#gsheet').hidden)toggleGraham(false);introOpen('replay');return;}
   const t=ev.target.closest('.tab');if(t&&!t.disabled){if(!$('#gsheet').hidden)toggleGraham(false);if(typeof closeSheet==='function')closeSheet();goTo(+t.dataset.to);return;}
+  const pn=ev.target.closest('#atlMap .pin, #atlMap [data-site]');if(pn){const id=pn.dataset.case||pn.dataset.site;if(EPS()[id]&&pn.matches('.pin')&&!matchMedia('(hover:none)').matches){openCase(id);return;}play('pick');atlShow(id,true);if(matchMedia('(max-width:860px)').matches)$('#atlCard').scrollIntoView({block:'nearest',behavior:'smooth'});return;}
   const c=ev.target.closest('[data-case]');if(c&&EPS()[c.dataset.case]){openCase(c.dataset.case);return;}
   if(ev.target.closest('#toAtlas')){goTo(0);return;}
   if(ev.target.closest('#replay')){const id=E.id;S=fresh(id);S.cur=7;S.max=1;buildEpisode(E);show(7);goTo(1);return;}
 });
-document.addEventListener('keydown',ev=>{const c=ev.target.closest&&ev.target.closest('.pin[data-case]');if(c&&(ev.key==='Enter'||ev.key===' ')){ev.preventDefault();openCase(c.dataset.case);}
+document.addEventListener('keydown',ev=>{const c=ev.target.closest&&ev.target.closest('.pin[data-case]');if(c&&(ev.key==='Enter'||ev.key===' ')){ev.preventDefault();atlShow(c.dataset.case,true);const g=$('#atlCard .ac-go');g&&g.focus();}
   if(ev.key==='Escape'&&!$('#intro').hidden){if($('#intro').classList.contains('playing')||seenIntro())introSkip();}else if(ev.key==='Escape'&&!$('#ov').hidden)closeLens();else if(ev.key==='Escape'&&!$('#gsheet').hidden)toggleGraham(false);else if(ev.key==='Escape'&&$('#psheet')&&!$('#psheet').hidden)closeSheet();});
 function openCover(big){
   A();play(big?'bookopen':'cover');
-  const prep=()=>{$('#stack').innerHTML=atlasSpread();S.cur=0;show(0);$('#book').hidden=false;chrome();music('atlas');};
+  const prep=()=>{$('#stack').innerHTML=atlasSpread();S.cur=0;show(0);atlInit();$('#book').hidden=false;chrome();music('atlas');};
   if(narrow()||reduce){prep();$('#closed').hidden=true;$('#book').classList.add('reveal');return;}
   prep();$('#book').classList.add('reveal');$('#coverwrap').classList.add('open');
   setTimeout(()=>play('flip'),520);setTimeout(()=>{$('#closed').hidden=true;},1150);
