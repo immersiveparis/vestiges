@@ -120,6 +120,10 @@ button{font:inherit;color:inherit}
 .istart:hover .proj{border-color:#fff1d2;box-shadow:0 0 30px rgba(255,210,140,.25)}
 @keyframes proj{0%,100%{opacity:1}47%{opacity:1}48%{opacity:.6}50%{opacity:1}83%{opacity:.85}84%{opacity:1}}
 .intro.playing .istart{display:none}
+.ibar{position:absolute;left:30%;right:30%;bottom:5.5%;height:2px;border-radius:1px;background:rgba(233,214,172,.16);opacity:0;transition:opacity .6s}
+.ibar i{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:1px;background:rgba(233,214,172,.62);box-shadow:0 0 6px rgba(255,210,140,.35)}
+.itc{position:absolute;right:30%;bottom:calc(5.5% + 8px);font-family:var(--f-type);font-size:11px;letter-spacing:.14em;color:rgba(233,214,172,.42);opacity:0;transition:opacity .6s;font-variant-numeric:tabular-nums}
+.intro.playing .ibar,.intro.playing .itc{opacity:1}
 .iskip{position:absolute;right:22px;bottom:18px;border:0;background:none;color:#cdb68b;font-family:var(--f-type);font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;opacity:.38;transition:opacity .3s;padding:8px}
 .iskip:hover,.iskip:focus-visible{opacity:1}
 .intro:not(.playing):not(.seen) .iskip{display:none}
@@ -138,6 +142,12 @@ button{font:inherit;color:inherit}
 .ghc .ue2{font-family:var(--f-title);font-style:italic;font-size:3.6cqw;color:#5b4632;margin-top:10px}
 .ghc .imp{position:absolute;left:0;right:0;bottom:7%;font-family:'Old Standard TT',serif;font-size:2.4cqw;letter-spacing:.24em;color:#5b4632}
 .ghc .wear{position:absolute;inset:0;pointer-events:none;mix-blend-mode:multiply;background:radial-gradient(circle at 92% 6%,rgba(90,55,20,.5),transparent 9%),radial-gradient(circle at 6% 96%,rgba(90,55,20,.45),transparent 10%),radial-gradient(ellipse 30% 14% at 30% 78%,rgba(120,80,30,.18),transparent 70%)}
+
+/* book revealed under the opening cover */
+.book.reveal{animation:bookIn 1s ease-out .1s both}
+@keyframes bookIn{from{opacity:0;transform:scale(.985)}}
+.coverback{display:none!important}
+.closed{z-index:5}
 
 /* ---------- closed album ---------- */
 .closed{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;padding-block:6px 40px;perspective:2600px}
@@ -653,7 +663,7 @@ button{font:inherit;color:inherit}
 </div></div>
 
 <div class="intro" id="intro">
-  <div class="iframe"><video id="ivid" playsinline preload="auto" poster="video/intro-poster.jpg"><source src="video/intro.mp4" type="video/mp4"><source src="video/intro.webm" type="video/webm"></video></div>
+  <div class="iframe"><video id="ivid" playsinline preload="auto" poster="video/intro-poster.jpg"><source src="video/intro.mp4" type="video/mp4"><source src="video/intro.webm" type="video/webm"></video><div class="ibar" aria-hidden="true"><i id="ibarF"></i></div><span class="itc" id="itc" aria-hidden="true"></span></div>
   <button class="istart" id="istart"><span class="proj" aria-hidden="true"></span><span id="istartL">Lancer la projection</span></button>
   <button class="iskip" id="iskip">Passer l'intro ›</button>
 </div>
@@ -1286,9 +1296,10 @@ document.addEventListener('keydown',ev=>{const c=ev.target.closest&&ev.target.cl
   if(ev.key==='Escape'&&!$('#intro').hidden){if($('#intro').classList.contains('playing')||seenIntro())introEnd();}else if(ev.key==='Escape'&&!$('#ov').hidden)closeLens();else if(ev.key==='Escape'&&!$('#gsheet').hidden)toggleGraham(false);});
 function openCover(big){
   A();play(big?'bookopen':'cover');
-  const open=()=>{$('#closed').hidden=true;$('#book').hidden=false;$('#stack').innerHTML=atlasSpread();S.cur=0;show(0);chrome();music('atlas');};
-  if(narrow()||reduce){open();return;}
-  $('#coverwrap').classList.add('open');setTimeout(()=>{play('flip');open();},1100);
+  const prep=()=>{$('#stack').innerHTML=atlasSpread();S.cur=0;show(0);$('#book').hidden=false;chrome();music('atlas');};
+  if(narrow()||reduce){prep();$('#closed').hidden=true;$('#book').classList.add('reveal');return;}
+  prep();$('#book').classList.add('reveal');$('#coverwrap').classList.add('open');
+  setTimeout(()=>play('flip'),520);setTimeout(()=>{$('#closed').hidden=true;},1150);
 }
 $('#cover').onclick=()=>openCover(false);
 
@@ -1308,6 +1319,9 @@ function introEnd(){const it=$('#intro'),v=$('#ivid');if(it.hidden||it.classList
   it.classList.add('out');
   setTimeout(()=>{it.hidden=true;it.classList.remove('playing');
     if(IMODE==='first'){setTimeout(()=>openCover(true),350);}else{play('flip');music(curMusic());}},900);}
+(function ibarLoop(){const it=$('#intro'),v=$('#ivid');if(it&&!it.hidden&&it.classList.contains('playing')&&v.duration){const r=Math.min(1,v.currentTime/v.duration);$('#ibarF').style.width=(r*100).toFixed(2)+'%';
+  const left=Math.max(0,Math.ceil(v.duration-v.currentTime)),mm=String(Math.floor(left/60)).padStart(2,'0'),ss=String(left%60).padStart(2,'0');$('#itc').textContent='− '+mm+':'+ss;}
+  requestAnimationFrame(ibarLoop);})();
 $('#istart').onclick=introPlay;$('#iskip').onclick=introEnd;$('#ivid').addEventListener('ended',introEnd);
 $('#ivid').addEventListener('error',()=>{if(IMODE==='first'&&!$('#intro').classList.contains('playing'))return;introEnd();},true);
 introOpen('first');
