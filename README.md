@@ -8,7 +8,10 @@ Jeu web interactif : les carnets d'enquête d'une exploratrice disparue, Hélèn
 
 - Atlas des sept cas, centré sur le Pacifique
 - Cas 1 · **Sacsayhuamán** (Pérou) : observation, mesures, atelier d'ajustage des joints, débat, verdict
-- Cas 2 · **Nan Madol** (Pohnpei, Micronésie) : atelier de radeau de basalte avec marée
+- Cas 2 · **Graham Hancock**
+- Cpt.Muji, CC BY 3.0 — [Graham-Hancock.jpg](https://commons.wikimedia.org/wiki/File:Graham-Hancock.jpg) (2010)
+
+**Nan Madol** (Pohnpei, Micronésie) : atelier de radeau de basalte avec marée
 - Cas à venir : Sirius, le Déluge, Göbekli Tepe, Rapa Nui, les Maya
 - Français et anglais, desktop et mobile
 - Bande originale : *Archival Expedition* sur l'atlas, *L'Inconnu* pendant les enquêtes, en fondu enchaîné
@@ -30,6 +33,7 @@ Les polices sont chargées depuis Google Fonts.
 index.html     le jeu (HTML, CSS et JS dans un seul fichier)
 img/           photos et gravures du cas Sacsayhuamán
 img/nm/        photos du cas Nan Madol
+img/graham/    portrait de Graham Hancock (fiche auteur)
 audio/         bande originale (MP3 128 kb/s, normalisés à -20 LUFS)
 ```
 

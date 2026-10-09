@@ -65,6 +65,47 @@ button{font:inherit;color:inherit}
 .ic svg{width:18px;height:18px}
 .ic .x{display:none}.ic[aria-pressed="false"] .w{display:none}.ic[aria-pressed="false"] .x{display:inline}.ic[aria-pressed="false"]{opacity:.6}
 
+/* ---------- Graham: the author's sheet, reachable at any time ---------- */
+.gtab{position:absolute;left:-40px;top:70px;width:40px;height:132px;border:0;border-radius:8px 0 0 8px;cursor:pointer;z-index:1;
+  writing-mode:vertical-rl;transform:rotate(180deg);font-family:var(--f-sc);font-weight:700;font-size:15px;letter-spacing:.14em;color:#f3e3c2;
+  background:#7a2418;background-image:var(--leatherTex);box-shadow:-2px 3px 6px rgba(0,0,0,.45);transition:left .2s}
+.gtab:hover,.gtab[aria-expanded="true"]{left:-46px}
+.gsheet{position:absolute;inset:0;z-index:8;display:grid;grid-template-columns:1fr 1fr;animation:gin .45s cubic-bezier(.3,1.2,.5,1)}
+@keyframes gin{from{opacity:0;transform:translateY(14px) rotate(-.4deg)}}
+.gsheet .page{background-color:#f1e6cc}
+.gsheet .gphoto{width:46%;align-self:center;transform:rotate(-2.2deg);margin-top:2px}
+.gsheet .gphoto img{max-height:none!important;filter:sepia(.45) saturate(.7) contrast(1.05)}
+.gfiche{font-family:var(--f-type);font-size:13px;line-height:1.45;background:#fbf7ec;padding:12px 16px;box-shadow:0 2px 6px rgba(60,35,10,.16);border-left:3px solid var(--red)}
+.gfiche b{font-weight:700}
+.glink{align-self:flex-start;display:inline-block;font-family:var(--f-sc);font-weight:700;font-size:15px;letter-spacing:.12em;color:var(--red);text-decoration:none;
+  border:2.5px double currentColor;border-radius:4px;padding:5px 14px;transform:rotate(-2deg);mix-blend-mode:multiply}
+.glink:hover{background:rgba(160,40,30,.08)}
+.gquote{font-family:var(--f-hand);font-size:23px;line-height:1.25;color:var(--pen)}
+.gquote cite{display:block;font-family:var(--f-title);font-style:italic;font-size:14px;color:var(--ink-2);margin-top:4px}
+.gtl{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:52px 1fr;gap:3px 12px;font-size:15.5px;line-height:1.3}
+.gtl b{font-family:var(--f-title);font-weight:700;color:var(--red);font-variant-numeric:lining-nums}
+.gmarg{font-size:14.5px;line-height:1.35;border-top:1px solid rgba(43,34,25,.25);padding-top:8px;display:flex;flex-direction:column;gap:6px}
+.gmarg p::before{content:"☞ ";color:var(--red)}
+.gsrc{font-family:var(--f-title);font-style:italic;color:var(--ink-2);font-size:13px}
+.gclose{position:absolute;right:0;bottom:0;width:190px;height:90px;border:0;background:none;cursor:pointer;z-index:5}
+.gclose::before{content:"";position:absolute;right:0;bottom:0;width:62px;height:62px;background:linear-gradient(135deg,transparent 49%,#c9b285 50%,#f2e6c8 72%,#dcc89c 100%);border-radius:0 0 6px 0;box-shadow:-4px -4px 8px rgba(70,40,10,.18)}
+.gclose span{position:absolute;right:68px;bottom:12px;font-family:var(--f-hand);font-size:23px;color:var(--red);white-space:nowrap}
+
+/* ---------- Atlas: a cloth ribbon and a folded map sheet, not a chapter page ---------- */
+.tab[data-to="0"]{background:#27463a!important;color:#eadfc0;border-radius:2px 2px 0 0;
+  background-image:repeating-linear-gradient(90deg,rgba(255,255,255,.05) 0 1px,transparent 1px 3px),repeating-linear-gradient(0deg,rgba(0,0,0,.08) 0 1px,transparent 1px 3px)!important}
+.spr[data-n="0"] .page{background-color:#e4dcc3!important;background-image:
+   linear-gradient(90deg,transparent calc(33.3% - 1px),rgba(90,70,40,.16) 33.3%,rgba(255,250,235,.35) calc(33.3% + 2px),transparent calc(33.3% + 5px)),
+   linear-gradient(0deg,transparent calc(50% - 1px),rgba(90,70,40,.18) 50%,rgba(255,250,235,.35) calc(50% + 2px),transparent calc(50% + 5px)),
+   repeating-linear-gradient(0deg,rgba(60,80,90,.07) 0 1px,transparent 1px 38px),repeating-linear-gradient(90deg,rgba(60,80,90,.07) 0 1px,transparent 1px 38px),
+   radial-gradient(ellipse at 50% 50%,transparent 55%,rgba(120,85,40,.22)),var(--noise),linear-gradient(#e4dcc3,#e4dcc3)!important}
+.spr[data-n="0"] .page.R{background-image:
+   linear-gradient(90deg,transparent calc(66.6% - 1px),rgba(90,70,40,.16) 66.6%,rgba(255,250,235,.35) calc(66.6% + 2px),transparent calc(66.6% + 5px)),
+   linear-gradient(0deg,transparent calc(50% - 1px),rgba(90,70,40,.18) 50%,rgba(255,250,235,.35) calc(50% + 2px),transparent calc(50% + 5px)),
+   repeating-linear-gradient(0deg,rgba(60,80,90,.07) 0 1px,transparent 1px 38px),repeating-linear-gradient(90deg,rgba(60,80,90,.07) 0 1px,transparent 1px 38px),
+   radial-gradient(ellipse at 50% 50%,transparent 55%,rgba(120,85,40,.22)),var(--noise),linear-gradient(#e4dcc3,#e4dcc3)!important}
+.spr[data-n="0"] .folio{font-family:var(--f-type);letter-spacing:.08em;text-transform:uppercase;font-size:12px}
+
 /* ---------- closed album ---------- */
 .closed{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;padding-block:6px 40px;perspective:2600px}
 .coverwrap{grid-column:2;position:relative;transform-style:preserve-3d;transform-origin:0 50%;transition:transform 1.2s cubic-bezier(.5,.05,.3,1)}
@@ -476,10 +517,19 @@ button{font:inherit;color:inherit}
   .tab{writing-mode:horizontal-tb;height:46px;padding:7px 10px 0;letter-spacing:.05em;display:flex;align-items:flex-start;line-height:1.2;border-radius:7px 7px 0 0;transform:translateY(8px);font-size:13px;align-self:flex-start;box-shadow:0 -2px 4px rgba(0,0,0,.35);
     clip-path:polygon(0 0,100% 0,100% 100%,0 100%)}
   .tab.now{transform:translateY(-3px)}
+  .tab[data-to="0"]{height:58px;margin-right:12px;padding-top:9px;clip-path:polygon(0 0,100% 0,100% 100%,50% 88%,0 100%)}
   .tab:not(.now):not(:disabled):hover{transform:translateY(2px)}
 }
 
 @media (max-width:860px){
+  .gtab{position:fixed;left:auto;right:0;top:auto;bottom:90px;z-index:30;border-radius:8px 0 0 8px;transform:none;width:34px;height:110px}
+  .gtab:hover,.gtab[aria-expanded="true"]{left:auto}
+  .gsheet{position:fixed;inset:0;z-index:35;display:block;overflow-y:auto;background:#0a0706}
+  .gsheet .page{height:auto;min-height:0;overflow:visible}
+  .gsheet .page.R{padding-bottom:110px}
+  .gclose{position:fixed;z-index:36}
+  .gclose span{background:rgba(241,230,204,.92);padding:2px 8px;border-radius:4px}
+  .gsheet .gphoto{width:80%}
   .closed{grid-template-columns:1fr}
   .coverwrap,.openhint{grid-column:1}
   .cover{min-height:560px}
@@ -550,7 +600,9 @@ button{font:inherit;color:inherit}
     <button class="tab" data-to="5"><b>IV</b>&nbsp;Débattre</button>
     <button class="tab" data-to="6"><b>V</b>&nbsp;Trancher</button>
   </nav>
+  <button class="gtab" id="gtab" aria-controls="gsheet" aria-expanded="false">Graham</button>
   <div class="stack" id="stack"></div>
+  <section class="gsheet" id="gsheet" hidden aria-labelledby="gTitle"></section>
 </div>
 
 </div></div>
@@ -713,6 +765,46 @@ function music(kind){MUS_KIND=kind;if(!SND){stopTracks();stopMusic();return;}
   if(TCUR)fadeTrack(TCUR,0,1.2);TCUR=T;clearTimeout(T.pz);
   const pr=T.el.play();if(pr&&pr.catch)pr.catch(()=>{});fadeTrack(T,TVOL,1.6);}
 window.__audio=()=>({TRK,TCUR,gen:!!MUS});
+const GB={
+ fr:{tab:'Graham',folio:['L\'auteur du carnet','Fiche'],cap:'Graham Hancock, 2010.',credit:'Photo : Cpt.Muji, CC BY 3.0, Wikimedia Commons',
+  fiche:[['Né','le 2 août 1950, à Édimbourg'],['Enfance','en Inde, où son père est chirurgien'],['Études','sociologie, université de Durham (1973)'],['Métier','journaliste : The Times, The Sunday Times, The Guardian, The Independent ; correspondant en Afrique de l\'Est pour The Economist (1981-1983)'],['Épouse','la photographe Santha Faiia, coautrice de Heaven\'s Mirror (1998)']],
+  q1:'« Qu\'avais-je à perdre, quand mes critiques décrivaient déjà mes livres comme de la fiction ? »',q1s:'À propos de son premier roman. Whatever (blog de John Scalzi), 15 octobre 2010. Traduction.',
+  link:'grahamhancock.com',title:'Le reporter qui cherche une civilisation perdue',
+  bio:'Ancien reporter, Graham Hancock défend depuis Fingerprints of the Gods (1995) l\'hypothèse d\'une civilisation avancée de l\'ère glaciaire, détruite il y a environ 12 000 ans lors d\'un bouleversement climatique, dont les survivants auraient transmis leurs savoirs. La plupart des archéologues rejettent cette thèse. Ce carnet suit ses pistes et les confronte aux preuves.',
+  tl:[['1992','The Sign and the Seal : sur la piste de l\'Arche d\'alliance en Éthiopie'],['1995','Fingerprints of the Gods'],['2002','Underworld, livre et série sur les terres englouties de l\'ère glaciaire'],['2015','Magicians of the Gods'],['2019','America Before'],['2022','Ancient Apocalypse (Netflix)'],['2024','Ancient Apocalypse : The Americas (Netflix)']],
+  marg:[['2013','sa conférence TEDx « The War on Consciousness » est retirée de la chaîne TEDx et déplacée sur le site de TED, sur avis de son comité scientifique.','TED Blog, 14 mars 2013'],
+        ['2022','la Society for American Archaeology demande à Netflix de classer Ancient Apocalypse en science-fiction.','lettre du 30 novembre 2022'],
+        ['2024','il débat avec l\'archéologue Flint Dibble dans l\'émission de Joe Rogan.','épisode n° 2136, avril 2024']],
+  q2:'« the fog of amnesia about our ancient past »',q2s:'Ancient Apocalypse : The Americas, 2024. Cité par Decider, 17 octobre 2024.',close:'Retour au carnet'},
+ en:{tab:'Graham',folio:['The author','Profile'],cap:'Graham Hancock, 2010.',credit:'Photo: Cpt.Muji, CC BY 3.0, Wikimedia Commons',
+  fiche:[['Born','2 August 1950, Edinburgh'],['Childhood','in India, where his father worked as a surgeon'],['Studies','sociology, Durham University (1973)'],['Trade','journalist for The Times, The Sunday Times, The Guardian and The Independent; East Africa correspondent for The Economist (1981–1983)'],['Wife','photographer Santha Faiia, co-author of Heaven\'s Mirror (1998)']],
+  q1:'“What was there to lose when my critics already described my factual books as fiction?”',q1s:'On his first novel. Whatever (John Scalzi\'s blog), 15 October 2010.',
+  link:'grahamhancock.com',title:'The reporter hunting a lost civilisation',
+  bio:'A former reporter, Graham Hancock has argued since Fingerprints of the Gods (1995) for an advanced Ice Age civilisation, destroyed some 12,000 years ago in a climate upheaval, whose survivors passed on their knowledge. Most archaeologists reject the idea. This notebook follows his leads and tests them against the evidence.',
+  tl:[['1992','The Sign and the Seal: tracking the Ark of the Covenant in Ethiopia'],['1995','Fingerprints of the Gods'],['2002','Underworld, book and series on the drowned lands of the Ice Age'],['2015','Magicians of the Gods'],['2019','America Before'],['2022','Ancient Apocalypse (Netflix)'],['2024','Ancient Apocalypse: The Americas (Netflix)']],
+  marg:[['2013','his TEDx talk “The War on Consciousness” is taken off the TEDx channel and moved to TED\'s own site on its science board\'s advice.','TED Blog, 14 March 2013'],
+        ['2022','the Society for American Archaeology asks Netflix to class Ancient Apocalypse as science fiction.','letter of 30 November 2022'],
+        ['2024','he debates archaeologist Flint Dibble on Joe Rogan\'s show.','episode #2136, April 2024']],
+  q2:'“the fog of amnesia about our ancient past”',q2s:'Ancient Apocalypse: The Americas, 2024. Quoted by Decider, 17 October 2024.',close:'Back to the notebook'}};
+function renderGraham(){const g=GB[LANG]||GB.fr,e=x=>String(x).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  $('#gtab').textContent=g.tab;
+  $('#gsheet').innerHTML=`<div class="page L"><div class="folio"><span>${g.folio[0]}</span><span>${g.folio[1]}</span></div>
+   <figure class="print gphoto"><span class="tape tc"></span><img src="img/graham/graham-hancock.jpg" alt="${e(g.cap)}" width="447" height="568"><figcaption>${e(g.cap)}</figcaption></figure>
+   <div class="gfiche">${g.fiche.map(([k,v])=>`<div><b>${e(k)} :</b> ${e(v)}</div>`).join('')}</div>
+   <blockquote class="gquote" style="margin:0">${e(g.q1)}<cite>${e(g.q1s)}</cite></blockquote>
+   <div style="display:flex;align-items:center;justify-content:space-between;gap:12px"><a class="glink" href="https://grahamhancock.com" target="_blank" rel="noopener">${g.link} &rarr;</a>
+   <span class="gsrc" style="text-align:right;max-width:52%">${e(g.credit)}</span></div></div>
+  <div class="page R"><div class="folio"><span>Graham Hancock</span><span>1950 –</span></div>
+   <h2 class="ptitle" id="gTitle">${e(g.title)}</h2>
+   <p class="body">${e(g.bio)}</p>
+   <ul class="gtl">${g.tl.map(([y,t])=>`<li style="display:contents"><b>${y}</b><span>${e(t)}</span></li>`).join('')}</ul>
+   <div class="gmarg">${g.marg.map(([y,t,src])=>`<p><b>${y}</b> : ${e(t)} <span class="gsrc">(${e(src)})</span></p>`).join('')}</div>
+   <blockquote class="gquote" style="margin:0">${e(g.q2)}<cite>${e(g.q2s)}</cite></blockquote>
+   <button class="gclose" id="gclose"><span>${e(g.close)}</span></button></div>`;
+  $('#gclose').onclick=()=>toggleGraham(false);}
+function toggleGraham(on){const sh=$('#gsheet'),open=on===undefined?sh.hidden:on;if(open===!sh.hidden)return;
+  if(open){renderGraham();sh.hidden=false;$('#gtab').setAttribute('aria-expanded','true');play('flip');setTimeout(()=>$('#gclose')&&$('#gclose').focus(),50);}
+  else{sh.hidden=true;$('#gtab').setAttribute('aria-expanded','false');play('flip');$('#gtab').focus();}}
 function sndUI(){const b=$('#snd'),l=SND?tr('sndOn'):tr('sndOff');b.setAttribute('aria-label',l);b.title=l;}
 function stopTracks(){Object.values(TRK).forEach(T=>fadeTrack(T,0,.4));TCUR=null;}
 function genMusic(kind){
@@ -772,7 +864,7 @@ function clothCover(o){const e=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','
    <div class="ink pb">${(o.pb||["Paris","Atelier Daruma, éditeur","4, Rue Tarbé"]).map((l,i)=>i?e(l):`<b>${e(l)}</b>`).join("<br>")}</div></div>
    ${o.v?`<div class="bd"><small>VOLUME</small><span>${o.v}</span></div>`:''}</div>`;}
 
-function applyLang(){
+function applyLang(){if($('#gtab'))renderGraham();
   document.documentElement.lang=LANG;
   const cv=tr('cover');$('#coverVol').innerHTML=clothCover({c:'#2b8fd1',t1:cv.t1,t2:cv.t2,t3:cv.t3,dg:cv.dg,sd:cv.sd,pl:cv.pl,se:cv.se,pb:cv.pb});
   $('#cover').setAttribute('aria-label',tr('coverAria'));$('#openhint').textContent=tr('hint');
@@ -1130,13 +1222,14 @@ function openCase(id){
 }
 document.addEventListener('click',ev=>{
   const d=ev.target.closest('.dogear');if(d){const n=+d.closest('.spr').dataset.n;goTo(d.classList.contains('prev')?n-1:n+1);return;}
-  const t=ev.target.closest('.tab');if(t&&!t.disabled){goTo(+t.dataset.to);return;}
+  if(ev.target.closest('#gtab')){toggleGraham();return;}
+  const t=ev.target.closest('.tab');if(t&&!t.disabled){if(!$('#gsheet').hidden)toggleGraham(false);goTo(+t.dataset.to);return;}
   const c=ev.target.closest('[data-case]');if(c&&EPS()[c.dataset.case]){openCase(c.dataset.case);return;}
   if(ev.target.closest('#toAtlas')){goTo(0);return;}
   if(ev.target.closest('#replay')){const id=E.id;S=fresh(id);S.cur=7;S.max=1;buildEpisode(E);show(7);goTo(1);return;}
 });
 document.addEventListener('keydown',ev=>{const c=ev.target.closest&&ev.target.closest('.pin[data-case]');if(c&&(ev.key==='Enter'||ev.key===' ')){ev.preventDefault();openCase(c.dataset.case);}
-  if(ev.key==='Escape'&&!$('#ov').hidden)closeLens();});
+  if(ev.key==='Escape'&&!$('#ov').hidden)closeLens();else if(ev.key==='Escape'&&!$('#gsheet').hidden)toggleGraham(false);});
 $('#cover').onclick=()=>{
   A();play('cover');
   const open=()=>{$('#closed').hidden=true;$('#book').hidden=false;$('#stack').innerHTML=atlasSpread();S.cur=0;show(0);chrome();music('atlas');};
