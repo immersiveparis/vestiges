@@ -238,6 +238,25 @@ select.blank:disabled{color:var(--green);border-bottom-color:var(--green);backgr
 .ctxwhy{margin-top:4px;background:rgba(255,255,255,.35);padding:10px 14px;box-shadow:inset 0 0 0 1px rgba(60,35,10,.15)}
 @media (max-width:860px){.ctab{bottom:322px;top:auto;height:100px}}
 
+
+/* ---------- mobile: one continuous scrollable sheet instead of two stacked pages ---------- */
+@media (max-width:860px){
+  .spr{position:relative;box-shadow:0 10px 24px rgba(0,0,0,.45)}
+  .stack .page,.gsheet .page,.face .page,.under .page{clip-path:none!important}
+  .page::after{display:none}
+  .spr>.page.L,.gsheet>.page.L{position:static;border-radius:6px 6px 0 0!important;box-shadow:none!important;padding-bottom:10px}
+  .spr>.page.R,.gsheet>.page.R{border-radius:0 0 6px 6px!important;box-shadow:none!important;padding-top:12px}
+  .spr>.page.L .pageno,.gsheet>.page.L .pageno{display:none}
+  .spr>.page.L .dogear.prev{position:absolute;left:0;bottom:0;z-index:6}
+  .spr>.page.R .folio{border-top:1px solid rgba(43,34,25,.18);padding-top:12px}
+  .gsheet{background:var(--paper)!important}
+  .gtab,.ftab,.ctab{position:fixed!important;top:auto!important;bottom:calc(10px + env(safe-area-inset-bottom))!important;right:auto!important;width:100px!important;height:34px!important;
+    writing-mode:horizontal-tb!important;transform:none!important;border-radius:17px!important;font-size:12px!important;letter-spacing:.1em!important;box-shadow:0 3px 10px rgba(0,0,0,.55)!important;z-index:30}
+  .gtab{left:calc(50% - 160px)!important}.ftab{left:calc(50% - 50px)!important}.ctab{left:calc(50% + 60px)!important}
+  .gtab:hover,.gtab[aria-expanded="true"]{left:calc(50% - 160px)!important}
+  .stack{padding-bottom:56px}
+}
+
 /* book revealed under the opening cover */
 .book.reveal{animation:bookIn 1s ease-out .1s both}
 @keyframes bookIn{from{opacity:0;transform:scale(.985)}}
