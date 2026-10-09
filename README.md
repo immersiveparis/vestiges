@@ -15,6 +15,14 @@ Jeu web interactif : le carnet des énigmes non résolues de Graham Hancock, ent
 - Bande originale : *Archival Expedition* sur l'atlas, *Steppe Wind* dans les Andes, *L'Inconnu* pendant les autres enquêtes ; musique et bruitages réglables séparément
 - Bruitages générés en direct (WebAudio) ; ambiance générée en secours si la musique ne charge pas
 
+## Branche `doggerland` : vertical slice « Le royaume englouti »
+
+Cas 08, sous la mer du Nord. Une boucle de dix à quinze minutes : l'enveloppe et l'os gravé, la Table des temps (carte marine qui se redessine selon l'époque, relevé à aligner, bande chronologique, emplacement « ce qui date l'horizon H2 »), la carotte VST-1 et ses quatre fiches de datation, puis le paysage retrouvé.
+
+- Tout est dessiné (SVG), aucune photo. La carotte VST-1 et le trait de côte selon l'époque sont des simulations pédagogiques, étiquetées comme telles dans le jeu.
+- Sources : Rijksmuseum van Oudheden (os de bison gravé, 2018) ; Walker et al., *Antiquity*, 2020 ; Gaffney et al., *Geosciences*, 2020 ; Université de Bradford, 2025 et 2026 (Allaby et al., *PNAS*). Liste complète dans la page « Sources et méthode » du cas.
+- Tests : `?playtest=1` expose `window.__dg` et `vestigesLog()` ; le parcours complet est rejoué par Playwright (`dgloop.js`) en français et en anglais, à 1440 et à 390 px.
+
 ## Lancer
 
 Un seul fichier statique, sans build. Ouvrir `index.html`, ou servir le dossier :
