@@ -2558,6 +2558,10 @@ const DG={
     "Dans l'enveloppe : l'os et sa fiche de datation, une carte marine, un relevé plié, une règle. Pose tout sur la Table des temps. La carotte, elle, attend à la page suivante. Commence par ce que tu veux."],
    docs:{bone:"L'os gravé",bdate:'Fiche de datation',chart:'Carte marine',overlay:'Relevé plié',ruler:'Règle'},
    card:{t:'Zone de remontée',l1:'Sud du Brown Bank',l2:'52° 30′ N · 3° 20′ E, environ',l3:'Position du chalutage, pas du lieu d\'usage'},toTable:'La Table des temps'},
+  pq:{env:'Un os gravé il y a 13 500 ans, remonté de sous la mer. Où était la terre ferme, et quand ?',
+   table:['Poser le relevé au bon endroit de la carte : même échelle, même nord, mêmes repères.','Le relevé est posé. Quelle époque montre l\'horizon H2 à l\'air libre ? La bande du temps redessine la côte.','Le relevé est posé, l\'époque est choisie. Il manque le document qui date H2 : une fiche de la carotte.','Trois documents, une seule époque. Le paysage se dessine.'],
+   core:['Quatre fiches datent quatre échantillons de la carotte. Chacune a sa profondeur. Laquelle date vraiment la couche H2 ?','Deux fiches ne racontent pas la même histoire. La coquille a-t-elle été déplacée ?'],
+   land:'Là où la carte montrait la mer, une plaine, des rivières, un estuaire.'},
   table:{folio:['I · La Table des temps','Mer du Nord'],title:'La Table des temps',sub:'Les documents sur une même surface, et une époque à choisir.',open:'Ouvrir la table',
    lights:{geo:'Relief',chron:'Époque',doc:'Datation'},lightTxt:{geo:['relevé non aligné','relief aligné'],chron:['estuaire incohérent','estuaire sur la côte'],doc:['rien ne date H2','H2 daté']},
    regT:'Registre des observations',regS:'Ce que la table a établi, et d\'où ça vient.',regEmpty:'Rien encore. Tout ce que tu établis sur la table ou dans la carotte s\'inscrit ici.',
@@ -2582,6 +2586,7 @@ const DG={
     geo:'Le relief coïncide : le Silver Pit, le bord du Dogger Bank. Mais regarde où tombe l\'estuaire.',geoOk:'Le relief coïncide : le Silver Pit, le bord du Dogger Bank.',
     slot:'{id} déposée : {mat}, {d}. La bande suit la fiche.',slotBone:'L\'os date l\'os. Le relevé, lui, n\'est pas daté par cet objet.',
     reveal:'Tout tient. Trois documents, une seule époque. Le paysage se dessine.',near:'Presque. Les repères ne tombent pas tout à fait ensemble.',
+    scaleBig:'relevé trop grand : ×{r}',scaleSmall:'relevé trop petit : ×{r}',scaleOk:'échelle juste',ptsOff:'repères décalés',ptsOk:'repères posés',
     world:{L0:'Ici, la mer.',L10:'La côte avance un peu.',L18:'Une côte découpée, des estuaires.',L25:'La mer recule au large.',L35:'Presque tout est terre ; le Silver Pit est un lac.',L45:'Une plaine d\'une côte à l\'autre.',L60:'Une plaine à perte de vue.',L80:'La mer est loin au nord.',L120:'Le fond de la mer est une terre, jusqu\'à l\'horizon.'}},
    coreMsg:{six:'Six lits de sable, chacun plus fin vers le haut. Six fois l\'eau est montée, puis redescendue.',rework:'Coquilles brisées, galets de vase arrachés à la couche du dessous. Ce sable a ramassé ce qu\'il a trouvé en passant.',
     mud:'Vase feuilletée, diatomées : une vasière d\'estuaire, découverte à marée basse.',peat:'Tourbe, bois, racines de roseaux : un marais. La terre ferme.',grav:'Sable roux et graviers : le lit d\'une rivière.',
@@ -2627,6 +2632,10 @@ const DG={
     'In the envelope: the bone and its dating sheet, a nautical chart, a folded survey, a ruler. Lay it all on the Table of time. The core waits on the next page. Start wherever you like.'],
    docs:{bone:'The engraved bone',bdate:'Dating sheet',chart:'Nautical chart',overlay:'Folded survey',ruler:'Ruler'},
    card:{t:'Recovery area',l1:'South of the Brown Bank',l2:'52° 30′ N · 3° 20′ E, roughly',l3:'Where the trawl was, not where the bone was used'},toTable:'The Table of time'},
+  pq:{env:'A bone engraved 13,500 years ago, hauled up from under the sea. Where was dry land, and when?',
+   table:['Lay the survey on the right spot of the chart: same scale, same north, same landmarks.','The survey is laid. Which period shows horizon H2 in the open air? The time band redraws the coast.','The survey is laid, the period is chosen. The document that dates H2 is missing: a sheet from the core.','Three documents, one period. The landscape draws itself.'],
+   core:['Four sheets date four samples from the core. Each has its depth. Which one really dates layer H2?','Two sheets do not tell the same story. Was the shell moved?'],
+   land:'Where the chart showed the sea: a plain, rivers, an estuary.'},
   table:{folio:['I · The Table of time','North Sea'],title:'The Table of time',sub:'The documents on one surface, and a period to choose.',open:'Open the table',
    lights:{geo:'Relief',chron:'Period',doc:'Dating'},lightTxt:{geo:['survey not aligned','relief aligned'],chron:['estuary inconsistent','estuary on the coast'],doc:['nothing dates H2','H2 dated']},
    regT:'Register of observations',regS:'What the table has established, and where it comes from.',regEmpty:'Nothing yet. Everything you establish on the table or in the core is written here.',
@@ -2651,6 +2660,7 @@ const DG={
     geo:'The relief coincides: the Silver Pit, the edge of the Dogger Bank. But look where the estuary falls.',geoOk:'The relief coincides: the Silver Pit, the edge of the Dogger Bank.',
     slot:'{id} dropped: {mat}, {d}. The band follows the sheet.',slotBone:'The bone dates the bone. The survey is not dated by this object.',
     reveal:'Everything holds. Three documents, one period. The landscape draws itself.',near:'Almost. The landmarks do not quite fall together.',
+    scaleBig:'survey too large: ×{r}',scaleSmall:'survey too small: ×{r}',scaleOk:'scale right',ptsOff:'landmarks off',ptsOk:'landmarks placed',
     world:{L0:'Here, the sea.',L10:'The coast moves out a little.',L18:'A ragged coast, estuaries.',L25:'The sea retreats offshore.',L35:'Almost all land; the Silver Pit is a lake.',L45:'A plain from coast to coast.',L60:'A plain as far as the eye can see.',L80:'The sea is far to the north.',L120:'The sea floor is land, to the horizon.'}},
    coreMsg:{six:'Six beds of sand, each finer upward. Six times the water rose, then fell.',rework:'Broken shells, mud clasts torn from the layer below. This sand picked up whatever it found on the way.',
     mud:'Laminated mud, diatoms: an estuary mudflat, bare at low tide.',peat:'Peat, wood, reed roots: a marsh. Dry land.',grav:'Rusty sand and gravel: a river bed.',
@@ -2857,7 +2867,7 @@ const TDK={
  core:{st:()=>dgS(),poses:st=>st.cdocs,lpKey:'clp',title:()=>DGT().desk.coreTitle,close:()=>DGT().desk.coreClose,hintLbl:()=>DGT().table.hint,
   extra:lay=>`<svg class="tdlines" id="tdlines" width="${lay.W}" height="${lay.H}"></svg><div class="taxis" id="taxis" style="left:${lay.axis.x}px;top:${lay.axis.y}px;height:${lay.axis.h}px"></div>
        <div class="tlog" style="left:${lay.log.x}px;top:${lay.log.y}px;width:${lay.log.w}px"><b>${DGT().core.coreCap}</b>${DGT().core.units.map(u=>`<div><span>${u[0]}</span><i>${u[1]}</i></div>`).join('')}<p>${DGT().core.simul}</p></div>`,
-  docs:()=>['core','s_osl','s_shell','s_mud','s_peat'],cap:()=>'',
+  docs:()=>['core','s_osl','s_shell','s_mud','s_peat'],cap:()=>'',zones:()=>[{sel:'.dd-core',rect:()=>{const c=tdSt('core'),g=TDOCS.core;return {x:c.x,y:c.y,w:(g.w+30)*c.s,h:g.h*c.s};},ok:id=>TDOCS[id].kind==='sheet'}],
   init:st=>{tdAxis();Object.keys(st.att).forEach(id=>{if(st.att[id])tdAttach(id,true);});tdLines();},
   drop:(id,d0,g)=>{if(g.kind==='sheet')tdCoreDrop(id,d0);},
   det:st=>st.coreObs,detail:(id,k)=>{dgObs(k);return DGT().desk.coreMsg[k];},markLabel:k=>DGT().obs[k][0],hint:()=>dgHint('core')}};
@@ -2975,6 +2985,7 @@ function tdGeo(final){const d=dgS();if(!$('.dd-overlay')||!$('.dd-chart'))return
   const pc=['A','B','C'].map(k=>tdTf(C,dgChPt(DGLM[k]))),po=['A','B','C'].map(k=>tdTf(O,dgOvPt(DGLM[k])));
   const err=Math.max(...pc.map((p,i)=>Math.hypot(p[0]-po[i][0],p[1]-po[i][1])));const ratio=(O.s*DGOV.k)/(C.s*DGCH.dw/DGCH.W);const scaleOk=Math.abs(ratio-1)<.08;
   const el=$('.dd-overlay');el.classList.toggle('near',scaleOk&&err<60&&err>=16);
+  tdGeoShow(pc,po,err,ratio,scaleOk);
   const was=d.geo;const ok=scaleOk&&err<16;
   if(ok&&!was){d.geo=true;vlog('overlay_solved');
     O.r=C.r-DGOV.rot;O.s=C.s*(DGCH.dw/DGCH.W)/DGOV.k;const a=tdTf(C,dgChPt(DGLM.A)),oa=dgOvPt(DGLM.A),ar=O.r*Math.PI/180;O.x=a[0]-(oa[0]*Math.cos(ar)-oa[1]*Math.sin(ar))*O.s;O.y=a[1]-(oa[0]*Math.sin(ar)+oa[1]*Math.cos(ar))*O.s;
@@ -2982,6 +2993,12 @@ function tdGeo(final){const d=dgS();if(!$('.dd-overlay')||!$('.dd-chart'))return
     const chron=dgLevel(d.t||0)===2;$('#dkMsg').textContent=chron?T.msg.geoOk:T.msg.geo;if(!chron)dgObs('est_off');tdRefreshChart();tdLights();tdReveal();v3Save();}
   else if(!ok&&was&&final&&err>=16){d.geo=false;el.classList.remove('snapped');tdRefreshChart();tdLights();v3Save();}
   else if(final&&!ok&&scaleOk&&err<60){play('pick');$('#dkMsg').textContent=T.msg.near;}}
+/* why the alignment holds or fails: a dashed link per landmark (green when it falls, red when off) and the scale verdict */
+function tdGeoShow(pc,po,err,ratio,scaleOk){let ov=$('#dgCmp');if(!ov){ov=document.createElementNS('http://www.w3.org/2000/svg','svg');ov.id='dgCmp';ov.setAttribute('class','lbcmp');ov.setAttribute('width',TD.lay.W);ov.setAttribute('height',TD.lay.H);TD.desk.insertBefore(ov,$('#dkTools'));}
+  const T=DGT().desk.msg;if(err>=160||dgS().geo){ov.innerHTML='';return;}
+  const links=pc.map((p,i)=>{const q=po[i],dd=Math.hypot(p[0]-q[0],p[1]-q[1]),col=dd<16?'#46653a':dd<60?'#c48a1e':'#a3322a';return `<line x1="${p[0]}" y1="${p[1]}" x2="${q[0]}" y2="${q[1]}" stroke="${col}" stroke-width="2" stroke-dasharray="5 4"/><circle cx="${p[0]}" cy="${p[1]}" r="9" fill="none" stroke="${col}" stroke-width="2"/><circle cx="${q[0]}" cy="${q[1]}" r="5" fill="${col}"/>`;}).join('');
+  const mid=[(pc[0][0]+pc[1][0]+pc[2][0])/3,Math.min(...pc.map(p=>p[1]))-26];const sc=scaleOk?T.scaleOk:dgf(ratio>1?T.scaleBig:T.scaleSmall,{r:ratio.toFixed(2)});const pt=err<16?T.ptsOk:T.ptsOff;
+  ov.innerHTML=links+`<text x="${mid[0]}" y="${mid[1]}" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="12" font-weight="700" fill="${scaleOk?'#46653a':'#a3322a'}" stroke="#fff8e8" stroke-width="3" paint-order="stroke">${sc} · ${pt}</text>`;}
 function dgState(){const d=dgS();return {geo:!!d.geo,chron:dgLevel(d.t||0)===2,doc:DGSLOTOK.includes(d.slot)};}
 function tdLights(){const el=$('#tlights');const st=dgState(),T=DGT().table;if(el)el.innerHTML=['geo','chron','doc'].map(k=>`<span class="tl ${st[k]?'on':''}"><i></i>${T.lights[k]}<small>${T.lightTxt[k][st[k]?1:0]}</small></span>`).join('');dgRenderLights();}
 function tdReveal(){const d=dgS(),st=dgState();if(d.reveal||!(st.geo&&st.chron&&st.doc))return;d.reveal=true;vlog('reveal');dgObs('fit');G.done[E.id]='inv';play('chime');setTimeout(()=>play('fanfare'),500);
@@ -3008,7 +3025,7 @@ function dgHint(kind){const d=dgS(),H=DGT().hints,st=dgState();let k=kind==='cor
 /* ---------- pages ---------- */
 function dgEnvSpread(){const t=DGT().env,d=dgS();return `<section class="spr dgenv" data-n="1" hidden>
   <div class="page L"><div class="folio"><span>${t.folio[0]}</span><span>${t.folio[1]}</span></div><h2 class="ptitle">${t.title}<small>${t.sub}</small></h2>
-   <p class="hand">${t.note}</p><p class="claim">${t.claim}</p>
+   <p class="pq">${DGT().pq.env}</p><p class="hand">${t.note}</p><p class="claim">${t.claim}</p>
    <div class="envbox ${d.env?'open':''}" id="envbox"><button class="envbtn" id="envbtn" aria-label="${t.open}">${dgEnvSvg(d.env)}</button>
     <div class="envdocs" id="envdocs"><span class="ed ed1">${dgBoneSvg()}<i>${t.docs.bone}</i></span><span class="ed ed2">${dgSheetHtml('bdate')}<i>${t.docs.bdate}</i></span><span class="ed ed3">${dgChartSvg(0,{})}<i>${t.docs.chart}</i></span><span class="ed ed4">${dgOverlaySvg()}<i>${t.docs.overlay}</i></span></div>
     <button class="lbl red envlay" id="envlay" ${d.env?'':'hidden'}>${t.lay}</button></div>${pageno(1)}</div>
@@ -3018,13 +3035,13 @@ function dgEnvSpread(){const t=DGT().env,d=dgS();return `<section class="spr dge
    <div class="seacard"><b>${t.card.t}</b><span>${t.card.l1}</span><span class="mono">${t.card.l2}</span><i>${t.card.l3}</i></div>
    ${pageno(2)}${next(t.toTable)}</div></section>`;}
 function dgTableSpread(){const t=DGT().table;return `<section class="spr dgtable" data-n="2" hidden>
-  <div class="page L"><div class="folio"><span>${t.folio[0]}</span><span>${t.folio[1]}</span></div><h2 class="ptitle">${t.title}<small>${t.sub}</small></h2>
+  <div class="page L"><div class="folio"><span>${t.folio[0]}</span><span>${t.folio[1]}</span></div><h2 class="ptitle">${t.title}<small>${t.sub}</small></h2><p class="pq" id="dgPq2"></p>
    <button class="deskthumb tdthumb" id="openTable"><span class="dt dt1">${dgChartSvg(dgS().t||0,{})}</span><span class="dt dt2">${dgOverlaySvg()}</span><span class="dt dt3">${dgBoneSvg()}</span><b>${t.open}</b></button>
    <div class="plights" id="plights"></div>
    <div class="hintbox"><button class="lbl" id="pHint">${t.hint}</button><p class="hand" id="hintTxt" style="font-size:19px;margin-top:6px"></p></div>${pageno(3)}${prev()}</div>
   <div class="page R"><div class="folio"><span>${t.regT}</span><span>${t.folio[1]}</span></div><h2 class="ptitle">${t.regT}<small>${t.regS}</small></h2><div class="evlist reg" id="dgreg"></div>${pageno(4)}${next(DGT().core.title)}</div></section>`;}
 function dgCoreSpread(){const t=DGT().core;return `<section class="spr dgcore" data-n="3" hidden>
-  <div class="page L"><div class="folio"><span>${t.folio[0]}</span><span>${t.folio[1]}</span></div><h2 class="ptitle">${t.title}<small>${t.sub}</small></h2>
+  <div class="page L"><div class="folio"><span>${t.folio[0]}</span><span>${t.folio[1]}</span></div><h2 class="ptitle">${t.title}<small>${t.sub}</small></h2><p class="pq" id="dgPq3"></p>
    <button class="deskthumb cthumb" id="openCore"><span class="dt dtc">${dgCoreSvg()}</span><span class="dt dts">${dgSheetHtml('s_shell')}</span><span class="dt dts2">${dgSheetHtml('s_mud')}</span><b>${t.open}</b></button>
    <p class="gsrc" style="font-size:12px">${t.simul}</p>${pageno(5)}${prev()}</div>
   <div class="page R"><div class="folio"><span>${t.sheetsT}</span><span>${t.folio[1]}</span></div><h2 class="ptitle">${t.sheetsT}<small>${t.sheetsS}</small></h2>
@@ -3045,8 +3062,9 @@ function dgRenderLights(){const el=$('#plights');if(!el)return;const st=dgState(
 function dgRenderSheets(){const el=$('#sheetst');if(!el)return;const T=DGT(),d=dgS();el.innerHTML=Object.entries(DGCORE.tags).map(([id,[no,dep]])=>`<div class="shst ${d.att[id]?'on':''}"><b>${T.desk.sheets[id].id}</b><span>${T.desk.sheets[id].mat} · ${T.desk.sheets[id].res}</span><i>${d.att[id]?T.core.att+' '+dep.toFixed(2).replace('.',LANG==='en'?'.':',')+' m':T.core.free}</i></div>`).join('');}
 function dgEnterEnv(){const d=dgS();const b=$('#envbtn');if(!b)return;b.onclick=()=>{if(d.env)return;d.env=true;vlog('env_open');play('creak');$('#envbox').classList.add('open');b.innerHTML=dgEnvSvg(true);$('#envlay').hidden=false;v3Save();};
   $('#envlay').onclick=()=>{goTo(2,()=>tdOpen('table'));};}
-function dgEnterTable(){dgRenderReg();dgRenderLights();const b=$('#openTable');if(b)b.onclick=()=>tdOpen('table');const h=$('#pHint');if(h)h.onclick=()=>{$('#hintTxt').textContent=dgHint('table');};}
-function dgEnterCore(){dgRenderReg();dgRenderSheets();const b=$('#openCore');if(b)b.onclick=()=>tdOpen('core');}
+function dgPageQ(n){const d=dgS(),st=dgState(),q=DGT().pq;if(n===2)return d.reveal?q.table[3]:(st.geo&&st.chron)?q.table[2]:st.geo?q.table[1]:q.table[0];if(n===3)return d.obs.includes('inv')?q.core[1]:q.core[0];return '';}
+function dgEnterTable(){dgRenderReg();dgRenderLights();const pq=$('#dgPq2');if(pq)pq.textContent=dgPageQ(2);const b=$('#openTable');if(b)b.onclick=()=>tdOpen('table');const h=$('#pHint');if(h)h.onclick=()=>{$('#hintTxt').textContent=dgHint('table');};}
+function dgEnterCore(){dgRenderReg();dgRenderSheets();const pq=$('#dgPq3');if(pq)pq.textContent=dgPageQ(3);const b=$('#openCore');if(b)b.onclick=()=>tdOpen('core');}
 function dgEnterLand(){const d=dgS(),p=$('#pano');if(!p)return;if(!d.landSeen){d.landSeen=true;vlog('reward_seen');p.classList.add('rise');v3Save();}else p.classList.add('shown');
   $$('#cmpb button').forEach(b=>b.onclick=()=>{$$('#cmpb button').forEach(x=>x.classList.toggle('now',x===b));$('#cmpmap').innerHTML=dgChartSvg(+b.dataset.t,{});vlog('compare',{t:+b.dataset.t});play('pick');});
   $('#dgSrc').onclick=dgSources;$('#dgReplay').onclick=()=>{v3Clear(E.id);const id=E.id;E=EPS()[id];S=fresh(id);S.max=1;buildEpisode(E);goTo(1);};const lg=$('#v3log');if(lg)lg.onclick=()=>{const bl=new Blob([JSON.stringify(VLOG,null,1)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(bl);a.download='vestiges-log-dogger.json';a.click();};}
