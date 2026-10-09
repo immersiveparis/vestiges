@@ -1,0 +1,10 @@
+const {chromium}=require('playwright');const L=require('./lib');(async()=>{const loc=process.argv[2]||'fr-FR',w=+(process.argv[3]||1440),h=+(process.argv[4]||900),tag=loc.slice(0,2)+w;
+const b=await L.launch();const p=await b.newPage({viewport:{width:w,height:h},locale:loc,hasTouch:w<500});const errs=[];p.on('pageerror',e=>errs.push(e.message));
+await L.fonts(p);await p.goto(L.URL+'/index.html?lang='+loc.slice(0,2)+'&playtest=1');await p.waitForTimeout(800);const W=t=>p.waitForTimeout(t);
+await p.evaluate(()=>{localStorage.clear();document.querySelector('#intro').hidden=true;});await p.click('#cover');await W(2600);
+await p.$eval(`#atlMap [data-site="malte"]`,e=>e.dispatchEvent(new MouseEvent("click",{bubbles:true})));await W(300);await p.click("#atlCard .ac-go");await W(3200);await p.click('#pclose');await W(600);
+await p.evaluate(()=>{const m=__dg.mtS();m.reveal=true;m.fin.done=true;m.landSeen=true;m.sky=true;m.sir.done=true;m.fin.slots={pl1:1,pl2:1,pl3:1,pl4:1};
+ m.obs=[{id:'mirrored'},{id:'threeLights'},{id:'twoStations'},{id:'firstLight'},{id:'axisSet'},{id:'north'},{id:'cairn'},{id:'impossible'},{id:'ringOk'},{id:'swing'},{id:'three'},{id:'holeA',v:{a:'57.6',e:'3.0'}},{id:'holeB',v:{b:'90.4',e:'0.4'}},{id:'calque'},{id:'four'},{id:'chains'},{id:'needs'}];m.sec=['s1','s2','s3','s4','s5','s6','s7','s8'];});
+await p.click('.tab[data-to="6"]',{position:{x:20,y:12}});await W(1500);
+const m=await p.evaluate(()=>[...document.querySelectorAll('.spr:not([hidden]) .page')].map(e=>e.scrollHeight+'/'+e.clientHeight).join(' '));console.log('M p6',m);
+await p.screenshot({path:`${L.OUT}/mtp6-${tag}.png`,fullPage:w<500});console.log(errs);await b.close();})();

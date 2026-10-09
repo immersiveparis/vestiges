@@ -1,2 +1,6 @@
-.DS_Store
 node_modules/
+.DS_Store
+tests/out/
+tests/node_modules/
+.env
+img/da/gen/
