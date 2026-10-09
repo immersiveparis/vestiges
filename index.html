@@ -163,6 +163,65 @@ button{font:inherit;color:inherit}
    radial-gradient(ellipse 30% 4% at 40% 0,rgba(220,170,120,.18),transparent 100%),radial-gradient(ellipse 25% 3% at 75% 100%,rgba(220,170,120,.16),transparent 100%),
    repeating-linear-gradient(115deg,rgba(255,220,180,.04) 0 1px,transparent 1px 9px),var(--leatherTex),linear-gradient(90deg,rgba(0,0,0,.25),transparent 30%,transparent 70%,rgba(0,0,0,.25))!important}
 
+
+/* ---------- V2 · leads, keys, satchel, puzzles, sealed page ---------- */
+.pistes{display:flex;flex-direction:column;gap:12px}
+.piste{display:grid;grid-template-columns:92px 1fr auto;gap:14px;align-items:center;text-align:left;border:0;cursor:pointer;background:#fbf7ec;padding:10px 16px 10px 10px;box-shadow:0 3px 8px rgba(60,35,10,.18);transition:transform .2s}
+.piste:nth-child(2){transform:rotate(.6deg)}.piste:nth-child(3){transform:rotate(-.5deg)}
+.piste:hover{transform:translateX(4px)}
+.piste .pic svg{width:90px;height:70px;display:block}
+.piste .pt b{display:block;font-family:var(--f-title);font-weight:600;font-size:22px;line-height:1.1}
+.piste .pt i{font-family:var(--f-title);font-size:16px;color:var(--ink-2)}
+.piste.ok{background:#f1ecdc}.piste.ok .pic{filter:sepia(.4)}
+.keys{margin:0;padding:0 0 0 22px;display:flex;flex-direction:column;gap:9px;font-family:var(--f-hand);font-size:20px;line-height:1.2;color:var(--pen)}
+.keys li::marker{color:var(--red);font-family:var(--f-title);font-weight:700}
+.keys .empty{font-family:var(--f-title);font-style:italic;font-size:16px;color:var(--ink-2);margin-left:-22px}
+.bag{margin-top:auto;margin-bottom:40px;border-top:1px solid rgba(43,34,25,.25);padding-top:8px}
+.bagrow{display:flex;gap:14px;margin-top:6px;flex-wrap:wrap}
+.itm{display:flex;align-items:center;gap:6px;font-family:var(--f-title);font-size:15px;background:rgba(255,255,255,.35);padding:3px 10px 3px 4px;border-radius:18px;box-shadow:inset 0 0 0 1px rgba(60,35,10,.18)}
+.itm svg{width:32px;height:32px}
+.psheet .page{background-color:#efe6cc}
+.haulsvg{width:100%;height:auto;background:rgba(255,255,255,.25);box-shadow:inset 0 0 0 1px rgba(60,35,10,.15)}
+.opts{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+.wcards{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.wcard{position:relative;background:#fbf7ec;padding:7px 10px 8px;box-shadow:0 2px 5px rgba(60,35,10,.16);cursor:pointer;border-left:3px solid transparent;font-size:13.5px;line-height:1.25}
+.wcard.sel{border-left-color:var(--red);background:#fff8e6;transform:translateX(4px)}
+.wcard.placed{opacity:.86}
+.wcard b{font-family:var(--f-sc);font-size:14px;letter-spacing:.06em;display:block}
+.wcard i{display:block;font-family:var(--f-title);font-size:14px;line-height:1.2;color:#3b2a1e;margin:1px 0 2px}
+.wcard span{display:block;color:var(--ink-2);font-size:12.5px;line-height:1.25}
+.wcard .wv{display:flex;gap:6px;margin-top:4px}
+.wcard .wv button{border:1px solid rgba(60,35,10,.35);background:transparent;font-family:var(--f-type);font-size:11px;padding:2px 8px;border-radius:3px;cursor:pointer}
+.wcard .wv button[aria-pressed="true"]{background:#2b2219;color:#f3e6c8}
+.wy{position:absolute;right:10px;top:6px;font-family:var(--f-hand);font-style:normal;font-size:22px;color:var(--red)}
+.wline{display:flex;flex-direction:column;gap:0;border-left:2px solid #3b2a1e;margin:6px 0 12px 46px}
+.wslot{display:grid;grid-template-columns:70px 1fr;align-items:center;gap:10px;border:0;background:none;text-align:left;cursor:pointer;padding:12px 6px 12px 0;margin-left:-46px;border-bottom:1px dashed rgba(60,35,10,.22)}
+.wslot b{font-family:var(--f-title);font-weight:700;font-size:24px;color:var(--red);text-align:right;padding-right:14px;position:relative}
+.wslot b::after{content:"";position:absolute;right:-7px;top:50%;width:10px;height:10px;margin-top:-5px;border-radius:50%;background:#3b2a1e}
+.wslot span{font-family:var(--f-hand);font-size:21px;color:var(--pen)}
+.wslot:not(.full) span{color:rgba(60,35,10,.35)}
+.wslot:hover{background:rgba(255,255,255,.3)}
+.calwrap{position:relative;box-shadow:0 2px 6px rgba(60,35,10,.2);touch-action:none}
+.calwrap svg{display:block;width:100%;height:auto}
+.calbtns{display:flex;gap:10px;justify-content:center}
+.gate{position:absolute;inset:0;z-index:6;display:grid;place-items:center;background:rgba(239,230,204,.86);backdrop-filter:blur(1.5px);text-align:center;padding:40px}
+.gate svg{width:70px;height:70px}
+.lockpaper{background:#fbf7ec;padding:18px 22px;box-shadow:0 3px 8px rgba(60,35,10,.2);transform:rotate(-.4deg);position:relative}
+.lockpaper.open{background:#fffaf0}
+.locktxt{font-family:var(--f-hand);font-size:22px;line-height:1.75;color:var(--pen)}
+select.blank{font-family:var(--f-hand);font-size:20px;color:var(--red);background:rgba(155,43,31,.06);border:0;border-bottom:2px dotted var(--red);padding:0 4px;max-width:100%;cursor:pointer}
+select.blank.bad{background:rgba(155,43,31,.2);border-bottom-style:solid}
+select.blank:disabled{color:var(--green);border-bottom-color:var(--green);background:none;appearance:none;-webkit-appearance:none}
+.sig{position:absolute;right:22px;bottom:-6px;font-family:var(--f-pen);font-size:34px;color:var(--pen);transform:rotate(-6deg)}
+.lockbar{display:flex;gap:10px}
+.v2r{display:flex;flex-direction:column;gap:8px}
+.v2r .fragment{font-size:19px!important;padding:10px 16px!important}
+.spr[data-n="7"] .credits{font-size:11.5px;line-height:1.3}
+.unk{margin:0;padding-left:20px;font-size:15px;line-height:1.35;display:flex;flex-direction:column;gap:6px}
+.ghq{font-size:15.5px;line-height:1.35;background:rgba(155,43,31,.07);padding:8px 12px;border-left:3px solid var(--red)}
+.sealbox{display:flex;flex-direction:column;align-items:center;gap:12px;margin-top:120px;text-align:center}
+.sealbox svg{width:130px;height:130px}
+
 /* book revealed under the opening cover */
 .book.reveal{animation:bookIn 1s ease-out .1s both}
 @keyframes bookIn{from{opacity:0;transform:scale(.985)}}
@@ -558,6 +617,9 @@ button{font:inherit;color:inherit}
   .page{height:800px;min-height:0;overflow-y:auto;overflow-x:hidden;padding:38px 44px 66px;scrollbar-width:thin;scrollbar-color:rgba(110,75,35,.35) transparent}
   .page::-webkit-scrollbar{width:6px}.page::-webkit-scrollbar-thumb{background:rgba(110,75,35,.35);border-radius:3px}
   .ptitle{font-size:42px}
+  .spr[data-n="5"] .page.L{gap:10px}
+  .spr[data-n="5"] .page.L .hand{font-size:21px;line-height:1.28}
+  .telegram .tx{font-size:13px;line-height:1.55}
   .page{padding:30px 40px 54px;gap:14px}
   .pageno{bottom:18px}
   .body{font-size:17px;line-height:1.45}
@@ -711,10 +773,10 @@ const fmt=n=>Math.round(n).toLocaleString(LANG==='en'?'en-US':'fr-FR');
 let LANG='fr';try{LANG=localStorage.getItem('strates-lang')||((navigator.language||'fr').toLowerCase().startsWith('fr')?'fr':'en');}catch(e){LANG=(navigator.language||'fr').toLowerCase().startsWith('fr')?'fr':'en';}
 const T={
  fr:{brand:'STRATES',brandSub:'Carnet de terrain · H. Varga',rig:'Rigueur',mer:'Émerveillement',sndOn:'Bruitages : activés',sndOff:'Bruitages : coupés',other:'EN',otherLabel:'Read in English',
-  hint:'Clique sur la couverture pour ouvrir le carnet',coverAria:'Ouvrir le carnet',tabs:['Atlas','<b>I</b>&nbsp;Observer','<b>II</b>&nbsp;Mesurer','<b>III</b>&nbsp;Reconstituer','<b>IV</b>&nbsp;Débattre','<b>V</b>&nbsp;Trancher'],
+  hint:'Clique sur la couverture pour ouvrir le carnet',coverAria:'Ouvrir le carnet',tabs:['Atlas','<b>I</b>&nbsp;Observer','<b>II</b>&nbsp;Enquêter','<b>III</b>&nbsp;Reconstituer','<b>IV</b>&nbsp;Débattre','<b>V</b>&nbsp;Trancher'],
   prev:'Page précédente',open:'Ouvert',sealedChip:'Scellé',
-  aFolio:['Sommaire','2009 – 2019'],aTitle:'Atlas des carnets',aSub:"Sept sites, sept pages arrachées à l'oubli.",aNote:"Si tu lis ceci, c'est que le carnet t'a trouvé. Chaque page finit par une affirmation que j'ai soulignée trop vite. Vérifie-les. Toutes.",
-  aFolioR:['Planisphère','Centré sur le Pacifique'],mapcap:'Clique sur une épingle rouge pour partir.',howT:'Comment on joue',how:"Chaque cas suit cinq étapes : observer, mesurer, reconstituer, débattre, trancher. Ta <b>Rigueur</b> monte quand tu raisonnes bien. Ton <b>Émerveillement</b> monte quand tu préserves un vrai mystère au lieu de l'écraser.",
+  aFolio:['Sommaire','2009 – 2019'],aTitle:'Atlas des carnets',aSub:"Sept sites, sept pages arrachées à l'oubli.",aNote:"Si tu lis ceci, tu tiens mon carnet. J'y ai noté les énigmes que je n'ai pas su résoudre. Ne me crois pas sur parole : vérifie.",
+  aFolioR:['Planisphère','Centré sur le Pacifique'],mapcap:'Clique sur une épingle rouge pour partir.',howT:'Comment on joue',how:"Observe, mène les pistes dans l'ordre que tu veux, croise les sources, puis ouvre la page que Graham a scellée. Ta <b>Rigueur</b> monte quand tu prouves. Ton <b>Émerveillement</b> monte quand tu gardes ouvert un vrai mystère.",
   ocean:'Océan Pacifique',mapAria:'Planisphère ancien centré sur le Pacifique, avec les sept sites du carnet',pinAria:'Ouvrir le cas',
   openCase:"Ouvrir l'enquête",obsF:'I · Observer',wallAlt:'Photo rapprochée du mur, avec quatre détails entourés',obsHint:'Prends la loupe. Chaque cercle cache un indice.',rel:'Relevés',clues:'Indices',seen:"Ce que j'ai vu",turn:'Tourner la page',detail:'Détail',examine:'Examiner le détail',already:', déjà relevé',
   measF:['II · Mesurer','Deux jours sur place'],measT:"Ce que j'examine",measS:"Chaque examen coûte une journée. Tu n'en as que deux.",cards:'Fiches',learned:"Ce que j'ai appris",toWs:"À l'atelier",empty:'Rien encore. Choisis un objet sur la page de gauche.',examined:'examiné',
@@ -740,19 +802,19 @@ const T={
   verHint:"« Non prouvé » n'est pas « faux » : c'est ce qui n'a pas encore de preuve. Un vrai mystère écrasé vide ton Émerveillement.",seal:'Sceller le verdict',sealedL:'Verdict scellé',toStamp:n=>`${n} fiches à tamponner`,readEnd:'Lire la conclusion',
   card:'Fiche',ok:'Juste. ',ko:l=>`À revoir, c'était « ${l} ». `,needStamp:"Prends d'abord un tampon sur la page de droite.",sealedHint:'Scellé. Relis les corrections, puis tourne la page.',
   stamps:{legende:'LÉGENDE',explique:'EXPLIQUÉ',nonprouve:'NON PROUVÉ',mystere:'MYSTÈRE'},lab:{legende:'LÉGENDE',explique:'EXPLIQUÉ',nonprouve:'NON PROUVÉ',mystere:'VRAI MYSTÈRE'},
-  repF:'Rapport',closed:no=>`Cas ${no} clos`,frag:n=>`Fragment ${n} sur 7 de la dernière page d'Hélène`,nextPage:'Prochaine page :',toAtlas:"Retour à l'atlas",replay:'Rejouer le cas',credits:'Crédits photographiques',pd:'domaine public',
+  repF:'Rapport',closed:no=>`Cas ${no} clos`,frag:n=>`Fragment ${n} sur 7 de la carte du ciel de Graham`,nextPage:'Prochaine page :',toAtlas:"Retour à l'atlas",replay:'Rejouer le cas',credits:'Crédits photographiques',pd:'domaine public',
   repT:"Rapport d'enquête",caseW:'Cas',rClues:'Indices relevés',rExams:'Examens',none:'aucun',rWs:'Atelier',rRight:'Verdicts justes',
   ateJ:(l,s)=>`${l} levages, ${s} frappes`,ateR:(n,u)=>`${n} rondins, ${u?'colonne suspendue':'colonne sur le pont'}`,notDone:'non réussi',
   prof:{inv:'Enquêteur',sce:'Sceptique',bel:'Croyant'},
-  profT:{inv:"Tu as séparé la légende de la technique, tenu à distance ce qui n'est pas prouvé, et gardé intact ce que personne n'explique encore. C'est exactement ce qu'Hélène a fini par comprendre.",sce:"Tu as refermé le vrai mystère. Ce que les archéologues eux-mêmes ne savent pas refaire méritait de rester ouvert.",bel:"Tu as gardé le mystère, mais tu as aussi accepté une piste que rien ne soutient, ou refusé ce que tu as toi-même reproduit."},
+  profT:{inv:"Tu as séparé la légende de la technique, tenu à distance ce qui n'est pas prouvé, et gardé intact ce que personne n'explique encore. C'est exactement ce que ce carnet cherche à garder vivant.",sce:"Tu as refermé le vrai mystère. Ce que les archéologues eux-mêmes ne savent pas refaire méritait de rester ouvert.",bel:"Tu as gardé le mystère, mais tu as aussi accepté une piste que rien ne soutient, ou refusé ce que tu as toi-même reproduit."},
   paste:"Coller dans l'album",closeLens:'Refermer la loupe',
   cover:{t1:'CARNETS',t2:'de terrain',t3:'des',dg:'Batisseurs oubliés',sd:["à l'usage des",'*Enquêteurs'],pl:'Sept énigmes de pierre',se:'SÉRIE I',pb:['Paris','Atelier Daruma, éditeur','4, Rue Tarbé'],v:'VOLUME'},
   sites:{sacsay:['Sacsayhuamán','Cusco, Pérou'],nanmadol:['Nan Madol','Pohnpei, Micronésie'],sirius:['Sirius',"Le ciel de l'Égypte"],deluge:['Le Déluge','Mésopotamie'],gobekli:['Göbekli Tepe','Anatolie, Turquie'],rapa:['Rapa Nui','Île de Pâques, Chili'],maya:['Les Mayas','Tikal, Guatemala']}},
  en:{brand:'STRATA',brandSub:'Field notebook · H. Varga',rig:'Rigour',mer:'Wonder',sndOn:'Sound effects: on',sndOff:'Sound effects: off',other:'FR',otherLabel:'Lire en français',
-  hint:'Tap the cover to open the notebook',coverAria:'Open the notebook',tabs:['Atlas','<b>I</b>&nbsp;Observe','<b>II</b>&nbsp;Measure','<b>III</b>&nbsp;Rebuild','<b>IV</b>&nbsp;Debate','<b>V</b>&nbsp;Decide'],
+  hint:'Tap the cover to open the notebook',coverAria:'Open the notebook',tabs:['Atlas','<b>I</b>&nbsp;Observe','<b>II</b>&nbsp;Investigate','<b>III</b>&nbsp;Rebuild','<b>IV</b>&nbsp;Debate','<b>V</b>&nbsp;Decide'],
   prev:'Previous page',open:'Open',sealedChip:'Sealed',
-  aFolio:['Contents','2009 – 2019'],aTitle:'Atlas of the notebooks',aSub:'Seven sites, seven pages torn from oblivion.',aNote:"If you're reading this, the notebook has found you. Every page ends with a claim I underlined too quickly. Check them. All of them.",
-  aFolioR:['World map','Centred on the Pacific'],mapcap:'Tap a red pin to set off.',howT:'How to play',how:'Each case follows five steps: observe, measure, rebuild, debate, decide. Your <b>Rigour</b> rises when you reason well. Your <b>Wonder</b> rises when you keep a true mystery open instead of crushing it.',
+  aFolio:['Contents','2009 – 2019'],aTitle:'Atlas of the notebooks',aSub:'Seven sites, seven pages torn from oblivion.',aNote:"If you're reading this, you're holding my notebook. I wrote down the riddles I couldn't solve. Don't take my word for it: check.",
+  aFolioR:['World map','Centred on the Pacific'],mapcap:'Tap a red pin to set off.',howT:'How to play',how:'Observe, follow the leads in any order, cross-check the sources, then open the page Graham sealed. Your <b>Rigour</b> rises when you prove things. Your <b>Wonder</b> rises when you keep a real mystery open.',
   ocean:'Pacific Ocean',mapAria:'Old world map centred on the Pacific, showing the notebook\'s seven sites',pinAria:'Open case',
   openCase:'Open the case',obsF:'I · Observe',wallAlt:'Close-up photo of the wall, with four details circled',obsHint:'Take the magnifier. Each circle hides a clue.',rel:'Records',clues:'Clues',seen:'What I saw',turn:'Turn the page',detail:'Detail',examine:'Examine detail',already:', already recorded',
   measF:['II · Measure','Two days on site'],measT:'What I examine',measS:'Each examination costs a day. You only have two.',cards:'Index cards',learned:'What I learned',toWs:'To the workshop',empty:'Nothing yet. Pick an object on the left-hand page.',examined:'examined',
@@ -778,11 +840,11 @@ const T={
   verHint:'"Unproven" doesn\'t mean "false": it means there is no proof yet. Crush a true mystery and your Wonder drains away.',seal:'Seal the verdict',sealedL:'Verdict sealed',toStamp:n=>`${n} cards to stamp`,readEnd:'Read the conclusion',
   card:'Card',ok:'Correct. ',ko:l=>`Not quite: it was "${l}". `,needStamp:'Pick up a stamp on the right-hand page first.',sealedHint:'Sealed. Read the corrections, then turn the page.',
   stamps:{legende:'LEGEND',explique:'EXPLAINED',nonprouve:'UNPROVEN',mystere:'MYSTERY'},lab:{legende:'LEGEND',explique:'EXPLAINED',nonprouve:'UNPROVEN',mystere:'TRUE MYSTERY'},
-  repF:'Report',closed:no=>`Case ${no} closed`,frag:n=>`Fragment ${n} of 7 from Hélène's last page`,nextPage:'Next page:',toAtlas:'Back to the atlas',replay:'Replay the case',credits:'Photo credits',pd:'public domain',
+  repF:'Report',closed:no=>`Case ${no} closed`,frag:n=>`Fragment ${n} of 7 of Graham's sky map`,nextPage:'Next page:',toAtlas:'Back to the atlas',replay:'Replay the case',credits:'Photo credits',pd:'public domain',
   repT:'Case report',caseW:'Case',rClues:'Clues recorded',rExams:'Examinations',none:'none',rWs:'Workshop',rRight:'Correct verdicts',
   ateJ:(l,s)=>`${l} lifts, ${s} strikes`,ateR:(n,u)=>`${n} logs, ${u?'column slung underneath':'column on deck'}`,notDone:'not completed',
   prof:{inv:'Investigator',sce:'Sceptic',bel:'Believer'},
-  profT:{inv:"You separated legend from technique, kept the unproven at arm's length, and left intact what nobody can explain yet. That is exactly what Hélène came to understand.",sce:'You closed the true mystery. What archaeologists themselves cannot reproduce deserved to stay open.',bel:"You kept the mystery, but you also accepted a lead nothing supports, or rejected something you reproduced yourself."},
+  profT:{inv:"You separated legend from technique, kept the unproven at arm's length, and left intact what nobody can explain yet. That is exactly what this notebook is trying to keep alive.",sce:'You closed the true mystery. What archaeologists themselves cannot reproduce deserved to stay open.',bel:"You kept the mystery, but you also accepted a lead nothing supports, or rejected something you reproduced yourself."},
   paste:'Paste into the album',closeLens:'Put the lens down',
   cover:{t1:'FIELD',t2:'notebooks',t3:'of the',dg:'Forgotten Builders',sd:['for the use of','*Investigators'],pl:'Seven riddles in stone',se:'SERIES I',pb:['Paris','Atelier Daruma, Publisher','4, Rue Tarbé'],v:'VOLUME'},
   sites:{sacsay:['Sacsayhuamán','Cusco, Peru'],nanmadol:['Nan Madol','Pohnpei, Micronesia'],sirius:['Sirius','The Egyptian sky'],deluge:['The Flood','Mesopotamia'],gobekli:['Göbekli Tepe','Anatolia, Turkey'],rapa:['Rapa Nui','Easter Island, Chile'],maya:['The Maya','Tikal, Guatemala']}}
@@ -1012,18 +1074,18 @@ function postcard(kind){
 const STAMPS=[['legende','LÉGENDE','#5b3a78'],['explique','EXPLIQUÉ','#2c4d78'],['nonprouve','NON PROUVÉ','#9a6a12'],['mystere','MYSTÈRE','#a3322a']];
 const LAB={legende:'LÉGENDE',explique:'EXPLIQUÉ',nonprouve:'NON PROUVÉ',mystere:'VRAI MYSTÈRE'};
 const EP={
- sacsay:{id:'sacsay',no:'01',name:'Sacsayhuamán',place:'Cusco, Pérou',plate:'Cas 01 · Sacsayhuamán · 3 700 m',mus:'andes',atelier:'joint',frag:1,
-  pro:{folio:['Carnet de H. Varga','Pérou · juillet 2011'],title:'Sacsayhuamán',sub:'Les murs au-dessus de Cusco',
-    left:`<figure class="engr"><span class="tape tl"></span><span class="tape tr"></span><img src="img/squier-vue.jpg" alt="Gravure de 1877 : vue d'ensemble des murs de Sacsayhuamán"><div class="cap">Gravure d'E. G. Squier, 1877. Trouvée chez un bouquiniste de Lima.</div></figure>`,
-    note:"12 juillet. Le plus gros bloc fait au moins trois fois ma taille. Pas de mortier. J'ai essayé de glisser la lame de mon canif dans le joint. Elle ne passe pas.",
-    claim:"Aucun outil de l'époque n'a pu faire ça.",
+ sacsay:{id:'sacsay',no:'01',name:'Sacsayhuamán',place:'Cusco, Pérou',plate:'Cas 01 · Sacsayhuamán · 3 700 m',mus:'andes',atelier:'joint',frag:1,v2:true,
+  pro:{folio:['Carnet de Graham Hancock','Cusco · Pérou'],title:'Sacsayhuamán',sub:'Les murs au-dessus de Cusco',
+    left:`<figure class="engr"><span class="tape tl"></span><span class="tape tr"></span><img src="img/squier-vue.jpg" alt="Gravure de 1877 : vue d'ensemble des murs de Sacsayhuamán"><div class="cap">Gravure d'E. G. Squier, 1877. Glissée entre deux pages.</div></figure>`,
+    note:"Le plus gros bloc me dépasse de trois têtes. Pas de mortier. Un conquistador a écrit qu'on ne pouvait pas glisser une épingle dans ces joints. Mon canif non plus.",
+    claim:"Qui a posé ces pierres, et quand ?",
     ticket:`<div class="ticket" style="background:#cfe0d6;color:#20352c"><div class="tk-l"><span>Boleto turístico</span><b>del Cusco</b><small>N° 0482113</small></div><div class="tk-r">Sacsayhuamán<br>Qenqo · Tambomachay<i>usado</i></div></div>`,
     main:['img/zigzag.jpg',"Le mur nord. Trois terrasses en zigzag.","Photo : le grand mur en zigzag de Sacsayhuamán"],
     pol:['img/terrasses.jpg','Pour l\'échelle.',"Photo : les terrasses vues depuis l'esplanade"],
-    intro:["Au-dessus de Cusco, trois terrasses de murs en zigzag ont été bâties au XV<sup>e</sup> siècle avec des blocs ajustés sans mortier. Certains pèsent plus de cent tonnes.","À toi de vérifier l'affirmation d'Hélène, puis de classer chaque piste : <em>légende</em>, <em>expliqué</em>, <em>non prouvé</em> ou <em>vrai mystère</em>."]},
-  obs:{folio:'Mur nord, terrasse basse',title:'Le mur à la loupe',sub:'Hélène a entouré quatre détails au crayon.',img:'img/mur-joints.jpg',w:960,h:600,cap:'Blocs ajustés, joints vifs.',
+    intro:["Au-dessus de Cusco, trois terrasses de murs en zigzag. Les chroniques les attribuent aux Incas du XV<sup>e</sup> siècle. Le plus gros bloc pèserait de 128 à près de 200 tonnes.","Graham soupçonne une histoire plus ancienne. Mène les pistes, recoupe les sources, puis ouvre la page qu'il a scellée. Classe chaque idée : <em>légende</em>, <em>expliqué</em>, <em>non prouvé</em> ou <em>vrai mystère</em>."]},
+  obs:{folio:'Mur nord, terrasse basse',title:'Le mur à la loupe',sub:"J'ai entouré quatre détails au crayon.",img:'img/mur-joints.jpg',w:960,h:600,cap:'Blocs ajustés, joints vifs.',
     hots:[
-     {id:'joint',x:497,y:228,title:'Joint sans mortier',text:"Les deux faces se touchent sans aucun liant. Le contact est si serré sur le bord visible que la lame ne passe pas.",note:"La lame bute ici.",dh:[0,10,0],fx:'blade'},
+     {id:'joint',x:497,y:228,title:'Joint sans mortier',text:"Les deux faces se touchent sans aucun liant. Pedro Pizarro, qui a vu le site en 1536, écrit qu'« on n'aurait pu insérer la pointe d'une épingle dans un joint ».",note:"La lame bute ici.",dh:[0,10,0],fx:'blade'},
      {id:'pits',x:690,y:330,title:'Surface piquetée',text:"La face est criblée de petits impacts. C'est la signature d'un outil qui frappe, pas d'un outil qui coupe.",note:"Des milliers de petits coups.",dh:[20,-10,0],fx:'rings'},
      {id:'notch',x:510,y:470,title:'Angle rentrant',text:"Le bloc de droite s'emboîte en équerre sous son voisin. Chaque pierre a été taillée pour sa place exacte, pas fabriquée en série.",note:"Taillée sur mesure.",dh:[10,0,10],fx:'notch'},
      {id:'bevel',x:330,y:420,title:'Arêtes en retrait',text:"Chaque bloc est légèrement bombé et ses arêtes rentrent vers le joint. Le contact parfait se concentre près de la face visible.",note:"Bombé comme un coussin.",dh:[15,0,0],fx:'arc'}]},
@@ -1037,8 +1099,8 @@ const EP={
   hypn:['Percussion et essais successifs','Technique de ramollissement perdue','Levage des blocs géants : inconnu'],
   voices(S){return {
     m:`J'ai compté ${S.lifts} levages pour un bloc d'une tonne. La méthode marche, tu l'as vu. Maintenant refais le calcul avec cent tonnes, sans poulie ni animal de trait.`,
-    i:(S.tools.includes('chron')||S.tools.includes('quarry'))?"Carrières et chroniques racontent la même histoire : un État qui mobilise des milliers de bras pendant des décennies. Moins magique qu'une plante, et beaucoup plus impressionnant.":"Tu n'as regardé ni les carrières ni les archives. Tu juges le mur sans son chantier.",
-    v:S.tools.includes('fawcett')?"D'accord, la plante de Fawcett ne tient pas. Mais personne ne m'a montré comment on soulève cent tonnes plusieurs fois de suite pour un simple essai d'ajustage. Toi non plus.":"Et la plante qui ramollit la pierre ? Tu ne l'as même pas vérifiée. Les anciens savaient peut-être des choses que nous avons oubliées."};},
+    i:(S.keys.has('haul')||S.keys.has('wit'))?"Haleurs et chroniques racontent la même histoire : un État qui mobilise des milliers de bras pendant des décennies. Moins magique qu'une plante, et plus impressionnant.":"Tu n'as suivi ni les haleurs ni les témoins. Tu juges le mur sans son chantier.",
+    v:S.keys.has('wit')?"D'accord, la plante de Fawcett ne tient pas. Mais personne n'a montré comment soulever cent tonnes encore et encore pour un essai d'ajustage. Toi non plus.":"Et la plante qui ramollit la pierre ? Tu ne l'as même pas vérifiée. Les anciens savaient peut-être des choses que nous avons oubliées."};},
   screen:{show:"Bâtisseurs de l'Ancien Monde · Patrice Pooyard, 2020",claim:"Le film suggère qu'une civilisation avancée aurait précédé les Incas, et que des techniques de taille et de transport auraient été perdues.",resp:"Les archéologues rappellent que les carrières, les outils de percussion et les chroniques espagnoles décrivent des chantiers incas du XV<sup>e</sup> siècle.",src:"Résumé de la thèse du film et de ses critiques, d'après archeologierationnelle.wordpress.com"},
   deb:['img/murs.jpg','Cent tonnes. Comment ?'],
   claims:[
@@ -1058,8 +1120,8 @@ const EP={
     ticket:`<div class="ticket" style="background:#d7e3ee;color:#1d3349"><div class="tk-l"><span>Carte d'embarquement</span><b>Guam → Pohnpei</b><small>Siège 14A · porte 3</small></div><div class="tk-r">Embarquement 07:40<br>Escales : Chuuk<i>utilisé</i></div></div>`,
     main:['img/nm/pirogue.jpg','En pirogue dans les canaux.',"Photo : une pirogue avance dans un canal entre les îlots de Nan Madol"],
     pol:['img/nm/murs-eau.jpg','Murs les pieds dans l\'eau.',"Photo : murs de basalte au bord d'un canal"],
-    intro:["Au large de Pohnpei, près d'une centaine d'îlots artificiels ont été bâtis sur le récif avec du basalte en colonnes et des blocs de corail. Ici régnait la dynastie des Saudeleur, jusqu'au XVII<sup>e</sup> siècle.","À toi de vérifier l'affirmation d'Hélène, puis de classer chaque piste : <em>légende</em>, <em>expliqué</em>, <em>non prouvé</em> ou <em>vrai mystère</em>."]},
-  obs:{folio:'Îlot de Nandauwas',title:'Le mur en rondins',sub:'Hélène a entouré quatre détails au crayon.',img:'img/nm/mur-angle.jpg',w:960,h:720,cap:'Basalte en colonnes, sans mortier.',
+    intro:["Au large de Pohnpei, près d'une centaine d'îlots artificiels ont été bâtis sur le récif avec du basalte en colonnes et des blocs de corail. Ici régnait la dynastie des Saudeleur, jusqu'au XVII<sup>e</sup> siècle.","À toi de vérifier l'intuition de Graham, puis de classer chaque piste : <em>légende</em>, <em>expliqué</em>, <em>non prouvé</em> ou <em>vrai mystère</em>."]},
+  obs:{folio:'Îlot de Nandauwas',title:'Le mur en rondins',sub:"J'ai entouré quatre détails au crayon.",img:'img/nm/mur-angle.jpg',w:960,h:720,cap:'Basalte en colonnes, sans mortier.',
     hots:[
      {id:'stretch',x:640,y:400,title:'Colonnes en long',text:"Ces colonnes posées sur la longueur forment une assise. Au-dessus, d'autres sont posées en bout : le mur est empilé comme une cabane de rondins.",note:"Comme des bûches.",dh:[10,0,5],fx:'arc'},
      {id:'prism',x:432,y:384,title:'Bouts à pans',text:"Vues de face, les colonnes montrent cinq ou six pans. Elles ne sont pas taillées : le basalte se fend naturellement en prismes en refroidissant, comme à la Chaussée des Géants.",note:"Pas un coup d'outil.",dh:[10,-5,0],fx:'rings'},
@@ -1094,15 +1156,15 @@ const SITES=[
  ['gobekli','05','Göbekli Tepe','Anatolie, Turquie'],['rapa','06','Rapa Nui','Île de Pâques, Chili'],['maya','07','Les Mayas','Tikal, Guatemala']];
 const EN={
  sacsay:{place:'Cusco, Peru',plate:'Case 01 · Sacsayhuamán · 3,700 m',
-  pro:{folio:["H. Varga's notebook",'Peru · July 2011'],sub:'The walls above Cusco',
-    left:`<figure class="engr"><span class="tape tl"></span><span class="tape tr"></span><img src="img/squier-vue.jpg" alt="1877 engraving: general view of the walls of Sacsayhuamán"><div class="cap">Engraving by E. G. Squier, 1877. Found at a bookseller's in Lima.</div></figure>`,
-    note:"12 July. The biggest block is at least three times my height. No mortar. I tried to slide my penknife blade into the joint. It won't go in.",
-    claim:'No tool of that era could have done this.',
+  pro:{folio:["Graham Hancock's notebook",'Cusco · Peru'],sub:'The walls above Cusco',
+    left:`<figure class="engr"><span class="tape tl"></span><span class="tape tr"></span><img src="img/squier-vue.jpg" alt="1877 engraving: general view of the walls of Sacsayhuamán"><div class="cap">Engraving by E. G. Squier, 1877. Slipped between two pages.</div></figure>`,
+    note:"The biggest block towers three heads above me. No mortar. A conquistador wrote that you couldn't slip a pin into these joints. Nor can my penknife.",
+    claim:'Who laid these stones, and when?',
     main:['img/zigzag.jpg','The north wall. Three zigzag terraces.','Photo: the great zigzag wall of Sacsayhuamán'],
     pol:['img/terrasses.jpg','For scale.','Photo: the terraces seen from the esplanade'],
-    intro:['Above Cusco, three terraces of zigzag walls were built in the 15th century from blocks fitted without mortar. Some weigh more than a hundred tonnes.',"Check Hélène's claim, then sort each lead: <em>legend</em>, <em>explained</em>, <em>unproven</em> or <em>true mystery</em>."]},
-  obs:{folio:'North wall, lower terrace',title:'The wall under the lens',sub:'Hélène circled four details in pencil.',cap:'Fitted blocks, razor-thin joints.',
-    hots:[{title:'Joint without mortar',text:"The two faces meet with no binder at all. The contact along the visible edge is so tight the blade won't go in.",note:'The blade stops here.'},
+    intro:['Above Cusco, three terraces of zigzag walls. The chronicles credit the 15th-century Incas. The biggest block is put at 128 to nearly 200 tonnes.',"Graham suspects an older story. Follow the leads, cross-check the sources, then open the page he sealed. Sort each idea: <em>legend</em>, <em>explained</em>, <em>unproven</em> or <em>true mystery</em>."]},
+  obs:{folio:'North wall, lower terrace',title:'The wall under the lens',sub:'I circled four details in pencil.',cap:'Fitted blocks, razor-thin joints.',
+    hots:[{title:'Joint without mortar',text:'The two faces meet with no binder at all. Pedro Pizarro, who saw the site in 1536, wrote that "the point of a pin could not have been inserted in one of the joints".',note:'The blade stops here.'},
      {title:'Pitted surface',text:"The face is peppered with tiny impacts. That's the signature of a tool that strikes, not one that cuts.",note:'Thousands of small blows.'},
      {title:'Re-entrant angle',text:'The block on the right locks under its neighbour at a right angle. Each stone was cut for its exact place, not mass-produced.',note:'Made to measure.'},
      {title:'Recessed edges',text:'Each block bulges slightly and its edges curve back into the joint. The perfect contact is concentrated near the visible face.',note:'Pillowed like a cushion.'}]},
@@ -1115,8 +1177,8 @@ const EN={
   hypn:['Pounding and trial fitting','A lost stone-softening technique','Lifting the giant blocks: unknown'],
   voices(S){return {
     m:`I counted ${S.lifts} lifts for a one-tonne block. The method works, you've seen it. Now redo the maths for a hundred tonnes, with no pulley and no draught animals.`,
-    i:(S.tools.includes('chron')||S.tools.includes('quarry'))?'Quarries and chronicles tell the same story: a state mobilising thousands of hands for decades. Less magical than a plant, and far more impressive.':"You looked at neither the quarries nor the archives. You're judging the wall without its building site.",
-    v:S.tools.includes('fawcett')?"Fine, Fawcett's plant doesn't hold up. But nobody has shown me how you lift a hundred tonnes again and again just to test a fit. Neither have you.":"And the plant that softens stone? You didn't even check it. The ancients may have known things we've forgotten."};},
+    i:(S.keys.has('haul')||S.keys.has('wit'))?'Haulers and chronicles tell the same story: a state mobilising thousands of hands for decades. Less magical than a plant, and far more impressive.':"You followed neither the haulers nor the witnesses. You're judging the wall without its building site.",
+    v:S.keys.has('wit')?"Fine, Fawcett's plant doesn't hold up. But nobody has shown me how you lift a hundred tonnes again and again just to test a fit. Neither have you.":"And the plant that softens stone? You didn't even check it. The ancients may have known things we've forgotten."};},
   screen:{show:'Builders of the Ancient World (BAM) · Patrice Pooyard, 2020',claim:'The film suggests an advanced civilisation came before the Incas, and that techniques for cutting and moving stone were lost.',resp:'Archaeologists point out that the quarries, the pounding tools and the Spanish chronicles all describe 15th-century Inca building sites.',src:"Summary of the film's thesis and its critics, after archeologierationnelle.wordpress.com"},
   deb:['img/murs.jpg','A hundred tonnes. How?'],
   claims:[{q:'A plant made it possible to soften the stone.',why:'No plant and no residue has ever been identified. The story circulates without material evidence.'},
@@ -1133,8 +1195,8 @@ const EN={
     ticket:`<div class="ticket" style="background:#d7e3ee;color:#1d3349"><div class="tk-l"><span>Boarding pass</span><b>Guam → Pohnpei</b><small>Seat 14A · Gate 3</small></div><div class="tk-r">Boarding 07:40<br>Via Chuuk<i>used</i></div></div>`,
     main:['img/nm/pirogue.jpg','By canoe through the canals.','Photo: a canoe moving down a canal between the islets of Nan Madol'],
     pol:['img/nm/murs-eau.jpg','Walls with their feet in the water.','Photo: basalt walls along a canal'],
-    intro:['Off Pohnpei, nearly a hundred artificial islets were built on the reef from columnar basalt and blocks of coral. This was the seat of the Saudeleur dynasty, until the 17th century.',"Check Hélène's claim, then sort each lead: <em>legend</em>, <em>explained</em>, <em>unproven</em> or <em>true mystery</em>."]},
-  obs:{folio:'Nandauwas islet',title:'The log-cabin wall',sub:'Hélène circled four details in pencil.',cap:'Columnar basalt, no mortar.',
+    intro:['Off Pohnpei, nearly a hundred artificial islets were built on the reef from columnar basalt and blocks of coral. This was the seat of the Saudeleur dynasty, until the 17th century.',"Check Graham's hunch, then sort each lead: <em>legend</em>, <em>explained</em>, <em>unproven</em> or <em>true mystery</em>."]},
+  obs:{folio:'Nandauwas islet',title:'The log-cabin wall',sub:'I circled four details in pencil.',cap:'Columnar basalt, no mortar.',
     hots:[{title:'Columns laid lengthwise',text:'These columns laid along their length form a course. Above them, others are laid end-on: the wall is stacked like a log cabin.',note:'Like firewood.'},
      {title:'Faceted ends',text:"Seen end-on, the columns show five or six faces. They weren't carved: basalt naturally splits into prisms as it cools, as at the Giant's Causeway.",note:'Not a single tool mark.'},
      {title:'Upswept corner',text:'At the corners, the top columns sweep up towards the sky. Aesthetic or structural, the reason is still debated.',note:"Like a ship's prow."},
@@ -1167,14 +1229,14 @@ const LBL={sacsay:[-14,34,'end'],nanmadol:[14,8,'start'],sirius:[-14,26,'end'],d
 /* =================================================================== STATE */
 const G={done:{},last:null};
 let S=null,E=null,busy=false;
-function fresh(id){return {id,cur:0,max:0,found:new Set(),tools:[],h:[35,35,35],lifts:0,strikes:0,joined:false,jointInit:false,raft:null,raftInit:false,verdict:{},sealed:false,sel:null,rot:{}};}
+function fresh(id){return {id,cur:0,max:0,found:new Set(),tools:[],h:[35,35,35],lifts:0,strikes:0,joined:false,jointInit:false,raft:null,raftInit:false,verdict:{},sealed:false,sel:null,rot:{},keys:new Set(),items:new Set(),pen:0,wonder:0,unlocked:false};}
 S=fresh(null);S.cur=0;
 const atelierDone=()=>E&&(E.atelier==='joint'?S.joined:!!(S.raft&&S.raft.ok));
-function rigueur(){if(!E)return 0;let r=S.found.size*5+S.tools.length*5+(atelierDone()?25:0)+(S.max>=6?5:0);
+function rigueur(){if(!E)return 0;let r=S.found.size*5+(E.v2?S.keys.size*8+(S.unlocked?10:0)-S.pen*2:S.tools.length*5)+(atelierDone()?25:0)+(S.max>=6?5:0);
   if(S.sealed){const nm=E.claims.filter(c=>c.ok!=='mystere');nm.forEach(c=>{if(S.verdict[c.id]===c.ok)r+=Math.round(40/nm.length);});}return clamp(r);}
-function merveille(){if(!E)return 20;let m=20+(atelierDone()?20:0);if(S.sealed){const c=E.claims.find(c=>c.ok==='mystere');if(S.verdict[c.id]==='mystere')m+=60;}return clamp(m);}
+function merveille(){if(!E)return 20;let m=20+(atelierDone()?20:0)+(S.wonder||0)+(S.unlocked?5:0);if(S.sealed){const c=E.claims.find(c=>c.ok==='mystere');if(S.verdict[c.id]==='mystere')m+=60;}return clamp(m);}
 function hyp(dh){dh.forEach((d,i)=>S.h[i]=clamp(S.h[i]+d));}
-function canLeave(n){return n===1||(n===2&&S.found.size===4)||(n===3&&S.tools.length===2)||(n===4&&atelierDone())||n===5||(n===6&&S.sealed);}
+function canLeave(n){return n===1||(n===2&&S.found.size===4)||(n===3&&(E.v2?S.keys.size>=2:S.tools.length===2))||(n===4&&atelierDone())||n===5||(n===6&&S.sealed);}
 function curMusic(){return S.cur===0||!E?'atlas':E.mus;}
 function chrome(){
   const r=rigueur(),m=merveille();
@@ -1264,7 +1326,7 @@ function endSpread(e){return `<section class="spr" data-n="7" hidden>
    <div class="postcard">${postcard(e.next.art)}<div class="pc-r"><span class="stampsq"></span><span style="margin-top:58px">${tr('nextPage')}</span><b style="font-size:26px">${e.next.label}</b><span>${e.next.txt}</span></div></div>
    <div class="controls"><button class="lbl red" id="toAtlas">${tr('toAtlas')}</button><button class="lbl" id="replay">${tr('replay')}</button></div>
    <div class="credits"><b>${tr('credits')}</b> (Wikimedia Commons) : ${e.credits.map(([a,l,u])=>`<a href="${u}" target="_blank" rel="noopener">${a}</a> (${credLic(l)})`).join(', ')}.</div>${pageno(14)}</div></section>`;}
-function buildEpisode(e){$$('.spr').forEach(s=>{if(+s.dataset.n>0)s.remove();});$('#stack').insertAdjacentHTML('beforeend',proSpread(e)+obsSpread(e)+measSpread(e)+ateSpread(e)+debSpread(e)+verSpread(e)+endSpread(e));wireEpisode();}
+function buildEpisode(e){$$('.spr').forEach(s=>{if(+s.dataset.n>0)s.remove();});$('#stack').insertAdjacentHTML('beforeend',proSpread(e)+obsSpread(e)+(e.v2?pistesSpread(e):measSpread(e))+ateSpread(e)+debSpread(e)+verSpread(e)+endSpread(e));wireEpisode();}
 function rebuildAtlas(){const old=$('.spr[data-n="0"]');const hid=old?old.hidden:false;if(old)old.remove();$('#stack').insertAdjacentHTML('afterbegin',atlasSpread());$('.spr[data-n="0"]').hidden=hid;}
 
 /* =================================================================== NAVIGATION */
@@ -1272,7 +1334,7 @@ const spr=n=>$(`.spr[data-n="${n}"]`);
 function show(n){$$('.spr').forEach(s=>s.hidden=+s.dataset.n!==n);}
 function cloneP(p){const c=p.cloneNode(true);c.querySelectorAll('[id]').forEach(x=>x.removeAttribute('id'));c.querySelectorAll('.dogear').forEach(x=>x.remove());
   const o=p.querySelectorAll('canvas'),k=c.querySelectorAll('canvas');k.forEach((cv,i)=>{try{cv.getContext('2d').drawImage(o[i],0,0);}catch(err){}});c.setAttribute('aria-hidden','true');return c;}
-function enter(n){if(n===0)rebuildAtlas();if(n===2)renderWall();if(n===3)renderTools();if(n===4)initAtelier();if(n===5)renderVoices();if(n===6)renderClaims();if(n===7)renderEnd();}
+function enter(n){if(n===0)rebuildAtlas();if(n===2)renderWall();if(n===3)(E.v2?renderPistes():renderTools());if(n===4){initAtelier();v2Gate();}if(n===5)renderVoices();if(n===6)renderClaims();if(n===7)(E.v2?renderEndV2():renderEnd());}
 function goTo(n,cb){
   if(busy||n===S.cur)return;const from=S.cur;if(n>0)S.max=Math.max(S.max,n);
   if(from===4)stopRaftLoop();
@@ -1307,13 +1369,13 @@ document.addEventListener('click',ev=>{
   const d=ev.target.closest('.dogear');if(d){const n=+d.closest('.spr').dataset.n;goTo(d.classList.contains('prev')?n-1:n+1);return;}
   if(ev.target.closest('#gtab')){toggleGraham();return;}
   if(ev.target.closest('#ftab')){if(!$('#gsheet').hidden)toggleGraham(false);introOpen('replay');return;}
-  const t=ev.target.closest('.tab');if(t&&!t.disabled){if(!$('#gsheet').hidden)toggleGraham(false);goTo(+t.dataset.to);return;}
+  const t=ev.target.closest('.tab');if(t&&!t.disabled){if(!$('#gsheet').hidden)toggleGraham(false);if(typeof closeSheet==='function')closeSheet();goTo(+t.dataset.to);return;}
   const c=ev.target.closest('[data-case]');if(c&&EPS()[c.dataset.case]){openCase(c.dataset.case);return;}
   if(ev.target.closest('#toAtlas')){goTo(0);return;}
   if(ev.target.closest('#replay')){const id=E.id;S=fresh(id);S.cur=7;S.max=1;buildEpisode(E);show(7);goTo(1);return;}
 });
 document.addEventListener('keydown',ev=>{const c=ev.target.closest&&ev.target.closest('.pin[data-case]');if(c&&(ev.key==='Enter'||ev.key===' ')){ev.preventDefault();openCase(c.dataset.case);}
-  if(ev.key==='Escape'&&!$('#intro').hidden){if($('#intro').classList.contains('playing')||seenIntro())introSkip();}else if(ev.key==='Escape'&&!$('#ov').hidden)closeLens();else if(ev.key==='Escape'&&!$('#gsheet').hidden)toggleGraham(false);});
+  if(ev.key==='Escape'&&!$('#intro').hidden){if($('#intro').classList.contains('playing')||seenIntro())introSkip();}else if(ev.key==='Escape'&&!$('#ov').hidden)closeLens();else if(ev.key==='Escape'&&!$('#gsheet').hidden)toggleGraham(false);else if(ev.key==='Escape'&&$('#psheet')&&!$('#psheet').hidden)closeSheet();});
 function openCover(big){
   A();play(big?'bookopen':'cover');
   const prep=()=>{$('#stack').innerHTML=atlasSpread();S.cur=0;show(0);$('#book').hidden=false;chrome();music('atlas');};
@@ -1565,6 +1627,224 @@ function renderEnd(){
     <div class="row"><span>${tr('rWs')}</span><b>${ate}</b></div><div class="row"><span>${tr('rRight')}</span><b>${right} / ${E.claims.length}</b></div>
     <div class="row"><span>${tr('rig')}</span><b>${rigueur()}</b></div><div class="row"><span>${tr('mer')}</span><b>${merveille()}</b></div><div style="height:60px"></div><div class="bigstamp">${tr('prof')[p]}</div>`;
   $('#endtext').textContent=tr('profT')[p];if(!renderEnd.silent)setTimeout(()=>play(p==='inv'?'fanfare':'thud'),700);}
+
+/* =================================================================== V2 · ENQUÊTE NON LINÉAIRE (cas modèle : Sacsayhuamán) */
+const V2={
+ fr:{
+  pF:['II · Enquêter','Trois pistes'],pT:'Trois pistes',pS:"Dans l'ordre que tu veux. Chaque piste résolue t'apporte une clé.",
+  keysT:'Mes clés',keysS:'Ce que j\'ai établi, preuves à l\'appui.',bagT:'Ma sacoche',noKey:'Aucune clé pour l\'instant.',
+  open:'Ouvrir la piste',done:'Résolue',need2:'Résous au moins deux pistes pour continuer. La page scellée de Graham demandera les trois.',
+  back:'Refermer le dossier',check:'Vérifier',hint:'Indice',
+  items:{loupe:['Loupe','Pour lire les détails du mur.'],calque:['Papier calque','Pour superposer deux plans.'],galet:['Galet de quartzite','Un percuteur ramassé sur la piste des haleurs.']},
+  haul:{t:'La piste des haleurs',s:'Combien de bras pour un bloc géant ?',
+   lee:"Lors d'essais menés par l'architecte Vincent Lee, une douzaine de personnes poussaient et plus d'une centaine tiraient un bloc d'environ 10 tonnes.",
+   task:'Le bloc estimé le plus léger pèse 128 tonnes. Mets assez de monde sur les cordes pour le faire avancer, sans gaspiller de bras.',
+   who:'Haleurs sur les cordes',pull:'Tirer',few:n=>`Le bloc ne bouge pas. Il manque environ ${n} personnes.`,many:n=>`Il avance, mais ${n} personnes se marchent dessus : la rampe n'est pas si large.`,
+   ok:n=>`Il avance. Environ ${n} haleurs, d'après le rapport de l'essai de Lee. Une estimation, à partir d'un seul essai.`,
+   q:'Pour le transport des pierres, combien d\'hommes compte Cieza de León (1553) ?',opts:['600','6 000','60 000'],ans:1,
+   qok:"Exact : 4 000 à la carrière, 6 000 au transport, pris par rotation sur 20 000 hommes fournis par les provinces.",qko:'Relis Cieza : ce n\'est pas ce chiffre.',
+   galet:'Sur le bord de la piste, tu ramasses un galet de quartzite. Il servira de percuteur.',key:'Transport : ~1 400 haleurs par bloc ; 6 000 selon Cieza (1553)'},
+  wit:{t:'Les témoins',s:'Qui a vu ? Qui rapporte ? Date chaque source.',
+   task:"Range chaque source à son année, d'après les indices. Puis dis si l'auteur a vu le site ou rapporte ce qu'on lui a dit.",
+   seen:'Il l\'a vu',told:'On le lui a raconté',years:[1553,1571,1572,1609,1953],
+   cards:[
+    {id:'cieza',a:'Pedro de Cieza de León',q:'« Aucune artillerie ne pourrait percer » ces murs.',c:'Soldat-chroniqueur. Première chronique publiée, une vingtaine d\'années après l\'arrivée des Espagnols à Cusco (1533). Il a visité deux fois la forteresse.',y:1553,v:'seen'},
+    {id:'pizarro',a:'Pedro Pizarro',q:'« On n\'aurait pu insérer la pointe d\'une épingle dans un joint. »',c:'Cousin du conquistador. Assiégé dans Cusco en 1536. Écrit à Arequipa, près de quarante ans après la conquête.',y:1571,v:'seen'},
+    {id:'gamboa',a:'Pedro Sarmiento de Gamboa',q:'Pachacuti aurait appelé Cusco la « ville-lion ». Il lui manquait une tête : ce serait la forteresse.',c:'Navigateur chargé par le vice-roi Toledo de recueillir l\'histoire des Incas. Termine son livre un an après Pizarro.',y:1572,v:'told'},
+    {id:'garcilaso',a:'Garcilaso de la Vega',q:'« Il n\'est pas une maison de la ville qui n\'ait été faite de cette pierre. »',c:'Né à Cusco en 1539 d\'une princesse inca. Publie en Espagne au début du siècle suivant, ce qu\'il a vu enfant.',y:1609,v:'seen'},
+    {id:'fawcett',a:'Percy Fawcett',q:'Un oiseau percerait la roche avec le suc d\'une plante qui la ramollit.',c:'Explorateur disparu en Amazonie en 1925. Ses carnets sont publiés par son fils presque trois décennies plus tard.',y:1953,v:'told'}],
+   err:n=>n===1?'Une erreur. Cherche-la.':`${n} erreurs. Relis les indices.`,ok:"Tout concorde. Les témoins directs décrivent un chantier inca. La plante de Fawcett n'est qu'une histoire rapportée, quatre siècles après.",
+   key:'Témoins : Cieza (1553) date le chantier de Pachacuti ; la plante de Fawcett est un ouï-dire',key2:'Gamboa (1572) : Cusco, « ville-lion », la forteresse en serait la tête'},
+  cal:{t:'Le calque',s:'La ville avait-elle une forme ?',
+   task:'Gamboa rapporte que Pachacuti voyait Cusco comme un lion, c\'est-à-dire un puma. Fais glisser le calque et tourne-le pour superposer l\'animal au plan.',
+   rot:'Tourner',map:{hill:'Colline de Sacsayhuamán',plaza:'Grande place (Huacaypata)',conf:'Confluent : Pumachupan',r1:'Saphy',r2:'Tullumayo'},
+   ok:"La tête tombe sur Sacsayhuamán, la queue sur Pumachupan, un nom de quartier qui signifie encore « la queue du puma ». Lecture tirée de la tradition rapportée par Gamboa : les historiens débattent encore pour savoir si c'était une image ou un vrai plan.",
+   key:'Plan en puma : la forteresse en serait la tête (hypothèse débattue)'},
+  gate:'Il te faut un percuteur pour frapper la pierre. Cherche-le sur la piste des haleurs.',gateBtn:'Aller aux pistes',
+  lockF:['Page scellée','De la main de Graham'],lockT:'La page que Graham a scellée',lockS:'Complète sa note avec ce que tu as établi. Elle ne s\'ouvre qu\'avec les bons faits.',
+  lockTxt:['Selon ','{0}',', témoin de 1553, le chantier commence sous ','{1}','. Pour le transport, il compte ','{2}',' hommes. Les joints se ferment par ','{3}','. Dans la tradition rapportée par Gamboa, la forteresse est ','{4}','. Ce que personne n\'a encore reproduit : ','{5}','.'],
+  blanks:[['Garcilaso de la Vega','Cieza de León','Percy Fawcett',1],['Viracocha','une civilisation oubliée','Pachacuti (Inca Yupanqui)',2],['600','6 000','60 000',1],['une plante qui ramollit la roche','la percussion et des essais successifs','la fusion de la pierre',1],['un observatoire','un port englouti','la tête du puma',2],['la taille des joints','le transport sur 35 km','le levage répété des plus gros blocs',2]],
+  pick:'…',lockErr:n=>n===1?'Une erreur. Graham n\'aurait pas signé.':`${n} erreurs. Graham n'aurait pas signé.`,lockFill:'Complète toute la note avant de vérifier.',
+  hintTxt:'Le mot souligné en rouge est faux.',unlock:'Le sceau cède.',
+  sealedR:'Ouvre d\'abord la page de gauche.',
+  unkT:'Ce qu\'on ne sait toujours pas',
+  unk:['Comment les plus gros blocs, de 128 à près de 200 tonnes, ont été levés et reposés encore et encore pendant l\'ajustage.','À quoi servaient les premières constructions de la colline, occupée dès les environs de l\'an 900, avant les Incas.','Sous quels règnes exactement, et pendant combien de temps : Cieza et la tradition orale ne s\'accordent pas.'],
+  gh:'La question de Graham',ghq:'Les assises les plus massives pourraient-elles être plus anciennes que les Incas ? Aucune datation ne le montre aujourd\'hui. La question reste ouverte, et la réponse sera dans la pierre.',
+  skyT:'En marge, au crayon',sky:'« L\'Inti Raymi, fête du Soleil, se célèbre ici chaque 24 juin. Quelles étoiles se lèvent juste avant l\'aube ce jour-là ? Sirius ? À vérifier au prochain carnet. »',
+  rep:(k,l)=>`Clés : ${k} / 3 · Page scellée : ${l?'ouverte':'fermée'}`},
+ en:{
+  pF:['II · Investigate','Three leads'],pT:'Three leads',pS:'In any order. Each lead you crack gives you a key.',
+  keysT:'My keys',keysS:'What I have established, with evidence.',bagT:'My satchel',noKey:'No key yet.',
+  open:'Open the lead',done:'Solved',need2:'Crack at least two leads to go on. Graham\'s sealed page will need all three.',
+  back:'Close the file',check:'Check',hint:'Hint',
+  items:{loupe:['Magnifier','To read the details of the wall.'],calque:['Tracing paper','To lay one plan over another.'],galet:['Quartzite cobble','A hammerstone picked up on the haulers\' track.']},
+  haul:{t:'The haulers\' track',s:'How many hands for a giant block?',
+   lee:'In trials led by architect Vincent Lee, about a dozen people pushed and more than a hundred pulled a block of around 10 tonnes.',
+   task:'The lightest estimate for the biggest block is 128 tonnes. Put enough people on the ropes to move it, without wasting hands.',
+   who:'Haulers on the ropes',pull:'Pull',few:n=>`The block won't budge. You need about ${n} more people.`,many:n=>`It moves, but ${n} people are treading on each other: the ramp isn't that wide.`,
+   ok:n=>`It moves. About ${n} haulers, scaling up from Lee's trial. An estimate, from a single trial.`,
+   q:'For hauling the stones, how many men does Cieza de León (1553) count?',opts:['600','6,000','60,000'],ans:1,
+   qok:'Right: 4,000 at the quarry, 6,000 hauling, drawn in rotation from 20,000 men supplied by the provinces.',qko:'Read Cieza again: not that figure.',
+   galet:'By the side of the track, you pick up a quartzite cobble. It will be your hammerstone.',key:'Hauling: ~1,400 people per block; 6,000 according to Cieza (1553)'},
+  wit:{t:'The witnesses',s:'Who saw it? Who heard it? Date each source.',
+   task:'Put each source at its year, using the clues. Then say whether the author saw the site or reports what he was told.',
+   seen:'He saw it',told:'He was told',years:[1553,1571,1572,1609,1953],
+   cards:[
+    {id:'cieza',a:'Pedro de Cieza de León',q:'"There is no artillery which could breach" these walls.',c:'Soldier and chronicler. First chronicle in print, some twenty years after the Spanish reached Cusco (1533). He visited the fortress twice.'},
+    {id:'pizarro',a:'Pedro Pizarro',q:'"The point of a pin could not have been inserted in one of the joints."',c:'Cousin of the conquistador. Besieged in Cusco in 1536. Writes in Arequipa, nearly forty years after the conquest.'},
+    {id:'gamboa',a:'Pedro Sarmiento de Gamboa',q:'Pachacuti is said to have called Cusco the "lion city". It lacked a head: the fortress would be it.',c:'Navigator tasked by Viceroy Toledo with collecting the history of the Incas. Finishes his book a year after Pizarro.'},
+    {id:'garcilaso',a:'Garcilaso de la Vega',q:'"There is indeed not a house in the city that has not been made of this stone."',c:'Born in Cusco in 1539 to an Inca princess. Publishes in Spain early in the next century what he saw as a child.'},
+    {id:'fawcett',a:'Percy Fawcett',q:'A bird bores into rock with the juice of a plant that softens it.',c:'Explorer who vanished in the Amazon in 1925. His notebooks are published by his son almost three decades later.'}],
+   err:n=>n===1?'One mistake. Find it.':`${n} mistakes. Read the clues again.`,ok:'It all fits. The eyewitnesses describe an Inca building site. Fawcett\'s plant is a story heard second-hand, four centuries later.',
+   key:'Witnesses: Cieza (1553) dates the work to Pachacuti; Fawcett\'s plant is hearsay',key2:'Gamboa (1572): Cusco, the "lion city", the fortress its head'},
+  cal:{t:'The tracing paper',s:'Did the city have a shape?',
+   task:'Gamboa reports that Pachacuti saw Cusco as a lion, meaning a puma. Drag the tracing paper and turn it to lay the animal over the plan.',
+   rot:'Turn',map:{hill:'Sacsayhuamán hill',plaza:'Great square (Huacaypata)',conf:'Confluence: Pumachupan',r1:'Saphy',r2:'Tullumayo'},
+   ok:'The head lands on Sacsayhuamán, the tail on Pumachupan, a district whose name still means "the puma\'s tail". A reading drawn from the tradition Gamboa recorded: historians still debate whether it was an image or a real plan.',
+   key:'Puma plan: the fortress as its head (a debated hypothesis)'},
+  gate:'You need a hammerstone to strike the stone. Look for one on the haulers\' track.',gateBtn:'Go to the leads',
+  lockF:['Sealed page','In Graham\'s hand'],lockT:'The page Graham sealed',lockS:'Complete his note with what you have established. It only opens with the right facts.',
+  lockTxt:['According to ','{0}',', a witness in 1553, the work begins under ','{1}','. For hauling, he counts ','{2}',' men. The joints are closed by ','{3}','. In the tradition Gamboa recorded, the fortress is ','{4}','. What no one has reproduced yet: ','{5}','.'],
+  blanks:[['Garcilaso de la Vega','Cieza de León','Percy Fawcett',1],['Viracocha','a forgotten civilisation','Pachacuti (Inca Yupanqui)',2],['600','6,000','60,000',1],['a plant that softens rock','pounding and repeated trial fitting','melting the stone',1],['an observatory','a drowned harbour','the puma\'s head',2],['cutting the joints','hauling over 35 km','lifting the biggest blocks again and again',2]],
+  pick:'…',lockErr:n=>n===1?'One mistake. Graham wouldn\'t have signed.':`${n} mistakes. Graham wouldn't have signed.`,lockFill:'Fill in the whole note before checking.',
+  hintTxt:'The word underlined in red is wrong.',unlock:'The seal gives way.',
+  sealedR:'Open the left-hand page first.',
+  unkT:'What we still don\'t know',
+  unk:['How the biggest blocks, from 128 to nearly 200 tonnes, were lifted and set down again and again during fitting.','What the first buildings on the hill were for: it was occupied from around 900 CE, before the Incas.','Under which reigns exactly, and for how long: Cieza and the oral tradition disagree.'],
+  gh:'Graham\'s question',ghq:'Could the most massive courses be older than the Incas? No dating shows it today. The question stays open, and the answer will be in the stone.',
+  skyT:'In the margin, in pencil',sky:'"Inti Raymi, the feast of the Sun, is held here every 24 June. Which stars rise just before dawn that day? Sirius? Check in the next notebook."',
+  rep:(k,l)=>`Keys: ${k} / 3 · Sealed page: ${l?'open':'closed'}`}};
+const VT=()=>V2[LANG]||V2.fr;
+const PISTES=['haul','wit','cal'];
+
+function pistesSpread(e){const t=VT();return `<section class="spr" data-n="3" hidden>
+  <div class="page L"><div class="folio"><span>${t.pF[0]}</span><span>${t.pF[1]}</span></div><h2 class="ptitle">${t.pT}<small>${t.pS}</small></h2>
+   <div class="pistes" id="pistes"></div><p class="hand" id="pNeed" style="font-size:20px">${t.need2}</p>${pageno(5)}${prev()}</div>
+  <div class="page R"><div class="folio"><span>${t.keysT}</span><span>${e.name}</span></div><h2 class="ptitle">${t.keysT}<small>${t.keysS}</small></h2>
+   <ol class="keys" id="keys"></ol><div class="bag"><div class="tiny">${t.bagT}</div><div class="bagrow" id="bag"></div></div>${pageno(6)}${next(tr('toWs'),1)}</div></section>`;}
+const PICON={haul:`<svg viewBox="0 0 90 70"><path d="M8 52 L82 52" stroke="#3b2a1e" stroke-width="2"/><rect x="46" y="22" width="34" height="28" rx="4" fill="#cdbf9e" stroke="#3b2a1e" stroke-width="2"/><path d="M46 34 L10 30" stroke="#8a3b22" stroke-width="2"/><circle cx="14" cy="24" r="3" fill="#3b2a1e"/><path d="M14 27 L14 38 M14 31 L19 30 M14 38 L11 46 M14 38 L17 46" stroke="#3b2a1e" stroke-width="1.6" fill="none"/><circle cx="26" cy="25" r="3" fill="#3b2a1e"/><path d="M26 28 L26 39 M26 32 L31 31 M26 39 L23 47 M26 39 L29 47" stroke="#3b2a1e" stroke-width="1.6" fill="none"/></svg>`,
+ wit:`<svg viewBox="0 0 90 70"><rect x="12" y="10" width="40" height="52" fill="#efe3c6" stroke="#3b2a1e" stroke-width="2" transform="rotate(-6 32 36)"/><rect x="36" y="8" width="40" height="52" fill="#f6efdc" stroke="#3b2a1e" stroke-width="2" transform="rotate(5 56 34)"/><path d="M44 20h24M44 27h24M44 34h18M44 41h22" stroke="#7a6a55" stroke-width="1.4" transform="rotate(5 56 34)"/></svg>`,
+ cal:`<svg viewBox="0 0 90 70"><rect x="10" y="12" width="56" height="44" fill="#d8cdb0" stroke="#3b2a1e" stroke-width="2"/><path d="M14 50 C30 40 40 46 62 18" stroke="#5b7fa0" stroke-width="2" fill="none"/><rect x="26" y="6" width="56" height="44" fill="rgba(240,240,230,.55)" stroke="#8a7a60" stroke-width="1.5" transform="rotate(8 54 28)"/><path d="M34 34 c6-8 14-8 22-4 c6 3 12 2 18-4" stroke="#8a3b22" stroke-width="2" fill="none" transform="rotate(8 54 28)"/></svg>`};
+function v2Keys(){const t=VT(),L=[];if(S.keys.has('haul'))L.push(t.haul.key);if(S.keys.has('wit')){L.push(t.wit.key);L.push(t.wit.key2);}if(S.keys.has('cal'))L.push(t.cal.key);return L;}
+function renderPistes(){const t=VT(),box=$('#pistes');if(!box)return;box.innerHTML='';
+  PISTES.forEach((id,i)=>{const d=t[id],ok=S.keys.has(id);const b=document.createElement('button');b.className='piste'+(ok?' ok':'');
+    b.innerHTML=`<span class="pic">${PICON[id]}</span><span class="pt"><b>${String.fromCharCode(65+i)} · ${d.t}</b><i>${d.s}</i></span><span class="chip ${ok?'done':'open'}">${ok?t.done:t.open}</span>`;
+    b.onclick=()=>openPiste(id);box.appendChild(b);});
+  const ks=v2Keys();$('#keys').innerHTML=ks.length?ks.map(k=>`<li>${k}</li>`).join(''):`<p class="empty">${t.noKey}</p>`;
+  $('#bag').innerHTML=['loupe','calque','galet'].filter(k=>k!=='galet'||S.items.has('galet')).map(k=>`<span class="itm" title="${esc(t.items[k][1])}">${ITEMSVG[k]}<b>${t.items[k][0]}</b></span>`).join('');
+  $('#pNeed').hidden=S.keys.size>=2;chrome();}
+const ITEMSVG={loupe:`<svg viewBox="0 0 40 40"><circle cx="16" cy="16" r="10" fill="rgba(200,220,230,.5)" stroke="#3b2a1e" stroke-width="2.5"/><path d="M24 24 L35 35" stroke="#5a3a1e" stroke-width="5" stroke-linecap="round"/></svg>`,
+ calque:`<svg viewBox="0 0 40 40"><rect x="5" y="7" width="30" height="26" fill="rgba(240,240,228,.75)" stroke="#8a7a60" stroke-width="1.6" transform="rotate(-6 20 20)"/><path d="M10 26 c6-8 12-6 20-14" stroke="#8a3b22" stroke-width="1.6" fill="none"/></svg>`,
+ galet:`<svg viewBox="0 0 40 40"><ellipse cx="20" cy="22" rx="14" ry="10" fill="#b9b2a4" stroke="#3b2a1e" stroke-width="2"/><path d="M12 20 q6-5 14-2" stroke="#fff" stroke-opacity=".45" stroke-width="2" fill="none"/></svg>`};
+
+/* loose puzzle sheet laid over the book */
+function sheet(html){let sh=$('#psheet');if(!sh){sh=document.createElement('section');sh.id='psheet';sh.className='gsheet psheet';$('#book').appendChild(sh);}
+  sh.innerHTML=html+`<button class="gclose pclose" id="pclose"><span>${VT().back}</span></button>`;sh.hidden=false;play('flip');$('#pclose').onclick=closeSheet;}
+function closeSheet(){const sh=$('#psheet');if(sh&&!sh.hidden){sh.hidden=true;play('flip');if(S&&S.cur===3)renderPistes();}}
+function openPiste(id){if(id==='haul')pHaul();if(id==='wit')pWit();if(id==='cal')pCal();}
+function solve(id,dh){if(S.keys.has(id))return;S.keys.add(id);if(dh)hyp(dh);play('chime');chrome();}
+
+/* A · haulers */
+function pHaul(){const t=VT(),d=t.haul,need=1434;let n=S.haulN||200;
+  sheet(`<div class="page L"><div class="folio"><span>${t.pF[0]}</span><span>${t.pF[1]} · A</span></div><h2 class="ptitle">${d.t}</h2>
+   <figure class="print" style="transform:rotate(-1deg);width:86%;align-self:center"><span class="tape tc"></span><img src="img/grand-bloc.jpg" alt=""><figcaption>128 t ?</figcaption></figure>
+   <p class="body">${d.lee}</p><p class="hand" style="font-size:21px">${d.task}</p></div>
+  <div class="page R"><div class="folio"><span>${d.who}</span><span id="hN">${n}</span></div>
+   <svg class="haulsvg" viewBox="0 0 520 170" id="haulSvg"></svg>
+   <div class="range"><input type="range" id="hR" min="0" max="3000" step="50" value="${n}" aria-label="${d.who}"></div>
+   <button class="lbl red" id="hPull">${d.pull}</button><p class="hand" id="hMsg" style="font-size:21px;min-height:56px"></p>
+   <div id="hQ" ${S.haulMoved?'':'hidden'}><p class="body"><b>${d.q}</b></p><div class="opts">${d.opts.map((o,i)=>`<button class="lbl" data-i="${i}">${o}</button>`).join('')}</div><p class="hand" id="hQm" style="font-size:20px"></p></div></div>`);
+  const draw=(k,moved)=>{const svg=$('#haulSvg');const people=Math.min(60,Math.round(k/50));let s=`<path d="M0 150 L520 150" stroke="#3b2a1e" stroke-width="2"/><path d="M300 150 L520 110" stroke="#3b2a1e" stroke-width="1.5" stroke-dasharray="4 4"/>`;
+    const bx=moved?360:330;s+=`<g style="transition:transform 1.2s" transform="translate(${moved?30:0},${moved?-6:0})"><rect x="${330}" y="92" width="120" height="58" rx="6" fill="#bfb39a" stroke="#3b2a1e" stroke-width="2"/><text x="390" y="127" text-anchor="middle" font-family="Courier Prime,monospace" font-size="14" fill="#3b2a1e">128 t</text></g>`;
+    for(let r=0;r<3;r++){s+=`<path d="M330 ${108+r*12} L10 ${120+r*12}" stroke="#8a3b22" stroke-width="1.6"/>`;}
+    for(let i=0;i<people;i++){const r=i%3,c=Math.floor(i/3),x=300-c*14,y=120+r*12-(300-x)*0.0375;if(x<8)break;s+=`<g stroke="#2b2219" stroke-width="1.3" fill="none"><circle cx="${x}" cy="${y-13}" r="2.4" fill="#2b2219"/><path d="M${x} ${y-10} L${x-2} ${y-2} M${x-2} ${y-2} L${x-5} ${y+4} M${x-2} ${y-2} L${x+1} ${y+4} M${x} ${y-8} L${x+5} ${y-8}"/></g>`;}
+    svg.innerHTML=s;};
+  draw(n,S.haulMoved);
+  $('#hR').oninput=e=>{n=+e.target.value;S.haulN=n;$('#hN').textContent=fmt(n);draw(n,false);};
+  $('#hPull').onclick=()=>{const m=$('#hMsg');if(n<need-50){play('nope');m.textContent=d.few(fmt(Math.ceil((need-n)/50)*50));draw(n,false);return;}
+    if(n>need+500){play('creak');m.textContent=d.many(fmt(n-need));draw(n,false);return;}
+    play('drop');draw(n,true);S.haulMoved=true;m.textContent=d.ok(fmt(1400));$('#hQ').hidden=false;};
+  $$('#hQ .opts button').forEach(b=>b.onclick=()=>{const i=+b.dataset.i;if(i===d.ans){$('#hQm').textContent=d.qok+' '+d.galet;S.items.add('galet');solve('haul',[10,-5,0]);$$('#hQ .opts button').forEach(x=>x.disabled=true);b.classList.add('red');}
+    else{play('nope');$('#hQm').textContent=d.qko;S.pen=(S.pen||0)+1;chrome();}});
+  if(S.keys.has('haul')){$('#hMsg').textContent=d.ok(fmt(1400));$('#hQm').textContent=d.qok;$$('#hQ .opts button').forEach(x=>x.disabled=true);}}
+
+/* B · witnesses */
+function pWit(){const t=VT(),d=t.wit,FR=V2.fr.wit.cards;S.wit=S.wit||{};
+  const cards=d.cards.map((c,i)=>({...FR[i],...c}));
+  sheet(`<div class="page L"><div class="folio"><span>${t.pF[0]}</span><span>${t.pF[1]} · B</span></div><h2 class="ptitle">${d.t}</h2><p class="hand" style="font-size:20px">${d.task}</p>
+    <div class="wcards" id="wcards"></div></div>
+   <div class="page R"><div class="folio"><span>1553 – 1953</span><span id="wSt"></span></div><div class="wline" id="wline"></div>
+    <button class="lbl red" id="wChk">${t.check}</button><p class="hand" id="wMsg" style="font-size:20px"></p></div>`);
+  let sel=null;
+  const render=()=>{const wc=$('#wcards');wc.innerHTML='';
+    cards.forEach(c=>{const st=S.wit[c.id]||{};const b=document.createElement('div');b.className='wcard'+(sel===c.id?' sel':'')+(st.y?' placed':'');b.tabIndex=0;
+      b.innerHTML=`<b>${c.a}</b><i>${c.q}</i><span>${c.c}</span><div class="wv"><button data-v="seen" aria-pressed="${st.v==='seen'}">${d.seen}</button><button data-v="told" aria-pressed="${st.v==='told'}">${d.told}</button></div>${st.y?`<em class="wy">${st.y}</em>`:''}`;
+      b.onclick=ev=>{const vb=ev.target.closest('button[data-v]');if(vb){S.wit[c.id]={...st,v:vb.dataset.v};play('pick');render();return;}if(S.keys.has('wit'))return;sel=sel===c.id?null:c.id;play('paste');render();};wc.appendChild(b);});
+    const wl=$('#wline');wl.innerHTML='';d.years.forEach(y=>{const who=cards.find(c=>(S.wit[c.id]||{}).y===y);const s=document.createElement('button');s.className='wslot'+(who?' full':'');
+      s.innerHTML=`<b>${y}</b><span>${who?who.a:'—'}</span>`;s.onclick=()=>{if(S.keys.has('wit'))return;if(sel){Object.keys(S.wit).forEach(k=>{if(S.wit[k].y===y)S.wit[k]={...S.wit[k],y:null};});S.wit[sel]={...(S.wit[sel]||{}),y};sel=null;play('thud');render();}else if(who){S.wit[who.id]={...S.wit[who.id],y:null};render();}};wl.appendChild(s);});
+    $('#wSt').textContent=cards.filter(c=>(S.wit[c.id]||{}).y).length+' / 5';};
+  render();
+  $('#wChk').onclick=()=>{if(S.keys.has('wit'))return;let err=0;cards.forEach(c=>{const st=S.wit[c.id]||{};if(st.y!==c.y)err++;if(st.v!==c.v)err++;});
+    if(err){play('nope');S.pen=(S.pen||0)+1;$('#wMsg').textContent=d.err(err);chrome();return;}
+    $('#wMsg').textContent=d.ok;solve('wit',[15,-20,0]);};
+  if(S.keys.has('wit'))$('#wMsg').textContent=d.ok;}
+
+/* C · tracing paper */
+function pCal(){const t=VT(),d=t.cal;const st=S.cal=S.cal||{x:40,y:250,r:-40,ok:false};
+  const PUMA="M-32 6 C-36 -2 -28 -12 -18 -14 L-14 -27 L-6 -16 L2 -25 L6 -12 C20 -10 34 -4 50 -6 C110 -14 170 -10 228 4 C262 12 300 30 330 60 C350 80 362 92 373 97 C371 105 352 98 338 86 C312 62 282 42 254 34 C250 48 254 66 260 86 L247 89 C239 71 233 57 227 47 C215 55 205 57 195 55 C197 70 201 80 205 90 L192 93 C184 79 180 67 178 55 C140 59 100 57 72 51 C72 67 74 79 78 91 L65 93 C59 79 57 65 57 51 C49 61 45 75 45 89 L32 89 C32 73 34 59 32 45 C22 37 12 27 6 23 C-2 23 -12 21 -22 17 Z M-17 -5 a2.4 2.4 0 1 0 0.1 0";
+  sheet(`<div class="page L"><div class="folio"><span>${t.pF[0]}</span><span>${t.pF[1]} · C</span></div><h2 class="ptitle">${d.t}</h2><p class="hand" style="font-size:20px">${d.task}</p>
+    <div class="calwrap"><svg viewBox="0 0 520 400" id="calSvg"><rect width="520" height="400" fill="#e8dfc6"/>
+     <g opacity=".55" stroke="#b9a882">${Array.from({length:13},(_,i)=>`<path d="M${i*40} 0 V400"/>`).join('')}${Array.from({length:10},(_,i)=>`<path d="M0 ${i*40} H520"/>`).join('')}</g>
+     <path d="M20 40 C80 80 120 140 200 190 C280 240 360 280 420 320" stroke="#5b7fa0" stroke-width="5" fill="none" stroke-linecap="round"/>
+     <path d="M330 20 C350 100 360 170 380 230 C395 270 405 300 420 320" stroke="#5b7fa0" stroke-width="5" fill="none" stroke-linecap="round"/>
+     <path d="M420 320 C450 345 480 360 515 372" stroke="#5b7fa0" stroke-width="6" fill="none"/>
+     <text x="70" y="78" font-size="12" font-style="italic" fill="#3e5f80" font-family="EB Garamond,serif">${d.map.r1}</text><text x="352" y="70" font-size="12" font-style="italic" fill="#3e5f80" font-family="EB Garamond,serif">${d.map.r2}</text>
+     <path d="M80 60 l15 18 l12 -10 l15 18 l12 -10 l15 18 l12 -10 l15 18" stroke="#6b4a2a" stroke-width="2.5" fill="none" transform="translate(-20,10)"/>
+     <circle cx="110" cy="90" r="34" fill="none" stroke="#6b4a2a" stroke-dasharray="3 4"/><text x="110" y="142" text-anchor="middle" font-size="12" fill="#3b2a1e" font-family="EB Garamond,serif">${d.map.hill}</text>
+     <rect x="250" y="200" width="70" height="44" fill="#d9ccaa" stroke="#6b4a2a" stroke-width="1.5"/><text x="285" y="262" text-anchor="middle" font-size="12" fill="#3b2a1e" font-family="EB Garamond,serif">${d.map.plaza}</text>
+     <circle cx="420" cy="320" r="7" fill="#8a3b22"/><text x="410" y="345" text-anchor="end" font-size="12" fill="#3b2a1e" font-family="EB Garamond,serif">${d.map.conf}</text>
+     <g id="calq" style="cursor:grab"><rect x="-60" y="-50" width="470" height="180" fill="rgba(246,244,236,.5)" stroke="#9a8a6a" stroke-width="1.5"/><path d="${PUMA}" fill="rgba(138,59,34,.12)" stroke="#8a3b22" stroke-width="2.4"/></g>
+    </svg></div>
+    <div class="calbtns"><button class="lbl" id="cL">↺ ${d.rot}</button><button class="lbl" id="cR">${d.rot} ↻</button></div></div>
+   <div class="page R"><div class="folio"><span>Cusco</span><span>${d.map.conf}</span></div><h2 class="ptitle">${d.t}<small>${d.s}</small></h2><p class="body" id="cMsg"></p>
+    <figure class="engr" style="width:78%;align-self:center"><img src="img/squier-vue.jpg" alt=""><div class="cap">E. G. Squier, 1877</div></figure></div>`);
+  const g=$('#calq'),svg=$('#calSvg');const place=()=>g.setAttribute('transform',`translate(${st.x},${st.y}) rotate(${st.r})`);place();
+  const check=()=>{if(st.ok)return;const a=st.r*Math.PI/180,T=[373*Math.cos(a)-97*Math.sin(a)+st.x,373*Math.sin(a)+97*Math.cos(a)+st.y];
+    const dh=Math.hypot(st.x-110,st.y-90),dt=Math.hypot(T[0]-420,T[1]-320);if(dh<34&&dt<40){st.ok=true;st.x=110;st.y=90;st.r=20;place();$('#cMsg').textContent=d.ok;solve('cal',[0,10,0]);S.wonder=(S.wonder||0)+15;chrome();}};
+  $('#cL').onclick=()=>{if(st.ok)return;st.r-=10;play('pick');place();check();};$('#cR').onclick=()=>{if(st.ok)return;st.r+=10;play('pick');place();check();};
+  let drag=null;const pt=ev=>{const r=svg.getBoundingClientRect();return [(ev.clientX-r.left)*520/r.width,(ev.clientY-r.top)*400/r.height];};
+  g.addEventListener('pointerdown',ev=>{if(st.ok)return;const p=pt(ev);drag=[p[0]-st.x,p[1]-st.y];g.setPointerCapture(ev.pointerId);g.style.cursor='grabbing';});
+  g.addEventListener('pointermove',ev=>{if(!drag)return;const p=pt(ev);st.x=Math.round(p[0]-drag[0]);st.y=Math.round(p[1]-drag[1]);place();});
+  g.addEventListener('pointerup',()=>{if(!drag)return;drag=null;g.style.cursor='grab';play('paste');check();});
+  if(st.ok)$('#cMsg').textContent=d.ok;}
+
+/* atelier gate: no hammerstone, no strike */
+function v2Gate(){const R=$('.spr[data-n="4"] .page.R');if(!R)return;R.querySelector('.gate')?.remove();if(!E.v2||S.items.has('galet'))return;
+  const g=document.createElement('div');g.className='gate';g.innerHTML=`<div>${ITEMSVG.galet}<p class="hand" style="font-size:22px">${VT().gate}</p><button class="lbl red">${VT().gateBtn}</button></div>`;
+  g.querySelector('button').onclick=()=>goTo(3);R.appendChild(g);}
+
+/* sealed page */
+function renderEndV2(){const t=VT(),L=$('.spr[data-n="7"] .page.L'),R=$('.spr[data-n="7"] .page.R');if(!L)return;
+  const v=S.verdict,myst=E.claims.find(c=>c.ok==='mystere'),all=E.claims.every(c=>v[c.id]===c.ok);let p='inv';if(!all)p=v[myst.id]!=='mystere'?'sce':'bel';G.done[E.id]=p;
+  S.blank=S.blank||[];
+  const sent=t.lockTxt.map(s=>{const m=s.match(/^\{(\d)\}$/);if(!m)return esc(s);const i=+m[1],b=t.blanks[i];
+    return `<select class="blank${S.hintAt===i?' bad':''}" data-i="${i}" ${S.unlocked?'disabled':''}><option value="">${t.pick}</option>${b.slice(0,3).map((o,j)=>`<option value="${j}" ${S.blank[i]===j?'selected':''}>${esc(o)}</option>`).join('')}</select>`;}).join('');
+  L.innerHTML=`<div class="folio"><span>${t.lockF[0]}</span><span>${t.lockF[1]}</span></div><h2 class="ptitle">${t.lockT}<small>${t.lockS}</small></h2>
+    <div class="lockpaper${S.unlocked?' open':''}"><p class="locktxt">${sent}</p>${S.unlocked?`<div class="sig">G. H.</div>`:''}</div>
+    <div class="lockbar"><button class="lbl red" id="lChk" ${S.unlocked?'disabled':''}>${t.check}</button><button class="lbl" id="lHint" ${S.unlocked||(S.lockTry||0)<2?'hidden':''}>${t.hint}</button></div>
+    <p class="hand" id="lMsg" style="font-size:21px">${S.unlocked?t.unlock:''}</p>
+    <div class="tiny" style="margin-top:auto">${t.rep(S.keys.size,S.unlocked)} · ${tr('prof')[p]}</div>${pageno(13)}${prev()}`;
+  L.querySelectorAll('select.blank').forEach(s=>s.onchange=()=>{S.blank[+s.dataset.i]=s.value===''?undefined:+s.value;s.classList.remove('bad');if(S.hintAt===+s.dataset.i)S.hintAt=null;play('pencil');});
+  $('#lChk').onclick=()=>{const n=t.blanks.length;for(let i=0;i<n;i++)if(S.blank[i]===undefined){$('#lMsg').textContent=t.lockFill;play('nope');return;}
+    const bad=t.blanks.map((b,i)=>S.blank[i]===b[3]?-1:i).filter(i=>i>=0);
+    if(bad.length){S.lockTry=(S.lockTry||0)+1;S.pen=(S.pen||0)+1;play('nope');$('#lMsg').textContent=t.lockErr(bad.length);$('#lHint').hidden=S.lockTry<2;chrome();return;}
+    S.unlocked=true;play('seal');setTimeout(()=>play('fanfare'),600);chrome();renderEndV2();};
+  $('#lHint').onclick=()=>{const bad=t.blanks.map((b,i)=>S.blank[i]===b[3]?-1:i).filter(i=>i>=0);if(!bad.length)return;S.hintAt=bad[0];S.pen=(S.pen||0)+2;$('#lMsg').textContent=t.hintTxt;chrome();renderEndV2();};
+  const rest=R.querySelector('.v2r');if(rest)rest.remove();const box=document.createElement('div');box.className='v2r';
+  box.innerHTML=S.unlocked?`<div class="tiny">${t.unkT}</div><ul class="unk">${t.unk.map(u=>`<li>${u}</li>`).join('')}</ul>
+     <div class="ghq"><b>${t.gh}</b> ${t.ghq}</div><div class="tiny">${tr('frag')(E.frag)} · ${t.skyT}</div><p class="fragment" style="font-size:21px">${t.sky}</p>`
+    :`<div class="sealbox">${waxSeal()}<p class="hand" style="font-size:22px">${t.sealedR}</p></div>`;
+  R.prepend(box);R.querySelectorAll(':scope > .tiny, :scope > .fragment').forEach(x=>x.hidden=true);R.querySelector('.postcard').hidden=!S.unlocked;R.querySelector('.controls').hidden=!S.unlocked;}
 
 function wireEpisode(){}
 /* safety net: never leave the open book without a visible page */
