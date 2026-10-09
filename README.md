@@ -1,17 +1,14 @@
 # Vestiges
 
-Jeu web interactif : les carnets d'enquête d'une exploratrice disparue, Hélène, autour des grandes énigmes des bâtisseurs anciens. Chaque cas oppose les thèses de *Bâtisseurs de l'Ancien Monde* (Pooyard, 2020) et d'*Ancient Apocalypse* (Netflix, 2022) à l'état de la recherche, puis laisse le joueur trancher : légende, expliqué, non prouvé ou vrai mystère.
+Jeu web interactif : le carnet des énigmes non résolues de Graham Hancock, entre journal intime et escape game, autour des grandes énigmes des bâtisseurs anciens. Chaque cas oppose les thèses de *Bâtisseurs de l'Ancien Monde* (Pooyard, 2020) et d'*Ancient Apocalypse* (Netflix, 2022) à l'état de la recherche, puis laisse le joueur trancher : légende, expliqué, non prouvé ou vrai mystère.
 
-*An interactive web game: the field notebooks of a vanished explorer, investigating the great riddles of ancient builders. French and English.*
+*An interactive web game: Graham Hancock's notebook of unsolved enigmas, half journal, half escape game. French and English.*
 
 ## Version 0.1
 
 - Atlas des sept cas, centré sur le Pacifique
 - Cas 1 · **Sacsayhuamán** (Pérou) : observation, mesures, atelier d'ajustage des joints, débat, verdict
-- Cas 2 · **Graham Hancock**
-- Cpt.Muji, CC BY 3.0 — [Graham-Hancock.jpg](https://commons.wikimedia.org/wiki/File:Graham-Hancock.jpg) (2010)
-
-**Nan Madol** (Pohnpei, Micronésie) : atelier de radeau de basalte avec marée
+- Cas 2 · **Nan Madol** (Pohnpei, Micronésie) : atelier de radeau de basalte avec marée
 - Cas à venir : Sirius, le Déluge, Göbekli Tepe, Rapa Nui, les Maya
 - Français et anglais, desktop et mobile
 - Film d'introduction traité « archive » (bords fondus au noir), à passer ou à revoir depuis l'onglet Film
@@ -58,6 +55,9 @@ Toutes les images viennent de Wikimedia Commons.
 - Laslovarga, CC BY-SA 4.0 — [Sacsayhuaman Fortress](https://commons.wikimedia.org/wiki/File:Sacsayhuaman_Fortress,_Cusco,_Peru_-_Laslovarga_(3).jpg)
 - Sharonkuei, CC BY-SA 4.0 — [Inca stone](https://commons.wikimedia.org/wiki/File:Sacsayhuaman-Inca_stone.jpg)
 - E. G. Squier, 1877, domaine public — [gravure 1](https://commons.wikimedia.org/wiki/File:Sacsayhuam%C3%A1n_in_1877_by_Ephraim_George_Squier.jpg), [gravure 2](https://commons.wikimedia.org/wiki/File:Sacsayhuam%C3%A1n_2_in_1877_by_Ephraim_George_Squier.jpg)
+
+**Graham Hancock**
+- Cpt.Muji, CC BY 3.0 — [Graham-Hancock.jpg](https://commons.wikimedia.org/wiki/File:Graham-Hancock.jpg) (2010)
 
 **Nan Madol**
 - NOAA, domaine public — [Nan madol](https://commons.wikimedia.org/wiki/File:Nan_madol.jpg)
