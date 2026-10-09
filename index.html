@@ -281,7 +281,11 @@ select.blank:disabled{color:var(--green);border-bottom-color:var(--green);backgr
 .ic.sm{width:30px;height:30px;font-size:16px}.lbl.sm{padding:4px 10px;font-size:12px}
 .ddoc{position:absolute;left:0;top:0;transform-origin:0 0;background:#f6efdc;padding:0;box-shadow:0 6px 14px rgba(0,0,0,.45);cursor:grab;touch-action:none}
 .ddoc.lift{box-shadow:0 16px 30px rgba(0,0,0,.5);cursor:grabbing}
-.ddoc.sel{outline:2px solid rgba(255,220,150,.75);outline-offset:3px}
+.ddoc.sel{outline:2px solid rgba(255,220,150,.85);outline-offset:3px;box-shadow:0 10px 22px rgba(0,0,0,.5),0 0 0 6px rgba(255,220,150,.12)}.td .ddoc:not(.fixed):hover{box-shadow:0 10px 20px rgba(0,0,0,.5)}
+.dktool{position:absolute;left:0;top:0;display:flex;align-items:center;gap:6px;padding:5px 8px;background:rgba(22,15,9,.92);border:1px solid rgba(233,214,172,.35);border-radius:8px;box-shadow:0 6px 16px rgba(0,0,0,.45);z-index:45;color:#ead9b4;font-family:var(--f-sc);font-size:12px;white-space:nowrap}
+.dktool label{display:flex;align-items:center;gap:5px}.dktool input[type=range]{width:80px}.dktool output{font-size:11px;opacity:.8;min-width:28px}.dktool .ic.sm,.dktool .lbl.sm{min-height:30px}
+.dtab{position:absolute;top:-11px;width:26px;height:26px;border-radius:50%;background:#2b2219;color:#ead9b4;border:1.5px solid #c9b285;font-size:15px;line-height:22px;text-align:center;cursor:pointer;z-index:3;padding:0;box-shadow:0 2px 5px rgba(0,0,0,.4);opacity:.9}.dtab:hover{opacity:1;transform:scale(1.1)}.dtab.flip{right:-11px}.dtab.mir{right:20px}.ddoc.back .dtab.mir{display:none}
+.dz-near{box-shadow:0 0 0 3px rgba(255,226,160,.85),0 0 26px rgba(255,220,150,.75)!important;border-color:#ffe2a0!important}
 .ddoc img,.ddoc svg{display:block;width:100%;height:100%;object-fit:cover;pointer-events:none}
 .ddoc .dcap{position:absolute;left:0;right:0;top:100%;margin-top:4px;font-family:var(--f-hand);font-size:17px;color:#f2e4c4;text-shadow:0 1px 2px #000;white-space:nowrap}
 .ddoc .dnote{position:absolute;left:0;right:0;top:100%;margin-top:26px;font-family:var(--f-type);font-size:10px;color:#d8c39a;opacity:.85}
@@ -2837,7 +2841,7 @@ const TDK={
   bar:()=>`<span class="tlights" id="tlights"></span>`,
   extra:lay=>{const T=DGT().desk;return `<div class="tband" id="tband"><div class="tb-axis"></div><div class="tb-ticks"></div><div class="tb-marks" id="tbMarks"></div><div class="tcur" id="tcur"><i></i><b id="tcurL"></b></div><span class="tb-hint">${T.band.hint}</span></div>
        <div class="tslot" id="tslot" style="left:${lay.slot.x}px;top:${lay.slot.y}px;width:${lay.slot.w}px;height:${lay.slot.h}px"><b>${T.slot.t}</b><span>${T.slot.s}</span></div>`;},
-  docs:st=>['chart','overlay','bone','bdate','ruler'].concat(Object.keys(st.att).filter(k=>st.att[k])),
+  docs:st=>['chart','overlay','bone','bdate','ruler'].concat(Object.keys(st.att).filter(k=>st.att[k])),zones:()=>[{sel:'#tslot',rect:()=>TD.lay.slot,ok:id=>TDOCS[id].kind==='sheet'}],
   cap:id=>{const t=DGT();return t.env.docs[id]||(t.desk.sheets[id]?t.desk.sheets[id].short:'');},
   init:st=>{tdBand();tdLights();tdRefreshChart();if(st.slot)tdPlaceSlot(st.slot,true);Object.keys(st.marks).forEach(id=>{if($(`.ddoc[data-id="${id}"]`)&&st.slot!==id)tdPlaceBand(id,true);});},
   move:(id,d,nx,ny)=>{if(id==='chart'&&dgS().geo){const o=tdSt('overlay');o.x+=nx-d.x;o.y+=ny-d.y;tdApply($('.dd-overlay'),'overlay');}if(id==='overlay')tdGeo(false);},
@@ -2856,13 +2860,16 @@ const TDK={
 function tdLay(kind){const L=TDLAY[kind];return narrow()?L.narrow:L.wide;}
 function tdOpen(kind){const K=TDK[kind],st=K.st(),lay=tdLay(kind);vlog('desk_open',{kind});
   sheet(`<div class="deskwrap"><div class="desk td td-${kind}" id="desk" style="width:${lay.W}px;height:${lay.H}px">
-     <div class="dkbar"><span class="dk-title">${K.title()}</span><span class="dk-tools" id="dkTools"></span>${K.bar?K.bar():''}<button class="lbl sm" id="dkHint">${K.hintLbl()}</button></div>
+     <div class="dkbar"><span class="dk-title">${K.title()}</span><span class="dk-tools"></span>${K.bar?K.bar():''}<button class="lbl sm" id="dkUndo" hidden>${TDT().undo}</button><button class="lbl sm" id="dkHint">${K.hintLbl()}</button></div>
      ${K.extra?K.extra(lay):''}
+     <div class="dktool" id="dkTools" hidden></div>
      <div class="loupe" id="loupe"><div class="lz" id="lz"></div><span class="lh"></span></div></div>
      <p class="hand dkmsg" id="dkMsg"></p></div>`);
   $('#pclose span').textContent=K.close();$('#psheet').classList.add('deskmode');
-  TD={kind,K,st,lay,desk:$('#desk'),sel:null,poses:K.poses(st)};
+  TD={kind,K,st,lay,desk:$('#desk'),sel:null,poses:K.poses(st),undo:[]};
   K.docs(st).forEach(id=>tdMk(id));
+  TD.desk.addEventListener('pointerdown',ev=>{if(ev.target.closest('.ddoc,.loupe,.dktool,button,input,[data-part],[data-vp]'))return;tdSel(null);});
+  $('#dkUndo').onclick=tdUndo;
   tdLoupe();if(K.init)K.init(st);
   tdFit();v3Save();addEventListener('resize',tdFit);
   $('#dkHint').onclick=()=>{$('#dkMsg').textContent=K.hint();};}
@@ -2874,30 +2881,43 @@ function tdApply(el,id){const d=tdSt(id),g=TDOCS[id];el.style.transform=`transla
 function tdFace(el,id){const d=tdSt(id),g=TDOCS[id];const face=el.querySelector('.dface');face.innerHTML=(d.f&&g.back)?g.back(d):g.front(d);tdMarks(id);const lz=$('#lz');if(lz)lz.dataset.id='';tdApply(el,id);}
 function tdMk(id){const K=TD.K,g=TDOCS[id],el=document.createElement('div');el.className='ddoc dd-'+id+(g.kind==='sheet'?' sheet':'')+(g.fixed?' fixed':'')+(g.cls?' '+g.cls:'');el.dataset.id=id;el.style.width=g.w+'px';el.style.height=g.h+'px';
   const cap=K.cap?K.cap(id):'';
-  el.innerHTML=`<div class="dface"></div>${cap?`<span class="dcap">${cap}</span>`:''}<span class="marks"></span>`;
+  const T=TDT(),tl=g.tools||[];const tabs=(g.back?`<button class="dtab flip" data-t="flip" title="${T.flip}" aria-label="${T.flip}">↻</button>`:'')+(tl.includes('mirror')?`<button class="dtab mir" data-t="mirror" title="${T.mirror}" aria-label="${T.mirror}">⇄</button>`:'');
+  el.innerHTML=`<div class="dface"></div>${cap?`<span class="dcap">${cap}</span>`:''}<span class="marks"></span>${g.fixed?'':tabs}`;
   TD.desk.insertBefore(el,$('#loupe'));tdFace(el,id);
   if(g.fixed)return el;
-  let drag=null;el.addEventListener('pointerdown',ev=>{if(ev.target.closest('button,input'))return;ev.preventDefault();tdSel(id);const p=tdPt(ev),d=tdSt(id);drag=[p[0]-d.x,p[1]-d.y,0,d.x,d.y];el.setPointerCapture(ev.pointerId);el.classList.add('lift');play('paste');});
+  el.querySelectorAll('.dtab').forEach(b=>{b.onclick=ev=>{ev.stopPropagation();tdSel(id);play('pick');if(b.dataset.t==='flip')tdFlip(id);else tdMirror(id);vlog('tab',{t:b.dataset.t,id});};});
+  let drag=null;el.addEventListener('pointerdown',ev=>{if(ev.target.closest('button,input'))return;ev.preventDefault();tdSel(id);const p=tdPt(ev),d=tdSt(id);drag=[p[0]-d.x,p[1]-d.y,0,d.x,d.y,{...d}];el.setPointerCapture(ev.pointerId);el.classList.add('lift');play('paste');});
   el.addEventListener('pointermove',ev=>{if(!drag)return;const p=tdPt(ev),d=tdSt(id);const nx=Math.max(-g.w*.5,Math.min(TD.lay.W-50,p[0]-drag[0])),ny=Math.max(30,Math.min(TD.lay.H-30,p[1]-drag[1]));
-    if(K.move)K.move(id,d,nx,ny);d.x=nx;d.y=ny;drag[2]++;tdApply(el,id);if(g.live)g.live(id,d);});
-  el.addEventListener('pointerup',()=>{if(!drag)return;const moved=drag[2]>2;const d0=drag;drag=null;el.classList.remove('lift');
-    if(moved){vlog('doc_move',{id});if(K.drop)K.drop(id,d0,g);v3Save();}
+    if(K.move)K.move(id,d,nx,ny);d.x=nx;d.y=ny;drag[2]++;if(drag[2]===3)$('#dkTools').hidden=true;tdApply(el,id);if(g.live)g.live(id,d);tdZones(id,true);});
+  el.addEventListener('pointerup',()=>{if(!drag)return;const moved=drag[2]>2;const d0=drag;drag=null;el.classList.remove('lift');tdZones(null,false);
+    if(moved){vlog('doc_move',{id});TD.undo.push({id,pose:d0[5]});if(TD.undo.length>12)TD.undo.shift();$('#dkUndo').hidden=false;if(K.drop)K.drop(id,d0,g);const B=$('#dkTools');if(B&&TD.sel===id&&B.innerHTML){B.hidden=false;tdToolPos();}v3Save();}
     else{const now=performance.now();if((g.back||g.tools&&g.tools.includes('mirror'))&&el._tap&&now-el._tap<380){el._tap=0;if(g.back)tdFlip(id);else tdMirror(id);}else{el._tap=now;if(g.tap)g.tap(id);}}});
   return el;}
-function tdSel(id){const K=TD.K;TD.sel=id;$$('.ddoc').forEach(x=>x.classList.toggle('sel',x.dataset.id===id));const el=$(`.ddoc[data-id="${id}"]`);TD.desk.insertBefore(el,$('#loupe'));
-  const t=DGT().desk.tools,d=tdSt(id),g=TDOCS[id],B=$('#dkTools');if(!B)return;const tl=g.tools||[];
+function tdSel(id){const K=TD.K;TD.sel=id;$$('.ddoc').forEach(x=>x.classList.toggle('sel',x.dataset.id===id));const B=$('#dkTools');if(!id){if(B){B.hidden=true;B.innerHTML='';}return;}const el=$(`.ddoc[data-id="${id}"]`);TD.desk.insertBefore(el,$('#loupe'));
+  const t=TDT(),d=tdSt(id),g=TDOCS[id];if(!B)return;const tl=g.tools||[];
   B.innerHTML=(tl.includes('rot')?`<button class="ic sm" data-a="rl" title="${t.rot}">↺</button><button class="ic sm" data-a="rr" title="${t.rot}">↻</button>`:'')+
    (tl.includes('scale')?`<label>${t.zoom}<input type="range" min="${g.smin||.6}" max="${g.smax||1.8}" step="0.01" value="${d.s}" data-a="s"><output>${d.s.toFixed(2)}</output></label>`:'')+
    (tl.includes('op')?`<label>${t.op}<input type="range" min="0.15" max="1" step="0.05" value="${d.o}" data-a="o"></label>`:'')+
    (tl.includes('flip')?`<button class="lbl sm" data-a="flip">${t.flip}</button>`:'')+(tl.includes('mirror')?`<button class="lbl sm" data-a="mirror">${t.mirror||'⇄'}</button>`:'')+
    (g.extraTools?g.extraTools(d):'')+(g.fixed||g.noreset?'':`<button class="lbl sm" data-a="reset">${t.reset}</button>`);
+  B.hidden=!B.innerHTML;tdToolPos();
   B.querySelectorAll('[data-a]').forEach(c=>{const a=c.dataset.a;const go=()=>{const d=tdSt(id);if(a==='rl')d.r-=5;if(a==='rr')d.r+=5;if(a==='s'){d.s=+c.value;c.nextElementSibling.textContent=d.s.toFixed(2);}if(a==='o')d.o=+c.value;
     if(a==='flip'){tdFlip(id);return;}if(a==='mirror'){tdMirror(id);return;}if(a==='reset'){tdHome(id);if(K.reset)K.reset(id);tdSel(id);}
     if(g.onTool&&g.onTool(a,c,d)===true)return;
-    tdApply(el,id);if(K.tool)K.tool(id,a);if(g.live)g.live(id,d);v3Save();};
+    tdApply(el,id);if(K.tool)K.tool(id,a);if(g.live)g.live(id,d);tdToolPos();v3Save();};
     if(c.tagName==='INPUT')c.oninput=go;else c.onclick=()=>{play('pick');go();vlog('tool',{a,id});};});}
-function tdFlip(id){const d=tdSt(id),el=$(`.ddoc[data-id="${id}"]`);d.f=d.f?0:1;play('flip');vlog('flip',{id,f:d.f});tdFace(el,id);if(TD.K.flip)TD.K.flip(id,d);v3Save();}
-function tdMirror(id){const d=tdSt(id),el=$(`.ddoc[data-id="${id}"]`);d.m=d.m?0:1;play('flip');vlog('mirror',{id,m:d.m});tdFace(el,id);if(TD.K.mirror)TD.K.mirror(id,d);v3Save();}
+/* labels shared by every desk kind */
+function TDT(){return LANG==='en'?{rot:'Turn',zoom:'Size',op:'Transparency',reset:'Put back',flip:'Turn over',mirror:'Mirror',undo:'Undo move'}:{rot:'Tourner',zoom:'Taille',op:'Transparence',reset:'Ranger',flip:'Retourner',mirror:'Miroir',undo:'Annuler le déplacement'};}
+/* bounding box of a document in desk coordinates (rotation and scale applied around its top-left corner) */
+function tdBox(id){const d=tdSt(id),g=TDOCS[id],a=d.r*Math.PI/180,c=Math.cos(a),si=Math.sin(a);const pts=[[0,0],[g.w*d.s,0],[0,g.h*d.s],[g.w*d.s,g.h*d.s]].map(([x,y])=>[d.x+x*c-y*si,d.y+x*si+y*c]);const xs=pts.map(p=>p[0]),ys=pts.map(p=>p[1]);return {x0:Math.min(...xs),y0:Math.min(...ys),x1:Math.max(...xs),y1:Math.max(...ys)};}
+/* the floating toolbar sits under the selected document, inside the desk */
+function tdToolPos(){const B=$('#dkTools');if(!B||B.hidden||!TD||!TD.sel)return;const b=tdBox(TD.sel),w=B.offsetWidth||200,h=B.offsetHeight||40;let x=(b.x0+b.x1)/2-w/2,y=b.y1+10;if(y+h>TD.lay.H-8)y=Math.max(8,b.y0-h-10);x=Math.max(6,Math.min(TD.lay.W-w-6,x));B.style.transform=`translate(${x}px,${y}px)`;}
+/* drop zones declared by a desk kind light up when a document hovers over them */
+function tdZones(id,on){const K=TD.K;if(!K.zones)return;const zs=K.zones(TD.st);if(!on||!id){zs.forEach(z=>{const el=$(z.sel);if(el)el.classList.remove('dz-near');});return;}const c=tdCenter(id);zs.forEach(z=>{const el=$(z.sel);if(!el)return;const r=z.rect?z.rect():z;const inside=c[0]>=r.x&&c[0]<=r.x+r.w&&c[1]>=r.y&&c[1]<=r.y+r.h&&(!z.ok||z.ok(id));el.classList.toggle('dz-near',inside);});}
+/* undo the last move: put the document back and let the desk react as for a drop */
+function tdUndo(){if(!TD||!TD.undo.length)return;const u=TD.undo.pop(),d=tdSt(u.id),g=TDOCS[u.id],el=$(`.ddoc[data-id="${u.id}"]`);if(!el)return;Object.assign(d,{x:u.pose.x,y:u.pose.y,r:u.pose.r,s:u.pose.s});tdApply(el,u.id);if(g.live)g.live(u.id,d);if(TD.K.drop)TD.K.drop(u.id,[0,0,3,d.x,d.y,{...d}],g);play('paste');vlog('undo',{id:u.id});tdSel(u.id);$('#dkUndo').hidden=!TD.undo.length;v3Save();}
+function tdFlip(id){const d=tdSt(id),el=$(`.ddoc[data-id="${id}"]`);d.f=d.f?0:1;play('flip');vlog('flip',{id,f:d.f});tdFace(el,id);if(TD.K.flip)TD.K.flip(id,d);tdToolPos();v3Save();}
+function tdMirror(id){const d=tdSt(id),el=$(`.ddoc[data-id="${id}"]`);d.m=d.m?0:1;play('flip');vlog('mirror',{id,m:d.m});tdFace(el,id);if(TD.K.mirror)TD.K.mirror(id,d);tdToolPos();v3Save();}
 /* loupe */
 function tdLoupe(){const L=$('#loupe'),st=TD.st,key=TD.K.lpKey;st[key]=st[key]||{x:TD.lay.lp[0],y:TD.lay.lp[1]};const P=st[key];const put=()=>{L.style.transform=`translate(${P.x}px,${P.y}px)`;};put();
   let drag=null,still=null;
@@ -3404,7 +3424,7 @@ Object.assign(TDLAY,{
 /* ---------- desk kinds ---------- */
 const mtK=(kind,o)=>Object.assign({st:()=>mtS(),poses:()=>mtPoses(kind),lpKey:'lp_'+kind,title:()=>MTT().titles[kind],close:()=>MTT().close[kind],hintLbl:()=>MTT().hint,cap:()=>'',det:st=>st.det,markLabel:k=>k.split(':')[0]==='notch'?MTT().obs.notch[0]:k.split(':')[0]==='edge'?MTT().lab.edge[k.split(':')[1]]:k==='mark'?'R. V.':k,hint:()=>mtHint(kind)},o);
 Object.assign(TDK,{
- lab:mtK('lab',{extra:lay=>`<div class="lightbox" id="lightbox" style="left:${lay.lb.x}px;top:${lay.lb.y}px;width:${lay.lb.w}px;height:${lay.lb.h}px"><b>${MTT().lab.lightbox}</b></div>`,
+ lab:mtK('lab',{extra:lay=>`<div class="lightbox" id="lightbox" style="left:${lay.lb.x}px;top:${lay.lb.y}px;width:${lay.lb.w}px;height:${lay.lb.h}px"><b>${MTT().lab.lightbox}</b></div>`,zones:()=>[{sel:'#lightbox',rect:()=>TD.lay.lb}],
   docs:st=>['pl1','pl2','pl3','pl4','pouch','notes','planS'].concat(st.pouch?['fiche']:[]),cap:id=>{const t=MTT();return t.pg.lab.docs[id]||(id==='pouch'?'':id==='notes'?t.lab.notes:id==='planS'?t.lab.plan:id==='fiche'?t.lab.fiche[0]:'');},
   init:st=>{['pl1','pl2','pl3','pl4'].forEach(id=>{const d=tdSt(id);d.m=st.mir[id];tdFace($(`.ddoc[data-id="${id}"]`),id);});mtLabLight();},
   drop:(id,d0,g)=>{mtLabLight(id);},mirror:(id,d)=>{mtS().mir[id]=d.m;mtLabCheck();},flip:(id,d)=>{if(id==='pl3'&&d.f)mtSecret('s1');},
@@ -3421,10 +3441,10 @@ Object.assign(TDK,{
   docs:()=>['compass'],cap:id=>MTT().horizon.compass,init:()=>{mtSunInit();},drop:id=>{if(id==='compass')mtCompassOnRing();}}),
  geo:mtK('geo',{docs:()=>['gcalque','gplan','gfield','gsight','gcrit'],cap:id=>({gplan:MTT().geo.plan,gsight:'',gcalque:MTT().geo.calque,gfield:MTT().geo.field,gcrit:MTT().geo.crit})[id]||'',
   init:()=>{},drop:id=>{if(id==='gplan')mtHiddenCheck();if(id==='gcalque')mtCalqueCheck(true);},tool:(id,a)=>{if(id==='gcalque')mtCalqueCheck(false);}}),
- final:mtK('final',{extra:lay=>mtFinalExtra(lay),docs:()=>['pl1','pl2','pl3','pl4'],cap:id=>MTT().pg.lab.docs[id],
+ final:mtK('final',{extra:lay=>mtFinalExtra(lay),docs:()=>['pl1','pl2','pl3','pl4'],cap:id=>MTT().pg.lab.docs[id],zones:()=>[{sel:'#fFrame',rect:()=>({x:TD.lay.frame.x-20,y:TD.lay.frame.y-20,w:280,h:240})}],
   init:st=>{['pl1','pl2','pl3','pl4'].forEach(id=>{const d=tdSt(id);d.m=st.mir[id];tdFace($(`.ddoc[data-id="${id}"]`),id);if(st.fin.slots[id])mtPlaceSlot(id,true);});mtFinalInit();},
   drop:id=>{mtFinalDrop(id);}}),
- sirius:mtK('sirius',{extra:lay=>mtSiriusExtra(lay),docs:()=>['c1','c1b','c2','c3','c4','c5','c6','c7','c8'],cap:()=>'',init:()=>{mtSiriusInit();},drop:id=>{mtSiriusDrop(id);}})});
+ sirius:mtK('sirius',{extra:lay=>mtSiriusExtra(lay),docs:()=>['c1','c1b','c2','c3','c4','c5','c6','c7','c8'],cap:()=>'',init:()=>{mtSiriusInit();},drop:id=>{mtSiriusDrop(id);},zones:()=>['c1','c2'].flatMap(ch=>[0,1,2,3].map(i=>({sel:`#sb_${ch} .sslot[data-i="${i}"]`,rect:()=>mtSiriusSlotRect(ch,i)})))})});
 /* ---------- lab ---------- */
 function mtInRect(id,r){const c=tdCenter(id);return c[0]>=r.x&&c[0]<=r.x+r.w&&c[1]>=r.y&&c[1]<=r.y+r.h;}
 function mtLabLight(moved){const m=mtS(),lay=TD.lay,T=MTT().lab;let any=false;['pl1','pl2','pl3','pl4','notes'].forEach(id=>{const el=$(`.ddoc[data-id="${id}"]`);if(!el)return;const on=mtInRect(id,lay.lb);el.classList.toggle('onlight',on);if(on&&id===moved){if(id==='notes'){if(!m.water){m.water=true;mtSecret('s3');tdFace(el,'notes');mtMsg(T.msg.water);}}else{any=true;if(!m.onLight.includes(id))m.onLight.push(id);}}});if(any)mtMsg(T.msg.onLight);v3Save();}
