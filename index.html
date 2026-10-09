@@ -492,7 +492,7 @@ select.blank:disabled{color:var(--green);border-bottom-color:var(--green);backgr
 .td .ddoc .dface{width:100%;height:100%;pointer-events:none}.ddoc .dcap,.ddoc .dnote{pointer-events:none}
 .td .ddoc.sheet{background:#fbf7ec}
 .td .ddoc.fixed{cursor:default}
-.td .ddoc.back .dface{background:#f1e8d0}
+.td .ddoc.back .dface{background:#f1e8d0}.td .ddoc.mir .dface,.lz.mir>*{transform:scaleX(-1)}
 .dback{width:100%;height:100%;padding:8px 10px;box-sizing:border-box;font-family:var(--f-type);font-size:9.5px;line-height:1.3;color:#3a2f22;overflow:hidden}
 .dback b{display:block;font-size:9px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px;color:#7a6a50}
 .dback p{margin:0 0 5px}.dback .hand{font-family:var(--f-hand);font-size:14px;line-height:1.15}.dback .hand.red{color:#a3322a}.dback .mono{font-size:8.5px;opacity:.85}.dback.blue{color:#2b4a7a}
@@ -2715,7 +2715,7 @@ const DGSLOTOK=['s_mud','s_osl'];
 /* ---------- generic desk (table or core) ---------- */
 const TDOCS={
  chart:{w:DGCH.dw,h:DGCH.dh,front:()=>dgChartSvg(dgS().t||0,dgEstOpt()),back:dgChartBack,tools:['scale','flip'],smin:.7,smax:1.6},
- overlay:{w:DGOV.W,h:DGOV.H,front:dgOverlaySvg,back:dgOverlayBack,tools:['rot','scale','op','flip'],smin:.45,smax:2},
+ overlay:{w:DGOV.W,h:DGOV.H,front:dgOverlaySvg,back:dgOverlayBack,tools:['rot','scale','op','flip'],smin:.45,smax:2,o0:.6,apply:(el,d)=>{const p=el.querySelector('.ovpaper');if(p)p.setAttribute('fill',`rgba(250,248,240,${(d.o*.6).toFixed(2)})`);}},
  bone:{w:230,h:97,front:dgBoneSvg,back:dgBoneBack,tools:['rot','flip']},
  bdate:{w:150,h:112,front:()=>dgSheetHtml('bdate'),kind:'sheet',tools:['rot']},
  ruler:{w:248,h:34,front:dgRulerSvg,tools:['rot']},
@@ -2728,71 +2728,88 @@ const TDLAY={
  core:{wide:{W:1180,H:700,axis:{x:960,y:76,h:600},log:{x:580,y:70,w:340},pos:{core:[40,56,0],s_osl:[400,70,0],s_shell:[400,200,0],s_mud:[400,330,0],s_peat:[400,460,0]},home:236,lp:[700,470]},
    narrow:{W:400,H:1020,axis:{x:300,y:76,h:470},log:{x:12,y:760,w:376},pos:{core:[12,56,0,.78],s_osl:[12,560,0,.72],s_shell:[140,560,0,.72],s_mud:[268,560,0,.72],s_peat:[12,652,0,.72]},home:176,ssc:.6,lp:[205,400]}}};
 let TD=null;
+/* kinds of desk: each chapter registers its sheets here (title, documents, fixed widgets, hooks) */
+const TDK={
+ table:{st:()=>dgS(),poses:st=>st.docs,lpKey:'lp',title:()=>DGT().desk.title,close:()=>DGT().desk.close,hintLbl:()=>DGT().table.hint,
+  bar:()=>`<span class="tlights" id="tlights"></span>`,
+  extra:lay=>{const T=DGT().desk;return `<div class="tband" id="tband"><div class="tb-axis"></div><div class="tb-ticks"></div><div class="tb-marks" id="tbMarks"></div><div class="tcur" id="tcur"><i></i><b id="tcurL"></b></div><span class="tb-hint">${T.band.hint}</span></div>
+       <div class="tslot" id="tslot" style="left:${lay.slot.x}px;top:${lay.slot.y}px;width:${lay.slot.w}px;height:${lay.slot.h}px"><b>${T.slot.t}</b><span>${T.slot.s}</span></div>`;},
+  docs:st=>['chart','overlay','bone','bdate','ruler'].concat(Object.keys(st.att).filter(k=>st.att[k])),
+  cap:id=>{const t=DGT();return t.env.docs[id]||(t.desk.sheets[id]?t.desk.sheets[id].short:'');},
+  init:st=>{tdBand();tdLights();tdRefreshChart();if(st.slot)tdPlaceSlot(st.slot,true);Object.keys(st.marks).forEach(id=>{if($(`.ddoc[data-id="${id}"]`)&&st.slot!==id)tdPlaceBand(id,true);});},
+  move:(id,d,nx,ny)=>{if(id==='chart'&&dgS().geo){const o=tdSt('overlay');o.x+=nx-d.x;o.y+=ny-d.y;tdApply($('.dd-overlay'),'overlay');}if(id==='overlay')tdGeo(false);},
+  drop:(id,d0,g)=>{if(id==='overlay')tdGeo(true);if(g.kind==='sheet')tdDrop(id);},
+  tool:(id,a)=>{if(id==='overlay')tdGeo(a!=='s'&&a!=='o');},
+  reset:id=>{if(dgS().slot===id){dgS().slot=null;tdLights();}},
+  flip:(id,d)=>{if(!d.f)return;if(id==='bone'){dgObs('sea_find');$('#dkMsg').textContent=DGT().desk.msg.boneBack;}if(id==='chart')dgObs('model');if(id==='overlay')dgObs('h2');},
+  det:st=>st.coreObs,detail:(id,k)=>{dgObs(k);return DGT().desk.coreMsg[k];},markLabel:k=>DGT().obs[k][0],hint:()=>dgHint('table')},
+ core:{st:()=>dgS(),poses:st=>st.cdocs,lpKey:'clp',title:()=>DGT().desk.coreTitle,close:()=>DGT().desk.coreClose,hintLbl:()=>DGT().table.hint,
+  extra:lay=>`<svg class="tdlines" id="tdlines" width="${lay.W}" height="${lay.H}"></svg><div class="taxis" id="taxis" style="left:${lay.axis.x}px;top:${lay.axis.y}px;height:${lay.axis.h}px"></div>
+       <div class="tlog" style="left:${lay.log.x}px;top:${lay.log.y}px;width:${lay.log.w}px"><b>${DGT().core.coreCap}</b>${DGT().core.units.map(u=>`<div><span>${u[0]}</span><i>${u[1]}</i></div>`).join('')}<p>${DGT().core.simul}</p></div>`,
+  docs:()=>['core','s_osl','s_shell','s_mud','s_peat'],cap:()=>'',
+  init:st=>{tdAxis();Object.keys(st.att).forEach(id=>{if(st.att[id])tdAttach(id,true);});tdLines();},
+  drop:(id,d0,g)=>{if(g.kind==='sheet')tdCoreDrop(id,d0);},
+  det:st=>st.coreObs,detail:(id,k)=>{dgObs(k);return DGT().desk.coreMsg[k];},markLabel:k=>DGT().obs[k][0],hint:()=>dgHint('core')}};
 function tdLay(kind){const L=TDLAY[kind];return narrow()?L.narrow:L.wide;}
-function tdOpen(kind){const T=DGT().desk,d=dgS(),lay=tdLay(kind);vlog('desk_open',{kind});
+function tdOpen(kind){const K=TDK[kind],st=K.st(),lay=tdLay(kind);vlog('desk_open',{kind});
   sheet(`<div class="deskwrap"><div class="desk td td-${kind}" id="desk" style="width:${lay.W}px;height:${lay.H}px">
-     <div class="dkbar"><span class="dk-title">${kind==='table'?T.title:T.coreTitle}</span><span class="dk-tools" id="dkTools"></span>${kind==='table'?`<span class="tlights" id="tlights"></span>`:''}<button class="lbl sm" id="dkHint">${DGT().table.hint}</button></div>
-     ${kind==='table'?`<div class="tband" id="tband"><div class="tb-axis"></div><div class="tb-ticks"></div><div class="tb-marks" id="tbMarks"></div><div class="tcur" id="tcur"><i></i><b id="tcurL"></b></div><span class="tb-hint">${T.band.hint}</span></div>
-       <div class="tslot" id="tslot" style="left:${lay.slot.x}px;top:${lay.slot.y}px;width:${lay.slot.w}px;height:${lay.slot.h}px"><b>${T.slot.t}</b><span>${T.slot.s}</span></div>`
-      :`<svg class="tdlines" id="tdlines" width="${lay.W}" height="${lay.H}"></svg><div class="taxis" id="taxis" style="left:${lay.axis.x}px;top:${lay.axis.y}px;height:${lay.axis.h}px"></div>
-       <div class="tlog" style="left:${lay.log.x}px;top:${lay.log.y}px;width:${lay.log.w}px"><b>${DGT().core.coreCap}</b>${DGT().core.units.map(u=>`<div><span>${u[0]}</span><i>${u[1]}</i></div>`).join('')}<p>${DGT().core.simul}</p></div>`}
+     <div class="dkbar"><span class="dk-title">${K.title()}</span><span class="dk-tools" id="dkTools"></span>${K.bar?K.bar():''}<button class="lbl sm" id="dkHint">${K.hintLbl()}</button></div>
+     ${K.extra?K.extra(lay):''}
      <div class="loupe" id="loupe"><div class="lz" id="lz"></div><span class="lh"></span></div></div>
      <p class="hand dkmsg" id="dkMsg"></p></div>`);
-  $('#pclose span').textContent=kind==='table'?T.close:T.coreClose;$('#psheet').classList.add('deskmode');
-  TD={kind,lay,desk:$('#desk'),sel:null,poses:kind==='table'?d.docs:d.cdocs};
-  const docs=kind==='table'?['chart','overlay','bone','bdate','ruler'].concat(Object.keys(d.att).filter(k=>d.att[k])):['core','s_osl','s_shell','s_mud','s_peat'];
-  docs.forEach(id=>tdMk(id));
-  tdLoupe();
-  if(kind==='table'){tdBand();tdLights();tdRefreshChart();if(d.slot)tdPlaceSlot(d.slot,true);Object.keys(d.marks).forEach(id=>{if($(`.ddoc[data-id="${id}"]`)&&d.slot!==id)tdPlaceBand(id,true);});}
-  else{tdAxis();Object.keys(d.att).forEach(id=>{if(d.att[id])tdAttach(id,true);});tdLines();}
+  $('#pclose span').textContent=K.close();$('#psheet').classList.add('deskmode');
+  TD={kind,K,st,lay,desk:$('#desk'),sel:null,poses:K.poses(st)};
+  K.docs(st).forEach(id=>tdMk(id));
+  tdLoupe();if(K.init)K.init(st);
   tdFit();v3Save();addEventListener('resize',tdFit);
-  $('#dkHint').onclick=()=>{const h=dgHint(kind);$('#dkMsg').textContent=h;};}
+  $('#dkHint').onclick=()=>{$('#dkMsg').textContent=K.hint();};}
 function tdFit(){if(!TD||!TD.desk.isConnected)return;const wrap=TD.desk.parentElement,k=Math.min(1,wrap.clientWidth/TD.lay.W);TD.desk.style.transform=`scale(${k})`;TD.desk.style.transformOrigin='0 0';wrap.style.height=(TD.lay.H*k+40)+'px';TD.k=k;}
 function tdPt(ev){const r=TD.desk.getBoundingClientRect();return [(ev.clientX-r.left)*TD.lay.W/r.width,(ev.clientY-r.top)*TD.lay.H/r.height];}
-function tdSt(id){const p=TD.lay.pos[id]||[40,80,0];return TD.poses[id]||(TD.poses[id]={x:p[0],y:p[1],r:p[2],s:p[3]||1,o:id==='overlay'?.6:1,f:0});}
-function tdHome(id){const p=TD.lay.pos[id]||[40,80,0],d=tdSt(id);Object.assign(d,{x:p[0],y:p[1],r:p[2],s:p[3]||1,o:id==='overlay'?.6:1});}
-function tdApply(el,id){const d=tdSt(id),g=TDOCS[id];el.style.transform=`translate(${d.x}px,${d.y}px) rotate(${d.r}deg) scale(${d.s})`;el.classList.toggle('back',!!d.f);
-  if(id==='overlay'){const p=el.querySelector('.ovpaper');if(p)p.setAttribute('fill',`rgba(250,248,240,${(d.o*.6).toFixed(2)})`);}}
-function tdFace(el,id){const d=tdSt(id),g=TDOCS[id];const face=el.querySelector('.dface');face.innerHTML=(d.f&&g.back)?g.back():g.front();tdMarks(id);const lz=$('#lz');if(lz)lz.dataset.id='';tdApply(el,id);}
-function tdMk(id){const t=DGT(),g=TDOCS[id],el=document.createElement('div');el.className='ddoc dd-'+id+(g.kind==='sheet'?' sheet':'')+(g.fixed?' fixed':'');el.dataset.id=id;el.style.width=g.w+'px';el.style.height=g.h+'px';
-  const cap=TD.kind==='table'?(t.env.docs[id]||(t.desk.sheets[id]?t.desk.sheets[id].short:'')):'';
+function tdSt(id){const p=TD.lay.pos[id]||[40,80,0],g=TDOCS[id]||{};return TD.poses[id]||(TD.poses[id]={x:p[0],y:p[1],r:p[2],s:p[3]||1,o:g.o0!==undefined?g.o0:1,f:0,m:g.m0?1:0});}
+function tdHome(id){const p=TD.lay.pos[id]||[40,80,0],g=TDOCS[id]||{},d=tdSt(id);Object.assign(d,{x:p[0],y:p[1],r:p[2],s:p[3]||1,o:g.o0!==undefined?g.o0:1});}
+function tdApply(el,id){const d=tdSt(id),g=TDOCS[id];el.style.transform=`translate(${d.x}px,${d.y}px) rotate(${d.r}deg) scale(${d.s})`;el.classList.toggle('back',!!d.f);el.classList.toggle('mir',!!d.m);if(g.apply)g.apply(el,d);}
+function tdFace(el,id){const d=tdSt(id),g=TDOCS[id];const face=el.querySelector('.dface');face.innerHTML=(d.f&&g.back)?g.back(d):g.front(d);tdMarks(id);const lz=$('#lz');if(lz)lz.dataset.id='';tdApply(el,id);}
+function tdMk(id){const K=TD.K,g=TDOCS[id],el=document.createElement('div');el.className='ddoc dd-'+id+(g.kind==='sheet'?' sheet':'')+(g.fixed?' fixed':'')+(g.cls?' '+g.cls:'');el.dataset.id=id;el.style.width=g.w+'px';el.style.height=g.h+'px';
+  const cap=K.cap?K.cap(id):'';
   el.innerHTML=`<div class="dface"></div>${cap?`<span class="dcap">${cap}</span>`:''}<span class="marks"></span>`;
   TD.desk.insertBefore(el,$('#loupe'));tdFace(el,id);
   if(g.fixed)return el;
-  let drag=null;el.addEventListener('pointerdown',ev=>{if(ev.target.closest('button'))return;ev.preventDefault();tdSel(id);const p=tdPt(ev),d=tdSt(id);drag=[p[0]-d.x,p[1]-d.y,0,d.x,d.y];el.setPointerCapture(ev.pointerId);el.classList.add('lift');play('paste');});
+  let drag=null;el.addEventListener('pointerdown',ev=>{if(ev.target.closest('button,input'))return;ev.preventDefault();tdSel(id);const p=tdPt(ev),d=tdSt(id);drag=[p[0]-d.x,p[1]-d.y,0,d.x,d.y];el.setPointerCapture(ev.pointerId);el.classList.add('lift');play('paste');});
   el.addEventListener('pointermove',ev=>{if(!drag)return;const p=tdPt(ev),d=tdSt(id);const nx=Math.max(-g.w*.5,Math.min(TD.lay.W-50,p[0]-drag[0])),ny=Math.max(30,Math.min(TD.lay.H-30,p[1]-drag[1]));
-    if(TD.kind==='table'&&id==='chart'&&dgS().geo){const o=tdSt('overlay');o.x+=nx-d.x;o.y+=ny-d.y;tdApply($('.dd-overlay'),'overlay');}
-    d.x=nx;d.y=ny;drag[2]++;tdApply(el,id);if(id==='overlay')tdGeo(false);});
+    if(K.move)K.move(id,d,nx,ny);d.x=nx;d.y=ny;drag[2]++;tdApply(el,id);if(g.live)g.live(id,d);});
   el.addEventListener('pointerup',()=>{if(!drag)return;const moved=drag[2]>2;const d0=drag;drag=null;el.classList.remove('lift');
-    if(moved){vlog('doc_move',{id});if(TD.kind==='table'){if(id==='overlay')tdGeo(true);if(g.kind==='sheet')tdDrop(id);}else if(g.kind==='sheet')tdCoreDrop(id,d0);v3Save();}
-    else{const now=performance.now();if(g.back&&el._tap&&now-el._tap<380){el._tap=0;tdFlip(id);}else el._tap=now;}});
+    if(moved){vlog('doc_move',{id});if(K.drop)K.drop(id,d0,g);v3Save();}
+    else{const now=performance.now();if((g.back||g.tools&&g.tools.includes('mirror'))&&el._tap&&now-el._tap<380){el._tap=0;if(g.back)tdFlip(id);else tdMirror(id);}else{el._tap=now;if(g.tap)g.tap(id);}}});
   return el;}
-function tdSel(id){TD.sel=id;$$('.ddoc').forEach(x=>x.classList.toggle('sel',x.dataset.id===id));const el=$(`.ddoc[data-id="${id}"]`);TD.desk.insertBefore(el,$('#loupe'));
+function tdSel(id){const K=TD.K;TD.sel=id;$$('.ddoc').forEach(x=>x.classList.toggle('sel',x.dataset.id===id));const el=$(`.ddoc[data-id="${id}"]`);TD.desk.insertBefore(el,$('#loupe'));
   const t=DGT().desk.tools,d=tdSt(id),g=TDOCS[id],B=$('#dkTools');if(!B)return;const tl=g.tools||[];
   B.innerHTML=(tl.includes('rot')?`<button class="ic sm" data-a="rl" title="${t.rot}">↺</button><button class="ic sm" data-a="rr" title="${t.rot}">↻</button>`:'')+
    (tl.includes('scale')?`<label>${t.zoom}<input type="range" min="${g.smin||.6}" max="${g.smax||1.8}" step="0.01" value="${d.s}" data-a="s"><output>${d.s.toFixed(2)}</output></label>`:'')+
    (tl.includes('op')?`<label>${t.op}<input type="range" min="0.15" max="1" step="0.05" value="${d.o}" data-a="o"></label>`:'')+
-   (tl.includes('flip')?`<button class="lbl sm" data-a="flip">${t.flip}</button>`:'')+(g.fixed?'':`<button class="lbl sm" data-a="reset">${t.reset}</button>`);
+   (tl.includes('flip')?`<button class="lbl sm" data-a="flip">${t.flip}</button>`:'')+(tl.includes('mirror')?`<button class="lbl sm" data-a="mirror">${t.mirror||'⇄'}</button>`:'')+
+   (g.extraTools?g.extraTools(d):'')+(g.fixed||g.noreset?'':`<button class="lbl sm" data-a="reset">${t.reset}</button>`);
   B.querySelectorAll('[data-a]').forEach(c=>{const a=c.dataset.a;const go=()=>{const d=tdSt(id);if(a==='rl')d.r-=5;if(a==='rr')d.r+=5;if(a==='s'){d.s=+c.value;c.nextElementSibling.textContent=d.s.toFixed(2);}if(a==='o')d.o=+c.value;
-    if(a==='flip'){tdFlip(id);return;}if(a==='reset'){tdHome(id);if(TD.kind==='table'&&dgS().slot===id){dgS().slot=null;tdLights();}tdSel(id);}
-    tdApply(el,id);if(id==='overlay')tdGeo(a!=='s'&&a!=='o');v3Save();};
+    if(a==='flip'){tdFlip(id);return;}if(a==='mirror'){tdMirror(id);return;}if(a==='reset'){tdHome(id);if(K.reset)K.reset(id);tdSel(id);}
+    if(g.onTool&&g.onTool(a,c,d)===true)return;
+    tdApply(el,id);if(K.tool)K.tool(id,a);if(g.live)g.live(id,d);v3Save();};
     if(c.tagName==='INPUT')c.oninput=go;else c.onclick=()=>{play('pick');go();vlog('tool',{a,id});};});}
-function tdFlip(id){const d=tdSt(id),el=$(`.ddoc[data-id="${id}"]`);d.f=d.f?0:1;play('flip');vlog('flip',{id,f:d.f});tdFace(el,id);
-  if(d.f){if(id==='bone'){dgObs('sea_find');$('#dkMsg').textContent=DGT().desk.msg.boneBack;}if(id==='chart')dgObs('model');if(id==='overlay')dgObs('h2');}v3Save();}
+function tdFlip(id){const d=tdSt(id),el=$(`.ddoc[data-id="${id}"]`);d.f=d.f?0:1;play('flip');vlog('flip',{id,f:d.f});tdFace(el,id);if(TD.K.flip)TD.K.flip(id,d);v3Save();}
+function tdMirror(id){const d=tdSt(id),el=$(`.ddoc[data-id="${id}"]`);d.m=d.m?0:1;play('flip');vlog('mirror',{id,m:d.m});tdFace(el,id);if(TD.K.mirror)TD.K.mirror(id,d);v3Save();}
 /* loupe */
-function tdLoupe(){const L=$('#loupe'),d=dgS(),key=TD.kind==='table'?'lp':'clp';d[key]=d[key]||{x:TD.lay.lp[0],y:TD.lay.lp[1]};const P=d[key];const put=()=>{L.style.transform=`translate(${P.x}px,${P.y}px)`;};put();
+function tdLoupe(){const L=$('#loupe'),st=TD.st,key=TD.K.lpKey;st[key]=st[key]||{x:TD.lay.lp[0],y:TD.lay.lp[1]};const P=st[key];const put=()=>{L.style.transform=`translate(${P.x}px,${P.y}px)`;};put();
   let drag=null,still=null;
   L.addEventListener('pointerdown',ev=>{ev.preventDefault();const p=tdPt(ev);drag=[p[0]-P.x,p[1]-P.y];L.setPointerCapture(ev.pointerId);L.classList.add('lift');play('lens');});
   L.addEventListener('pointermove',ev=>{if(!drag)return;const p=tdPt(ev);P.x=p[0]-drag[0];P.y=p[1]-drag[1];put();tdLens();clearTimeout(still);still=setTimeout(tdProbe,380);});
   L.addEventListener('pointerup',()=>{drag=null;L.classList.remove('lift');tdProbe();vlog('loupe_drop');v3Save();});tdLens();}
 function tdUnder(x,y){const els=$$('.ddoc').reverse();for(const el of els){const id=el.dataset.id,d=tdSt(id),g=TDOCS[id],a=-d.r*Math.PI/180;
   const dx=x-d.x,dy=y-d.y,lx=(dx*Math.cos(a)-dy*Math.sin(a))/d.s,ly=(dx*Math.sin(a)+dy*Math.cos(a))/d.s;if(lx>=0&&ly>=0&&lx<=g.w&&ly<=g.h)return {id,el,lx,ly,g,d};}return null;}
-function tdLens(){const d=dgS(),P=TD.kind==='table'?d.lp:d.clp;if(!P||!$('#lz'))return;const c=[P.x+70,P.y+70],u=tdUnder(c[0],c[1]),lz=$('#lz');if(!u){lz.innerHTML='';lz.dataset.id='';return;}const Z=2.4,R=70;
-  const key=u.id+':'+(u.d.f||0);if(lz.dataset.id!==key){lz.dataset.id=key;lz.innerHTML=u.el.querySelector('.dface').innerHTML;}const inner=lz.firstElementChild;if(!inner)return;inner.style.cssText=`position:absolute;width:${u.g.w}px;height:${u.g.h}px;transform-origin:0 0;transform:translate(${R-u.lx*Z}px,${R-u.ly*Z}px) scale(${Z})`;}
-function tdProbe(){const d=dgS(),P=TD.kind==='table'?d.lp:d.clp,c=[P.x+70,P.y+70],u=tdUnder(c[0],c[1]);if(!u||!u.g.det||u.d.f)return;const T=DGT();
-  for(const [k,x,y,r] of u.g.det){if(Math.hypot(u.lx-x,u.ly-y)<r){if(!d.coreObs.includes(k)){d.coreObs.push(k);play('pencil');vlog('detail',{id:u.id,k});dgObs(k);tdMarks(u.id);$('#dkMsg').textContent=T.desk.coreMsg[k];v3Save();}return;}}}
-function tdMarks(id){const el=$(`.ddoc[data-id="${id}"] .marks`);if(!el)return;const g=TDOCS[id];if(!g.det)return;const T=DGT();
-  el.innerHTML=g.det.filter(dd=>dgS().coreObs.includes(dd[0])).map(([k,x,y])=>`<span class="pmark" style="left:${x}px;top:${y}px"><i></i><em>${T.obs[k][0]}</em></span>`).join('');}
+function tdLP(){return TD&&TD.st[TD.K.lpKey];}
+function tdLens(){const P=tdLP();if(!P||!$('#lz'))return;const c=[P.x+70,P.y+70],u=tdUnder(c[0],c[1]),lz=$('#lz');if(!u){lz.innerHTML='';lz.dataset.id='';return;}const Z=2.4,R=70;
+  const key=u.id+':'+(u.d.f||0)+':'+(u.d.m||0);if(lz.dataset.id!==key){lz.dataset.id=key;lz.innerHTML=u.el.querySelector('.dface').innerHTML;lz.classList.toggle('mir',!!u.d.m);}const inner=lz.firstElementChild;if(!inner)return;inner.style.cssText=`position:absolute;width:${u.g.w}px;height:${u.g.h}px;transform-origin:0 0;transform:translate(${R-u.lx*Z}px,${R-u.ly*Z}px) scale(${Z})`;}
+function tdProbe(){const P=tdLP();if(!P)return;const c=[P.x+70,P.y+70],u=tdUnder(c[0],c[1]);if(!u||!u.g.det||u.d.f)return;const K=TD.K,found=K.det(TD.st);
+  for(const [k,x,y,r] of u.g.det){const lx=u.d.m?u.g.w-u.lx:u.lx;if(Math.hypot(lx-x,u.ly-y)<r){if(!found.includes(k)){found.push(k);play('pencil');vlog('detail',{id:u.id,k});const m=K.detail(u.id,k);tdMarks(u.id);if(m)$('#dkMsg').textContent=m;v3Save();}return;}}}
+function tdMarks(id){const el=$(`.ddoc[data-id="${id}"] .marks`);if(!el)return;const g=TDOCS[id];if(!g.det)return;const K=TD.K,found=K.det(TD.st);
+  el.innerHTML=g.det.filter(dd=>found.includes(dd[0])).map(([k,x,y])=>`<span class="pmark" style="left:${x}px;top:${y}px"><i></i><em>${K.markLabel(k)}</em></span>`).join('');}
 /* ---------- table: band, slot, geometry, lights ---------- */
 function tdBandX(t){const b=$('#tband');if(!b)return 0;const w=b.clientWidth;return 24+(1-t/20000)*(w-48);}
 function tdBandT(x){const b=$('#tband'),w=b.clientWidth;return Math.round(Math.max(0,Math.min(20000,(1-(x-24)/(w-48))*20000))/10)*10;}
