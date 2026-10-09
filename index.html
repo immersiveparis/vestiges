@@ -257,6 +257,65 @@ select.blank:disabled{color:var(--green);border-bottom-color:var(--green);backgr
   .stack{padding-bottom:56px}
 }
 
+
+/* ---------- V3 · desk, magnifier, documents, case file ---------- */
+.deskthumb{position:relative;display:block;width:100%;height:330px;border:0;background:rgba(80,55,30,.08);box-shadow:inset 0 0 0 1px rgba(60,35,10,.15);cursor:pointer;border-radius:4px}
+.deskthumb .dt{position:absolute;background:#f6efdc;padding:5px;box-shadow:0 3px 8px rgba(60,35,10,.3)}
+.deskthumb .dt img,.deskthumb .dt svg{display:block;width:100%;height:auto}
+.deskthumb .dt1{left:6%;top:8%;width:46%;transform:rotate(-3deg)}.deskthumb .dt2{left:46%;top:22%;width:46%;transform:rotate(4deg)}.deskthumb .dt3{left:20%;top:58%;width:34%;transform:rotate(-6deg)}
+.deskthumb .dt3.open{opacity:.35}
+.deskthumb b{position:absolute;right:12px;bottom:10px;font-family:var(--f-sc);font-size:16px;letter-spacing:.1em;color:#fff;background:var(--red);padding:7px 14px;border-radius:3px;box-shadow:0 2px 6px rgba(0,0,0,.3)}
+.deskthumb:hover b{filter:brightness(1.1)}
+.evlist{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.evc{background:#fbf7ec;padding:6px 10px;box-shadow:0 2px 5px rgba(60,35,10,.15);font-size:12.5px;line-height:1.25;border-left:3px solid #9b8b6b}
+.evc b{display:block;font-family:var(--f-title);font-size:15px}.evc i{display:block;font-family:var(--f-type);font-style:normal;font-size:11px;color:var(--ink-2);margin-top:2px;text-transform:uppercase;letter-spacing:.06em}
+.evc.k-band,.evc.k-jband,.evc.k-bevel{border-left-color:var(--red)}
+.srcbtn{border:0;background:none;font:inherit;color:var(--red);cursor:pointer;text-decoration:underline;padding:0}
+.hintbox{margin-top:auto;margin-bottom:46px}
+.psheet.deskmode{display:block;background:#2a1d12!important;padding:14px;overflow:hidden}
+.deskwrap{position:relative;width:100%;overflow:hidden}
+.desk{position:relative;background:#6b4a2e;background-image:repeating-linear-gradient(92deg,rgba(0,0,0,.08) 0 2px,transparent 2px 9px),radial-gradient(ellipse at 40% 30%,rgba(255,220,170,.22),transparent 70%);box-shadow:inset 0 0 60px rgba(0,0,0,.5);border-radius:6px;touch-action:none;user-select:none;-webkit-user-select:none}
+.dkbar{position:absolute;left:0;right:0;top:0;height:46px;display:flex;align-items:center;gap:14px;padding:0 14px;background:rgba(20,13,8,.55);color:#ead9b4;z-index:50;font-family:var(--f-sc);letter-spacing:.08em}
+.dk-title{font-weight:700}.dk-tools{display:flex;align-items:center;gap:10px;flex:1;font-size:12px}
+.dk-tools label{display:flex;align-items:center;gap:6px}.dk-tools input{width:110px}
+.ic.sm{width:30px;height:30px;font-size:16px}.lbl.sm{padding:4px 10px;font-size:12px}
+.ddoc{position:absolute;left:0;top:0;transform-origin:0 0;background:#f6efdc;padding:0;box-shadow:0 6px 14px rgba(0,0,0,.45);cursor:grab;touch-action:none}
+.ddoc.lift{box-shadow:0 16px 30px rgba(0,0,0,.5);cursor:grabbing}
+.ddoc.sel{outline:2px solid rgba(255,220,150,.75);outline-offset:3px}
+.ddoc img,.ddoc svg{display:block;width:100%;height:100%;object-fit:cover;pointer-events:none}
+.ddoc .dcap{position:absolute;left:0;right:0;top:100%;margin-top:4px;font-family:var(--f-hand);font-size:17px;color:#f2e4c4;text-shadow:0 1px 2px #000;white-space:nowrap}
+.ddoc .dnote{position:absolute;left:0;right:0;top:100%;margin-top:26px;font-family:var(--f-type);font-size:10px;color:#d8c39a;opacity:.85}
+.dd-calque{background:transparent;box-shadow:0 3px 8px rgba(0,0,0,.25)}
+.dd-calque.near{outline:2px dashed rgba(255,220,150,.8)}
+.dd-calque.snapped{outline:3px solid #6fbf73;transition:transform .35s ease}
+.dd-envelope{background:transparent;box-shadow:none}
+.dd-envelope.opening{transition:transform .7s ease,opacity .7s;opacity:0}
+.marks{position:absolute;inset:0;pointer-events:none}
+.pmark{position:absolute}.pmark i{position:absolute;left:-26px;top:-26px;width:52px;height:52px;border:2.5px solid #a3322a;border-radius:50%;opacity:.85}
+.pmark em{position:absolute;left:30px;top:-12px;font-family:var(--f-hand);font-style:normal;font-size:19px;color:#a3322a;background:rgba(250,244,228,.85);padding:0 6px;white-space:nowrap}
+.loupe{position:absolute;left:0;top:0;width:140px;height:140px;z-index:40;cursor:grab;touch-action:none}
+.loupe .lz{position:absolute;inset:0;border-radius:50%;overflow:hidden;background:#ddd;box-shadow:inset 0 0 0 5px #3b2a1e,inset 0 0 18px rgba(0,0,0,.4),0 8px 18px rgba(0,0,0,.5)}
+.loupe .lh{position:absolute;right:-48px;bottom:-48px;width:70px;height:20px;background:#5a3a1e;border-radius:10px;transform:rotate(45deg);box-shadow:0 3px 6px rgba(0,0,0,.4)}
+.loupe.lift .lz{box-shadow:inset 0 0 0 5px #3b2a1e,0 16px 28px rgba(0,0,0,.55)}
+.dkmsg{color:#f0e2c2;font-size:21px!important;margin:10px 4px 0;min-height:56px}
+.concl{display:flex;flex-direction:column;gap:9px}
+.cc{display:grid;grid-template-columns:22px 1fr;gap:10px;text-align:left;border:0;background:#fbf7ec;padding:9px 12px;box-shadow:0 2px 5px rgba(60,35,10,.15);cursor:pointer;font-family:var(--f-body);font-size:15.5px;line-height:1.3}
+.cc i{width:18px;height:18px;border:2px solid #3b2a1e;border-radius:50%;margin-top:2px}
+.cc.on{background:#fff6e2;box-shadow:0 0 0 2px var(--red)}.cc.on i{background:radial-gradient(circle,var(--red) 0 45%,transparent 50%)}
+.pins{display:flex;flex-direction:column;gap:7px}
+.pcard{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;background:#fbf7ec;padding:6px 10px;box-shadow:0 2px 4px rgba(60,35,10,.14);font-size:13px;line-height:1.25}
+.pcard b{display:block;font-family:var(--f-title);font-size:15.5px}.pcard i{font-family:var(--f-type);font-style:normal;font-size:10px;color:var(--ink-2);text-transform:uppercase;letter-spacing:.05em}
+.pcard .pt{display:flex;flex-direction:column;gap:4px}
+.pcard .pt button{border:1px solid rgba(60,35,10,.35);background:transparent;font-family:var(--f-type);font-size:11px;padding:3px 8px;border-radius:3px;cursor:pointer;white-space:nowrap}
+.pcard .pt button[aria-pressed="true"][data-v="sup"]{background:#46653a;color:#fff;border-color:#46653a}
+.pcard .pt button[aria-pressed="true"][data-v="lim"]{background:#9b6a1f;color:#fff;border-color:#9b6a1f}
+.pcard.miss{opacity:.45;grid-template-columns:30px 1fr;font-style:italic}.pcard .mq{font-family:var(--f-title);font-size:24px;color:var(--ink-2)}
+.jmode{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.jmode .lbl{font-size:12px;padding:5px 10px}.jmode .lbl[aria-pressed="true"]{background:#2b2219;color:#f3e6c8}
+.sealbox.small{margin:0;align-items:flex-start}.sealbox.small svg{width:70px;height:70px}
+.srclist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:14px;line-height:1.3}
+.srclist i{font-family:var(--f-type);font-style:normal;font-size:10.5px;color:var(--ink-2);text-transform:uppercase}.srclist span{display:block}
+@media (max-width:860px){.psheet.deskmode{position:fixed;inset:0;overflow:auto;padding:8px}.dkbar{height:auto;flex-wrap:wrap;padding:6px 10px}.dk-tools input{width:80px}}
+
 /* book revealed under the opening cover */
 .book.reveal{animation:bookIn 1s ease-out .1s both}
 @keyframes bookIn{from{opacity:0;transform:scale(.985)}}
@@ -1110,7 +1169,7 @@ function postcard(kind){
 const STAMPS=[['legende','LÉGENDE','#5b3a78'],['explique','EXPLIQUÉ','#2c4d78'],['nonprouve','NON PROUVÉ','#9a6a12'],['mystere','MYSTÈRE','#a3322a']];
 const LAB={legende:'LÉGENDE',explique:'EXPLIQUÉ',nonprouve:'NON PROUVÉ',mystere:'VRAI MYSTÈRE'};
 const EP={
- sacsay:{id:'sacsay',no:'01',name:'Sacsayhuamán',place:'Cusco, Pérou',plate:'Cas 01 · Sacsayhuamán · 3 700 m',mus:'andes',atelier:'joint',frag:1,v2:true,
+ sacsay:{id:'sacsay',no:'01',name:'Sacsayhuamán',place:'Cusco, Pérou',plate:'Cas 01 · Sacsayhuamán · 3 700 m',mus:'andes',atelier:'joint',frag:1,v2:true,v3:true,
   pro:{folio:['Carnet de Graham Hancock','Cusco · Pérou'],title:'Sacsayhuamán',sub:'Les murs au-dessus de Cusco',
     left:`<figure class="engr"><span class="tape tl"></span><span class="tape tr"></span><img src="img/squier-vue.jpg" alt="Gravure de 1877 : vue d'ensemble des murs de Sacsayhuamán"><div class="cap">Gravure d'E. G. Squier, 1877. Glissée entre deux pages.</div></figure>`,
     note:"Le plus gros bloc me dépasse de trois têtes. Pas de mortier. Un conquistador a écrit qu'on ne pouvait pas glisser une épingle dans ces joints. Mon canif non plus.",
@@ -1265,20 +1324,22 @@ const LBL={sacsay:[-14,34,'end'],nanmadol:[14,8,'start'],sirius:[-14,26,'end'],d
 /* =================================================================== STATE */
 const G={done:{},last:null};
 let S=null,E=null,busy=false;
-function fresh(id){return {id,cur:0,max:0,found:new Set(),tools:[],h:[35,35,35],lifts:0,strikes:0,joined:false,jointInit:false,raft:null,raftInit:false,verdict:{},sealed:false,sel:null,rot:{},keys:new Set(),items:new Set(),pen:0,wonder:0,unlocked:false};}
+function fresh(id){return {id,cur:0,max:0,found:new Set(),tools:[],h:[35,35,35],lifts:0,strikes:0,joined:false,jointInit:false,raft:null,raftInit:false,verdict:{},sealed:false,sel:null,rot:{},keys:new Set(),items:new Set(),pen:0,wonder:0,unlocked:false,obs:[],ev:new Set(['pizarro','fawcett','chron']),desk:null,lp:null,ov:{ok:false},anom:false,jmode:'band',jres:{band:null,full:null},jstart:0,concl:null,pins:{},solved:false,hints:{}};}
 S=fresh(null);S.cur=0;
 const atelierDone=()=>E&&(E.atelier==='joint'?S.joined:!!(S.raft&&S.raft.ok));
 function rigueur(){if(!E)return 0;let r=S.found.size*5+(E.v2?S.keys.size*8+(S.unlocked?10:0)-S.pen*2:S.tools.length*5)+(atelierDone()?25:0)+(S.max>=6?5:0);
   if(S.sealed){const nm=E.claims.filter(c=>c.ok!=='mystere');nm.forEach(c=>{if(S.verdict[c.id]===c.ok)r+=Math.round(40/nm.length);});}return clamp(r);}
 function merveille(){if(!E)return 20;let m=20+(atelierDone()?20:0)+(S.wonder||0)+(S.unlocked?5:0);if(S.sealed){const c=E.claims.find(c=>c.ok==='mystere');if(S.verdict[c.id]==='mystere')m+=60;}return clamp(m);}
 function hyp(dh){dh.forEach((d,i)=>S.h[i]=clamp(S.h[i]+d));}
-function canLeave(n){return n===1||(n===2&&S.found.size===4)||(n===3&&(E.v2?S.keys.size>=2:S.tools.length===2))||(n===4&&atelierDone())||n===5||(n===6&&S.sealed);}
+function canLeave(n){if(E&&E.v3)return n===1||(n===2&&S.anom)||n===3||(n===4&&(S.joined||!!S.jres.band))||(n===5&&S.solved);return n===1||(n===2&&S.found.size===4)||(n===3&&(E.v2?S.keys.size>=2:S.tools.length===2))||(n===4&&atelierDone())||n===5||(n===6&&S.sealed);}
 function curMusic(){return S.cur===0||!E?'atlas':E.mus;}
 function chrome(){
   const r=rigueur(),m=merveille();
   $('#vR').style.setProperty('--v',Math.max(4,r)+'%');$('#vR b').textContent=r;$('#vM').style.setProperty('--v',Math.max(4,m)+'%');$('#vM b').textContent=m;
   {const ct=$('#ctab');if(ct){ct.hidden=!(E&&CT()[E.id]);ct.textContent=CT().tab;}}
-  $$('.tab').forEach(t=>{const n=+t.dataset.to;t.hidden=n>0&&!E;t.disabled=n>0&&n>S.max;t.classList.toggle('now',n===S.cur||(n===0&&S.cur===0));});
+  {const TL=E&&E.v3?V3T().tabs:tr('tabs');$$('.tab').forEach((b,i)=>{if(TL[i]&&b.innerHTML!==TL[i])b.innerHTML=TL[i];});}
+  if(typeof v3Save==='function')v3Save();
+  $$('.tab').forEach(t=>{const n=+t.dataset.to;t.hidden=n>0&&!E;t.disabled=E&&E.v3?(n===6&&!S.solved):(n>0&&n>S.max);t.classList.toggle('now',n===S.cur||(n===0&&S.cur===0));});
   $$('.spr').forEach(s=>{const n=+s.dataset.n,b=s.querySelector('.dogear.next');if(b&&n>0)b.hidden=!canLeave(n);});
 }
 
@@ -1363,7 +1424,7 @@ function endSpread(e){return `<section class="spr" data-n="7" hidden>
    <div class="postcard">${postcard(e.next.art)}<div class="pc-r"><span class="stampsq"></span><span style="margin-top:58px">${tr('nextPage')}</span><b style="font-size:26px">${e.next.label}</b><span>${e.next.txt}</span></div></div>
    <div class="controls"><button class="lbl red" id="toAtlas">${tr('toAtlas')}</button><button class="lbl" id="replay">${tr('replay')}</button></div>
    <div class="credits"><b>${tr('credits')}</b> (Wikimedia Commons) : ${e.credits.map(([a,l,u])=>`<a href="${u}" target="_blank" rel="noopener">${a}</a> (${credLic(l)})`).join(', ')}.</div>${pageno(14)}</div></section>`;}
-function buildEpisode(e){$$('.spr').forEach(s=>{if(+s.dataset.n>0)s.remove();});$('#stack').insertAdjacentHTML('beforeend',proSpread(e)+obsSpread(e)+(e.v2?pistesSpread(e):measSpread(e))+ateSpread(e)+debSpread(e)+verSpread(e)+endSpread(e));wireEpisode();}
+function buildEpisode(e){$$('.spr').forEach(s=>{if(+s.dataset.n>0)s.remove();});$('#stack').insertAdjacentHTML('beforeend',proSpread(e)+(e.v3?bureauSpread(e):obsSpread(e))+(e.v2?pistesSpread(e):measSpread(e))+ateSpread(e)+(e.v3?dossierSpread(e)+rewardSpread(e):debSpread(e)+verSpread(e))+endSpread(e));wireEpisode();}
 function rebuildAtlas(){const old=$('.spr[data-n="0"]');const hid=old?old.hidden:false;if(old)old.remove();$('#stack').insertAdjacentHTML('afterbegin',atlasSpread());$('.spr[data-n="0"]').hidden=hid;}
 
 /* =================================================================== NAVIGATION */
@@ -1371,9 +1432,9 @@ const spr=n=>$(`.spr[data-n="${n}"]`);
 function show(n){$$('.spr').forEach(s=>s.hidden=+s.dataset.n!==n);}
 function cloneP(p){const c=p.cloneNode(true);c.querySelectorAll('[id]').forEach(x=>x.removeAttribute('id'));c.querySelectorAll('.dogear').forEach(x=>x.remove());
   const o=p.querySelectorAll('canvas'),k=c.querySelectorAll('canvas');k.forEach((cv,i)=>{try{cv.getContext('2d').drawImage(o[i],0,0);}catch(err){}});c.setAttribute('aria-hidden','true');return c;}
-function enter(n){if(n===0)rebuildAtlas();if(n===2)renderWall();if(n===3)(E.v2?renderPistes():renderTools());if(n===4){initAtelier();v2Gate();}if(n===5)renderVoices();if(n===6)renderClaims();if(n===7)(E.v2?renderEndV2():renderEnd());}
+function enter(n){if(n===0)rebuildAtlas();if(n===2)(E.v3?renderBureauPage():renderWall());if(n===3)(E.v2?renderPistes():renderTools());if(n===4){initAtelier();v2Gate();v3Atelier();}if(n===5)(E.v3?renderDossier():renderVoices());if(n===6)(E.v3?renderReward():renderClaims());if(n===7)(E.v2?renderEndV2():renderEnd());}
 function goTo(n,cb){
-  if(busy||n===S.cur)return;const from=S.cur;if(n>0)S.max=Math.max(S.max,n);
+  if(busy||n===S.cur)return;if(typeof vlog==='function')vlog('page',{n});const from=S.cur;if(n>0)S.max=Math.max(S.max,n);
   if(from===4)stopRaftLoop();
   enter(n);play('flip');
   const doneTurn=()=>{S.cur=n;chrome();music(curMusic());if(n===4&&E&&E.atelier==='raft')startRaftLoop();cb&&cb();};
@@ -1393,7 +1454,7 @@ function goTo(n,cb){
 function openCase(id){
   if(busy||!EPS()[id])return;
   const from=G.last&&MAP.pts[G.last]&&G.last!==id?MAP.pts[G.last]:null,to=MAP.pts[id];
-  const go=()=>{E=EPS()[id];S=fresh(id);S.cur=0;S.max=1;buildEpisode(E);G.last=id;goTo(1);if(CT()[id])setTimeout(()=>{if(S&&S.id===id&&!S.ctxSeen)openCtx(true);},1250);};
+  const go=()=>{E=EPS()[id];const sv=E.v3?v3Load(id):null;S=sv||fresh(id);S.cur=0;S.max=Math.max(1,sv?sv.max:1);S.jointInit=false;if(sv)vlog('resume',{id});vlog('case_open',{id});buildEpisode(E);G.last=id;goTo(1);if(CT()[id])setTimeout(()=>{if(S&&S.id===id&&!S.ctxSeen)openCtx(true);},1250);};
   const route=$('#route'),trav=$('#traveler');
   if(!route||reduce){go();return;}
   play('route');
@@ -1533,6 +1594,8 @@ function makePats(ctx){const mk=(base,ang,seed)=>{const c=document.createElement
 function paperGrid(ctx,w,h){ctx.fillStyle='#f4ecda';ctx.fillRect(0,0,w,h);ctx.strokeStyle='rgba(44,77,120,.12)';ctx.lineWidth=1;for(let x=0;x<w;x+=20){ctx.beginPath();ctx.moveTo(x+.5,0);ctx.lineTo(x+.5,h);ctx.stroke();}for(let y=0;y<h;y+=20){ctx.beginPath();ctx.moveTo(0,y+.5);ctx.lineTo(w,y+.5);ctx.stroke();}}
 function drawJoint(){
   const cv=$('#ateCv');if(!cv)return;const ctx=cv.getContext('2d'),w=cv.width,h=cv.height;if(!pats)pats=makePats(ctx);paperGrid(ctx,w,h);const g=gaps();
+  if(E&&E.v3){const bx=px(200);ctx.fillStyle=S.jmode==='band'?'rgba(163,50,42,.12)':'rgba(163,50,42,.05)';ctx.fillRect(px(0),0,bx-px(0),h-34);ctx.strokeStyle='rgba(163,50,42,.6)';ctx.setLineDash([5,4]);ctx.beginPath();ctx.moveTo(bx,0);ctx.lineTo(bx,h-34);ctx.stroke();ctx.setLineDash([]);
+    ctx.fillStyle='#a3322a';ctx.font='13px "Courier Prime", monospace';ctx.fillText(V3T().jFace,px(4),h-40);ctx.fillText(V3T().jIn,px(1500),h-40);}
   ctx.beginPath();ctx.moveTo(px(0),py(yl(0)));for(let i=0;i<N;i++){const x=i*L/(N-1);ctx.lineTo(px(x),py(yl(x)));}ctx.lineTo(px(L),h-34);ctx.lineTo(px(0),h-34);ctx.closePath();ctx.fillStyle=pats.lo;ctx.fill();ctx.strokeStyle='#2b2219';ctx.lineWidth=1.8;ctx.stroke();
   ctx.beginPath();ctx.moveTo(px(0),40-lift*.3);ctx.lineTo(px(900),22-lift*.3);ctx.lineTo(px(L),46-lift*.3);for(let i=N-1;i>=0;i--){const x=i*L/(N-1);ctx.lineTo(px(x),py(yl(x))-Math.min(g[i]*EX,90)-lift);}ctx.closePath();ctx.fillStyle=pats.hi;ctx.fill();ctx.stroke();
   ctx.globalAlpha=stale?.4:1;ctx.fillStyle='#a3322a';marks.forEach(i=>{const x=i*L/(N-1);ctx.beginPath();ctx.arc(px(x),py(yl(x))-Math.min(g[i]*EX,90)-lift-2,3.6,0,Math.PI*2);ctx.fill();});ctx.globalAlpha=1;
@@ -1545,9 +1608,10 @@ function wireJoint(){
   const pb=$('#poseBtn'),lb=$('#liftBtn'),cv=$('#ateCv');if(!pb||pb.dataset.w)return;pb.dataset.w=1;
   if(S.joined){pb.disabled=true;lb.disabled=true;}
   pb.onclick=()=>{liftT=0;S.lifts++;tallies();setTimeout(()=>play('drop'),reduce?0:220);
-    const g=gaps();marks=[];g.forEach((v,i)=>{if(v<.35)marks.push(i);});stale=false;const mg=Math.max(...g),frac=g.filter(v=>v>1.2).length/N;
-    $('#maxgap').textContent=dec(mg,1)+' mm';$('#blade').textContent=Math.round(frac*L/10)+' cm'+(frac<=.04?'':tr('jGoal'));pb.disabled=true;
-    if(frac<=.04){S.joined=true;hyp([25,-10,20]);$('#amsg').textContent=tr('jDone')(S.lifts);lb.disabled=true;setTimeout(()=>play('fanfare'),500);chrome();}
+    const g=gaps();marks=[];g.forEach((v,i)=>{if(v<.35)marks.push(i);});stale=false;const gs=(E&&E.v3)?g.slice(0,jSpan()+1):g,mg=Math.max(...gs),frac=gs.filter(v=>v>1.2).length/gs.length;
+    $('#maxgap').textContent=dec(mg,1)+' mm';$('#blade').textContent=Math.round(frac*((E&&E.v3&&S.jmode==='band')?200:L)/10)+' cm'+(frac<=.04?'':(E&&E.v3&&S.jmode==='band'?'':tr('jGoal')));
+    if(E&&E.v3&&S.jmode==='full'&&frac>.04){const n=S.lifts-(S.jstart||0);S.jres.full={n,done:false};if(n>=(S.jres.band||5)+3)addEv('jfull');}pb.disabled=true;
+    if(frac<=.04){S.joined=true;hyp([25,-10,20]);$('#amsg').textContent=tr('jDone')(S.lifts);lb.disabled=true;setTimeout(()=>play('fanfare'),500);if(E&&E.v3)v3JointDone();chrome();}
     else{lb.disabled=false;$('#amsg').textContent=tr('jMarks');}run();};
   lb.onclick=()=>{liftT=70;play('lift');lb.disabled=true;pb.disabled=false;$('#amsg').textContent=tr('jLifted');run();};
   cv.addEventListener('click',ev=>{if(S.joined)return;if(lift<60){play('nope');$('#amsg').textContent=tr('jNeed');return;}
@@ -1905,7 +1969,7 @@ function pCal(){const t=VT(),d=t.cal;const st=S.cal=S.cal||{x:40,y:250,r:-40,ok:
   if(st.ok)$('#cMsg').textContent=d.ok;}
 
 /* atelier gate: no hammerstone, no strike */
-function v2Gate(){const R=$('.spr[data-n="4"] .page.R');if(!R)return;R.querySelector('.gate')?.remove();if(!E.v2||S.items.has('galet'))return;
+function v2Gate(){const R=$('.spr[data-n="4"] .page.R');if(!R)return;R.querySelector('.gate')?.remove();if(!E.v2||E.v3||S.items.has('galet'))return;
   const g=document.createElement('div');g.className='gate';g.innerHTML=`<div>${ITEMSVG.galet}<p class="hand" style="font-size:22px">${VT().gate}</p><button class="lbl red">${VT().gateBtn}</button></div>`;
   g.querySelector('button').onclick=()=>goTo(3);R.appendChild(g);}
 
@@ -1931,6 +1995,275 @@ function renderEndV2(){const t=VT(),L=$('.spr[data-n="7"] .page.L'),R=$('.spr[da
      <div class="ghq"><b>${t.gh}</b> ${t.ghq}</div><div class="tiny">${tr('frag')(E.frag)} · ${t.skyT}</div><p class="fragment" style="font-size:21px">${t.sky}</p>`
     :`<div class="sealbox">${waxSeal()}<p class="hand" style="font-size:22px">${t.sealedR}</p></div>`;
   R.prepend(box);R.querySelectorAll(':scope > .tiny, :scope > .fragment').forEach(x=>x.hidden=true);R.querySelector('.postcard').hidden=!S.unlocked;R.querySelector('.controls').hidden=!S.unlocked;}
+
+/* =================================================================== V3 · L'ENQUÊTE : bureau, atelier, dossier (Sacsayhuamán) */
+const V3={
+ fr:{tabs:['Atlas','<b>I</b>&nbsp;Bureau','<b>II</b>&nbsp;Pistes','<b>III</b>&nbsp;Atelier','<b>IV</b>&nbsp;Dossier','<b>V</b>&nbsp;Page de Graham'],
+  bF:['I · Le bureau','Documents de Graham'],bT:'Le bureau',bS:'Tout ce que Graham a rassemblé sur un seul joint.',
+  bNote:"« Deux relevés du même mur. Je n'arrive pas à les faire tenir ensemble. » — G. H.",
+  openDesk:'Ouvrir le bureau',obsT:'Mes observations',obsS:'Ce que j\'ai vu de mes yeux, et d\'où ça vient.',none:'Rien de noté pour l\'instant.',
+  sources:'Sources et méthode',hint:'Un indice',noHint:'Pas d\'indice ici pour l\'instant.',
+  docs:{face:'Photo : la face du mur nord',coupe:'Coupe relevée sous un bloc déplacé',lit:'Relevé du lit de pose (bloc du dessous)',calque:'Calque : dessous du bloc du dessus',envelope:'Enveloppe : « relevés du lit »'},
+  docNote:{coupe:'Relevé reconstitué pour le jeu, d\'après les observations publiées sur la maçonnerie inca.',lit:'Relevé reconstitué pour le jeu. Échelle 1:20.',calque:'Relevé reconstitué pour le jeu. Échelle 1:40.'},
+  tools:{loupe:'Loupe',rot:'Tourner',zoom:'Taille',op:'Transparence',reset:'Ranger',close:'Refermer le bureau'},
+  found:{tight:'Aucune lame ne passe ici.',pits:'Des milliers d\'impacts.',bevel:'Arêtes en retrait. Pourquoi ?',bevel2:'Arêtes en retrait : c\'est la bande ajustée, vue de face !',contact:'Ici, les pierres se touchent.',void:'Derrière : vide !',shims:'Des éclats calent le vide.'},
+  anomaly:'« La face dit : joint parfait. La coupe dit : joint vide. Les deux ne peuvent pas avoir tort. Il faut voir où les pierres se touchent vraiment. » L\'enveloppe des relevés du lit s\'ouvre.',
+  overlayOk:'Les deux bords de face coïncident et les marques de contact se superposent : les pierres ne se touchent que sur une bande d\'une vingtaine de centimètres côté face. Derrière, le joint s\'ouvre. La face peut être parfaite et l\'intérieur vide : l\'anomalie s\'explique.',
+  hints:{anom:['Promène la loupe sur chaque document. Pas seulement sur la photo.','Compare ce que montre la face et ce que montre la coupe au même endroit du joint.','La loupe s\'arrête sur un détail : garde-la immobile un instant sur le joint de la photo, puis sur l\'arrière de la coupe.'],
+    over:['Les deux relevés ne sont pas dessinés à la même échelle. Regarde leurs barres « 1 m ».','Agrandis le calque jusqu\'à ce que sa barre « 1 m » ait la même longueur que celle du lit, puis tourne-le.','Le bord marqué « face » du calque doit tomber sur le bord « face » du lit.']},
+  ev:{tight:['Face : joint parfait','Sur la face visible, la lame ne passe nulle part.','observation'],
+   pits:['Surface piquetée','Des milliers d\'impacts : la pierre a été frappée, ni coupée ni moulée.','observation'],
+   void:['Vide derrière la face','Sous un bloc déplacé, le joint s\'ouvre derrière la face ; des éclats calent le vide.','observation (relevé reconstitué)'],
+   band:['Contact sur la seule bande avant','Les relevés superposés : les pierres ne se touchent que sur environ 20 cm côté face.','déduction'],
+   jband:['Atelier : bande avant fermée','La bande visible se ferme en {n} levages.','expérience (simulation)'],
+   jfull:['Atelier : toute la profondeur','Toute la profondeur : {n} levages{d}.','expérience (simulation)'],
+   bevel:['Arêtes en retrait','Vues de face, les arêtes rentrent vers le joint : la bande ajustée se lit sur la photo.','observation et déduction'],
+   pizarro:['Pedro Pizarro, 1571','« On n\'aurait pu insérer la pointe d\'une épingle dans un joint. » Il décrit ce qu\'il voit : la face.','source primaire'],
+   fawcett:['Percy Fawcett, 1953','Un oiseau percerait la roche avec le suc d\'une plante. Histoire entendue, jamais vérifiée.','ouï-dire'],
+   chron:['Ce que disent les chroniques','Cieza, Pizarro et Garcilaso décrivent les murs et la main-d\'œuvre. Aucun ne décrit la technique d\'ajustage.','note de Graham']},
+  jMode:'Objectif',jBand:'Fermer la bande visible (20 cm)',jFull:'Fermer toute la profondeur',jAgain:'Recommencer avec l\'autre objectif',
+  jFace:'face visible',jIn:'intérieur →',jDoneBand:n=>`La bande visible est fermée en ${n} levages. Vue de face, le joint est parfait. Et si tu regardais de nouveau les arêtes de la photo, au bureau ?`,jDoneFull:n=>`Toute la profondeur est fermée, mais en ${n} levages.`,
+  dF:['IV · Le dossier','Ce que je peux démontrer'],dT:'Le dossier',dS:'Choisis une conclusion, puis défends-la avec les pièces.',
+  concl:[['plausible','Ajustés par percussion et essais successifs, sur la seule bande visible : une méthode plausible, compatible avec toutes les traces, mais non démontrée historiquement.'],
+   ['certain','Les Incas ont certainement ajusté les blocs par essais successifs.'],
+   ['soft','La pierre a été ramollie puis moulée sur place.'],
+   ['machine','Les blocs ont été usinés avec une précision mécanique sur toute leur surface.']],
+  pieces:'Les pièces',support:'À l\'appui',limit:'Limite',missing:'Pièce encore à trouver',present:'Présenter le dossier',
+  err:{pick:'Choisis d\'abord une conclusion.',certain:'« Certainement » : aucune pièce ne montre ce qui a été fait au XVe siècle. Ton atelier montre ce qui est possible, pas ce qui est arrivé.',
+   soft:'La surface piquetée montre des coups, et le vide derrière la face resterait plein si une pâte avait été moulée.',
+   machine:'La coupe et la superposition montrent que les pierres ne se touchent que sur la bande avant.',
+   needBand:'Il manque la pièce qui montre où les pierres se touchent vraiment.',needExp:'Il manque un résultat d\'expérience.',
+   hearsay:'Fawcett rapporte une histoire entendue : elle ne peut pas appuyer un raisonnement.',limit:'« Non démontrée » : quelle pièce montre cette limite ?',thin:'Ajoute au moins une observation du mur.',
+   wrongLimit:'Cette pièce n\'est pas une limite : elle appuie la conclusion.'},
+  ok:'Le dossier tient.',okMore:'Tu as démontré ce qui est plausible, et montré ce qui ne l\'est pas encore. La page que Graham avait scellée s\'ouvre.',
+  rF:['V · La page de Graham','Le sceau a cédé'],rT:'Ce que j\'ai compris',rLead:'Ta conclusion, pièces à l\'appui :',
+  newQ:'Reste une question',newQT:'Pour chaque essai, le bloc du dessus est soulevé, puis reposé. Avec 128 tonnes, comment ? Personne ne l\'a encore reproduit. La piste des haleurs commence ici.',
+  log:'Journal de session (playtest)'},
+ en:{tabs:['Atlas','<b>I</b>&nbsp;Desk','<b>II</b>&nbsp;Leads','<b>III</b>&nbsp;Workshop','<b>IV</b>&nbsp;Case file','<b>V</b>&nbsp;Graham\'s page'],
+  bF:['I · The desk','Graham\'s documents'],bT:'The desk',bS:'Everything Graham gathered about a single joint.',
+  bNote:'"Two surveys of the same wall. I can\'t make them agree." — G. H.',
+  openDesk:'Open the desk',obsT:'My observations',obsS:'What I saw for myself, and where it comes from.',none:'Nothing noted yet.',
+  sources:'Sources and method',hint:'A hint',noHint:'No hint here for now.',
+  docs:{face:'Photo: the face of the north wall',coupe:'Section drawn under a displaced block',lit:'Survey of the bed (lower block)',calque:'Tracing: underside of the upper block',envelope:'Envelope: "bed surveys"'},
+  docNote:{coupe:'Survey reconstructed for the game, after published observations of Inca masonry.',lit:'Survey reconstructed for the game. Scale 1:20.',calque:'Survey reconstructed for the game. Scale 1:40.'},
+  tools:{loupe:'Magnifier',rot:'Turn',zoom:'Size',op:'Transparency',reset:'Tidy',close:'Close the desk'},
+  found:{tight:'No blade gets in here.',pits:'Thousands of impacts.',bevel:'Recessed edges. Why?',bevel2:'Recessed edges: that is the fitted band, seen from the front!',contact:'Here the stones touch.',void:'Behind: a void!',shims:'Chips wedge the gap.'},
+  anomaly:'"The face says: perfect joint. The section says: open joint. They can\'t both be wrong. I need to see where the stones really touch." The envelope of bed surveys opens.',
+  overlayOk:'The two face edges coincide and the contact marks line up: the stones only touch along a band of about twenty centimetres on the face side. Behind it, the joint opens. The face can be perfect and the inside hollow: the anomaly is explained.',
+  hints:{anom:['Move the magnifier over every document. Not just the photo.','Compare what the face shows and what the section shows at the same place in the joint.','The magnifier settles on a detail: hold it still for a moment on the photo\'s joint, then on the back of the section.'],
+    over:['The two surveys are not drawn at the same scale. Look at their "1 m" bars.','Enlarge the tracing until its "1 m" bar is as long as the bed\'s, then turn it.','The edge marked "face" on the tracing must land on the bed\'s "face" edge.']},
+  ev:{tight:['Face: perfect joint','On the visible face, the blade gets in nowhere.','observation'],
+   pits:['Pitted surface','Thousands of impacts: the stone was struck, neither cut nor moulded.','observation'],
+   void:['A void behind the face','Under a displaced block, the joint opens behind the face; stone chips wedge the gap.','observation (reconstructed survey)'],
+   band:['Contact on the front band only','The overlaid surveys: the stones touch only along about 20 cm on the face side.','deduction'],
+   jband:['Workshop: front band closed','The visible band closes in {n} lifts.','experiment (simulation)'],
+   jfull:['Workshop: full depth','Full depth: {n} lifts{d}.','experiment (simulation)'],
+   bevel:['Recessed edges','Seen from the front, the edges curve back into the joint: the fitted band shows on the photo.','observation and deduction'],
+   pizarro:['Pedro Pizarro, 1571','"The point of a pin could not have been inserted in one of the joints." He describes what he sees: the face.','primary source'],
+   fawcett:['Percy Fawcett, 1953','A bird bores into rock with the juice of a plant. A story heard second-hand, never checked.','hearsay'],
+   chron:['What the chronicles say','Cieza, Pizarro and Garcilaso describe the walls and the workforce. None describes the fitting technique.','Graham\'s note']},
+  jMode:'Goal',jBand:'Close the visible band (20 cm)',jFull:'Close the full depth',jAgain:'Start again with the other goal',
+  jFace:'visible face',jIn:'inside →',jDoneBand:n=>`The visible band is closed in ${n} lifts. From the front, the joint is perfect. What if you looked again at the edges in the photo, on the desk?`,jDoneFull:n=>`The full depth is closed, but it took ${n} lifts.`,
+  dF:['IV · The case file','What I can show'],dT:'The case file',dS:'Pick a conclusion, then defend it with the evidence.',
+  concl:[['plausible','Fitted by pounding and repeated trial, on the visible band only: a plausible method, consistent with every trace, but not historically proven.'],
+   ['certain','The Incas certainly fitted the blocks by repeated trial.'],
+   ['soft','The stone was softened, then moulded in place.'],
+   ['machine','The blocks were machined to mechanical precision over their whole surface.']],
+  pieces:'The evidence',support:'Supports',limit:'Limit',missing:'Evidence still to find',present:'Present the case',
+  err:{pick:'Pick a conclusion first.',certain:'"Certainly": no evidence shows what was done in the 15th century. Your workshop shows what is possible, not what happened.',
+   soft:'The pitted surface shows blows, and the void behind the face would be filled if a paste had been moulded.',
+   machine:'The section and the overlay show that the stones touch only along the front band.',
+   needBand:'You are missing the evidence that shows where the stones really touch.',needExp:'You are missing an experimental result.',
+   hearsay:'Fawcett reports a story he heard: it cannot support an argument.',limit:'"Not proven": which piece shows that limit?',thin:'Add at least one observation of the wall.',
+   wrongLimit:'That piece is not a limit: it supports the conclusion.'},
+  ok:'The case holds.',okMore:'You have shown what is plausible, and what is not yet proven. The page Graham sealed opens.',
+  rF:['V · Graham\'s page','The seal gave way'],rT:'What I understood',rLead:'Your conclusion, with its evidence:',
+  newQ:'One question remains',newQT:'For every trial, the upper block is lifted, then set down again. At 128 tonnes, how? No one has reproduced it yet. The haulers\' lead starts here.',
+  log:'Session log (playtest)'}};
+const V3T=()=>V3[LANG]||V3.fr;
+
+/* --- telemetry: events only, no personal data --- */
+const VLOG=[];const VT0=performance.now();
+function vlog(ev,d){VLOG.push(Object.assign({t:Math.round(performance.now()-VT0),ev},d||{}));}
+window.vestigesLog=()=>JSON.parse(JSON.stringify(VLOG));
+document.addEventListener('pointerdown',()=>{if(!VLOG.some(e=>e.ev==='first_input'))vlog('first_input');},{capture:true});
+
+/* --- save / restore (one case) --- */
+function v3Save(){if(!E||!E.v3||!S)return;try{const o={};for(const[k,v]of Object.entries(S))o[k]=v instanceof Set?{__set:[...v]}:v;localStorage.setItem('ghn-save-'+E.id,JSON.stringify(o));}catch(e){}}
+function v3Load(id){try{const o=JSON.parse(localStorage.getItem('ghn-save-'+id)||'null');if(!o)return null;const s=fresh(id);for(const[k,v]of Object.entries(o))s[k]=v&&v.__set?new Set(v.__set):v;return s;}catch(e){return null;}}
+function v3Clear(id){try{localStorage.removeItem('ghn-save-'+id);}catch(e){}}
+
+/* --- evidence --- */
+const EVORDER=['tight','pits','void','band','jband','jfull','bevel','pizarro','fawcett','chron'];
+function evCard(id){const e=V3T().ev[id];if(!e)return null;let d=e[1];if(id==='jband')d=d.replace('{n}',S.jres.band||'?');if(id==='jfull')d=d.replace('{n}',(S.jres.full&&S.jres.full.n)||'?').replace('{d}',S.jres.full&&S.jres.full.done?'':LANG==='en'?' and still open':' et toujours ouvert');return {id,t:e[0],d,k:e[2]};}
+function addEv(id){if(S.ev.has(id))return;S.ev.add(id);vlog('evidence',{id});play('paste');}
+
+/* ============ I · THE DESK ============ */
+function bureauSpread(e){const t=V3T();return `<section class="spr" data-n="2" hidden>
+  <div class="page L"><div class="folio"><span>${t.bF[0]}</span><span>${t.bF[1]}</span></div><h2 class="ptitle">${t.bT}<small>${t.bS}</small></h2>
+   <button class="deskthumb" id="openDesk"><span class="dt dt1"><img src="img/mur-joints.jpg" alt=""></span><span class="dt dt2">${svgCoupe(true)}</span><span class="dt dt3" id="dtEnv">${svgEnvelope()}</span><b>${t.openDesk}</b></button>
+   <p class="hand" style="font-size:22px">${t.bNote}</p>${pageno(3)}${prev()}</div>
+  <div class="page R"><div class="folio"><span>${t.obsT}</span><button class="srcbtn" id="srcBtn">${t.sources}</button></div><h2 class="ptitle">${t.obsT}<small>${t.obsS}</small></h2>
+   <div class="evlist" id="evlist"></div><div class="hintbox"><button class="lbl" id="hintBtn">${t.hint}</button><p class="hand" id="hintTxt" style="font-size:19px"></p></div>${pageno(4)}${next(tr('turn'),1)}</div></section>`;}
+function renderEvList(box,only){const t=V3T();box.innerHTML='';const ids=EVORDER.filter(id=>S.ev.has(id)&&(!only||only.includes(id)));
+  if(!ids.length){box.innerHTML=`<p class="empty">${t.none}</p>`;return;}
+  ids.forEach(id=>{const c=evCard(id);const d=document.createElement('div');d.className='evc k-'+id;d.innerHTML=`<b>${c.t}</b><span>${c.d}</span><i>${c.k}</i>`;box.appendChild(d);});}
+function renderBureauPage(){const box=$('#evlist');if(!box)return;renderEvList(box);$('#openDesk').onclick=()=>openDesk();$('#hintBtn').onclick=hintStep;$('#srcBtn').onclick=openSources;
+  $('#dtEnv').classList.toggle('open',!!S.anom);chrome();}
+function hintStep(){const t=V3T(),k=!S.anom?'anom':!S.ov.ok?'over':null;if(!k){$('#hintTxt').textContent=t.noHint;return;}S.hints[k]=Math.min(3,(S.hints[k]||0)+1);$('#hintTxt').textContent=t.hints[k][S.hints[k]-1];vlog('hint',{k,level:S.hints[k]});chrome();}
+
+/* drawings (reconstructed surveys, labelled as such) */
+function svgCoupe(thumb){return `<svg viewBox="0 0 600 380" class="docsvg"><rect width="600" height="380" fill="#f3ead6"/>
+ <g stroke="#b9a882" stroke-width=".6">${Array.from({length:15},(_,i)=>`<path d="M${i*40} 0V380"/>`).join('')}${Array.from({length:10},(_,i)=>`<path d="M0 ${i*40}H600"/>`).join('')}</g>
+ <path d="M60 60 L540 50 L560 175 L330 186 L150 190 L60 190 Z" fill="#ddd1b2" stroke="#2b2219" stroke-width="2"/>
+ <path d="M60 192 L150 192 C230 205 330 214 420 212 C480 210 530 204 560 198 L560 330 L60 330 Z" fill="#c9bb98" stroke="#2b2219" stroke-width="2"/>
+ <path d="M150 191 C230 204 330 212 420 210 C480 208 530 202 560 196 L560 177 L330 187 Z" fill="#2b2219" fill-opacity=".72"/>
+ ${[[210,197,5],[262,201,6],[318,203,5],[375,204,7],[440,203,5],[500,199,6]].map(([x,y,r])=>`<ellipse cx="${x}" cy="${y}" rx="${r+3}" ry="${r-1}" fill="#a9a08c" stroke="#2b2219" stroke-width="1"/>`).join('')}
+ <path d="M60 50 V340" stroke="#a3322a" stroke-width="2" stroke-dasharray="6 5"/><text x="66" y="44" font-family="Courier Prime,monospace" font-size="14" fill="#a3322a">face</text>
+ <path d="M60 352 H160" stroke="#2b2219" stroke-width="3"/><text x="60" y="372" font-family="Courier Prime,monospace" font-size="13" fill="#2b2219">50 cm</text>
+ ${thumb?'':`<text x="300" y="30" text-anchor="middle" font-family="Cedarville Cursive,cursive" font-size="17" fill="#26304f">coupe A–A'</text>`}</svg>`;}
+function svgEnvelope(){return `<svg viewBox="0 0 200 140" class="docsvg"><rect x="4" y="10" width="192" height="120" rx="4" fill="#d9c79c" stroke="#7a6438" stroke-width="2"/><path class="flap" d="M4 12 L100 78 L196 12" fill="#cdb98b" stroke="#7a6438" stroke-width="2"/><circle cx="100" cy="78" r="13" fill="#9b2b1f"/></svg>`;}
+const LIT={W:420,H:300,face:[[40,250],[150,262],[270,256],[380,244]],bar:100};
+function svgLit(){const f=LIT.face;return `<svg viewBox="0 0 ${LIT.W} ${LIT.H}" class="docsvg"><rect width="${LIT.W}" height="${LIT.H}" fill="#efe6cf"/>
+ <path d="M${f[0]} L50 60 L180 34 L330 50 L396 120 ${f.slice().reverse().map(p=>'L'+p).join(' ')} Z" fill="#d7c9a6" stroke="#2b2219" stroke-width="2"/>
+ <path d="M${f.map(p=>p).join(' L')}" stroke="#a3322a" stroke-width="3" fill="none"/>
+ <path d="M44 236 C140 248 270 242 376 230 L380 244 C270 256 150 262 40 250Z" fill="#a3322a" fill-opacity=".28"/>
+ ${Array.from({length:26},(_,i)=>`<circle cx="${52+i*12.6}" cy="${244+Math.sin(i*1.3)*3}" r="1.8" fill="#a3322a"/>`).join('')}
+ <path d="M120 200 C170 150 250 140 320 170" stroke="#7d6a48" stroke-width="1.2" stroke-dasharray="4 4" fill="none"/>
+ <text x="150" y="284" font-family="Courier Prime,monospace" font-size="13" fill="#a3322a">face</text>
+ <path d="M24 22 H${24+LIT.bar}" stroke="#2b2219" stroke-width="3"/><text x="24" y="16" font-family="Courier Prime,monospace" font-size="12" fill="#2b2219">1 m</text></svg>`;}
+const CAL={W:210,H:150,face:[[20,125],[75,131],[135,128],[190,122]],bar:50};
+function svgCalque(){const f=CAL.face;return `<svg viewBox="0 0 ${CAL.W} ${CAL.H}" class="docsvg"><rect width="${CAL.W}" height="${CAL.H}" fill="rgba(250,248,240,.55)"/>
+ <path d="M${f[0]} L24 34 L92 18 L168 26 L198 62 ${f.slice().reverse().map(p=>'L'+p).join(' ')} Z" fill="none" stroke="#3e5f80" stroke-width="1.6"/>
+ <path d="M${f.join(' L')}" stroke="#3e5f80" stroke-width="2.2" fill="none"/>
+ <path d="M22 118 C70 124 135 121 188 115 L190 122 C135 128 75 131 20 125Z" fill="#3e5f80" fill-opacity=".25"/>
+ <text x="78" y="145" font-family="Courier Prime,monospace" font-size="8" fill="#3e5f80">face</text>
+ <path d="M12 11 H${12+CAL.bar}" stroke="#3e5f80" stroke-width="2"/><text x="12" y="8" font-family="Courier Prime,monospace" font-size="7" fill="#3e5f80">1 m</text></svg>`;}
+
+/* desk geometry: logical size, scaled to its box */
+const DESK={wide:{W:1180,H:690,pos:{face:[30,66,0],coupe:[440,76,0],lit:[260,360,0],calque:[820,380,24],envelope:[880,92,-6]}},
+  narrow:{W:700,H:1180,pos:{face:[20,70,0],coupe:[40,360,0],lit:[90,660,0],calque:[300,980,24],envelope:[440,90,-6]}}};
+const DOCGEO={face:{w:380,h:238,det:[['tight',497,228,80],['pits',690,330,90],['bevel',330,420,90]],nat:[960,600]},
+  coupe:{w:380,h:240,det:[['contact',105,191,50],['void',360,200,80],['shims',470,203,60]],nat:[600,380]},
+  lit:{w:LIT.W,h:LIT.H},calque:{w:CAL.W,h:CAL.H},envelope:{w:200,h:140}};
+let DK=null;
+function openDesk(){const t=V3T();vlog('desk_open');const lay=narrow()?DESK.narrow:DESK.wide;S.desk=S.desk||{};
+  sheet(`<div class="deskwrap"><div class="desk" id="desk" style="width:${lay.W}px;height:${lay.H}px">
+     <div class="dkbar"><span class="dk-title">${t.bT}</span><span class="dk-tools" id="dkTools"></span><button class="lbl" id="dkHint">${t.hint}</button></div>
+     <div class="loupe" id="loupe"><div class="lz" id="lz"></div><span class="lh"></span></div></div>
+     <p class="hand dkmsg" id="dkMsg"></p></div>`);
+  $('#pclose span').textContent=t.tools.close;$('#psheet').classList.add('deskmode');
+  const desk=$('#desk');DK={lay,desk,sel:null};
+  const docs=['face','coupe'].concat(S.anom?['lit','calque']:['envelope']);
+  docs.forEach(id=>mkDoc(id));placeLoupe();fitDesk();v3Save();addEventListener('resize',fitDesk);
+  $('#dkHint').onclick=()=>{hintStep();$('#dkMsg').textContent=$('#hintTxt')?$('#hintTxt').textContent:'';};}
+function fitDesk(){if(!DK||!DK.desk.isConnected)return;const wrap=DK.desk.parentElement,k=Math.min(1,wrap.clientWidth/DK.lay.W);DK.desk.style.transform=`scale(${k})`;DK.desk.style.transformOrigin='0 0';wrap.style.height=(DK.lay.H*k+40)+'px';DK.k=k;}
+function deskPt(ev){const r=DK.desk.getBoundingClientRect();return [(ev.clientX-r.left)*DK.lay.W/r.width,(ev.clientY-r.top)*DK.lay.H/r.height];}
+function docState(id){const p=DK.lay.pos[id];return S.desk[id]||(S.desk[id]={x:p[0],y:p[1],r:p[2],s:1,o:1});}
+function applyDoc(el,id){const d=docState(id);el.style.transform=`translate(${d.x}px,${d.y}px) rotate(${d.r}deg) scale(${d.s})`;el.style.opacity=id==='calque'?1:'';if(id==='calque')el.querySelector('svg rect').setAttribute('fill',`rgba(250,248,240,${(d.o*.55).toFixed(2)})`);}
+function mkDoc(id){const t=V3T(),g=DOCGEO[id],el=document.createElement('div');el.className='ddoc dd-'+id;el.dataset.id=id;el.style.width=g.w+'px';el.style.height=g.h+'px';
+  el.innerHTML=(id==='face'?`<img src="img/mur-joints.jpg" alt="" draggable="false">`:id==='coupe'?svgCoupe():id==='lit'?svgLit():id==='calque'?svgCalque():svgEnvelope())+
+    `<span class="dcap">${t.docs[id]}</span>${t.docNote[id]?`<span class="dnote">${t.docNote[id]}</span>`:''}<span class="marks"></span>`;
+  DK.desk.insertBefore(el,$('#loupe'));applyDoc(el,id);drawMarks(id);
+  let drag=null;el.addEventListener('pointerdown',ev=>{if(ev.target.closest('button'))return;ev.preventDefault();selectDoc(id);const p=deskPt(ev),d=docState(id);drag=[p[0]-d.x,p[1]-d.y,0];el.setPointerCapture(ev.pointerId);el.classList.add('lift');play('paste');});
+  el.addEventListener('pointermove',ev=>{if(!drag)return;const p=deskPt(ev),d=docState(id);d.x=Math.max(-g.w*.5,Math.min(DK.lay.W-60,p[0]-drag[0]));d.y=Math.max(30,Math.min(DK.lay.H-40,p[1]-drag[1]));drag[2]++;applyDoc(el,id);if(id==='calque')checkOverlay();});
+  el.addEventListener('pointerup',()=>{if(!drag)return;const moved=drag[2]>2;drag=null;el.classList.remove('lift');if(id==='envelope'&&!moved)openEnvelope();if(moved){vlog('doc_move',{id});if(id==='calque')checkOverlay(true);v3Save();}});
+  return el;}
+function selectDoc(id){DK.sel=id;$$('.ddoc').forEach(x=>x.classList.toggle('sel',x.dataset.id===id));const el=$(`.ddoc[data-id="${id}"]`);DK.desk.insertBefore(el,$('#loupe'));
+  const t=V3T(),d=docState(id),T=$('#dkTools');if(id==='envelope'){T.innerHTML='';return;}
+  T.innerHTML=`<button class="ic sm" data-a="rl" title="${t.tools.rot}">↺</button><button class="ic sm" data-a="rr" title="${t.tools.rot}">↻</button>
+   <label>${t.tools.zoom}<input type="range" min="${id==='calque'?0.5:0.6}" max="${id==='calque'?2.6:1.8}" step="0.02" value="${d.s}" data-a="s"></label>
+   ${id==='calque'?`<label>${t.tools.op}<input type="range" min="0.2" max="1" step="0.05" value="${d.o}" data-a="o"></label>`:''}<button class="lbl sm" data-a="reset">${t.tools.reset}</button>`;
+  T.querySelectorAll('[data-a]').forEach(c=>{const a=c.dataset.a;const go=()=>{const d=docState(id);if(a==='rl')d.r-=5;if(a==='rr')d.r+=5;if(a==='s')d.s=+c.value;if(a==='o')d.o=+c.value;
+    if(a==='reset'){const p=DK.lay.pos[id];Object.assign(d,{x:p[0],y:p[1],r:p[2],s:1,o:1});selectDoc(id);}applyDoc(el,id);if(id==='calque')checkOverlay(a!=='s'&&a!=='o');v3Save();};
+    if(c.tagName==='INPUT')c.oninput=go;else c.onclick=()=>{play('pick');go();vlog('tool',{a,id});};});}
+function openEnvelope(){if(S.anom){$('.dd-envelope')?.remove();if(!$('.dd-lit')){mkDoc('lit');mkDoc('calque');}return;}const t=V3T();play('nope');$('#dkMsg').textContent=LANG==='en'?'Sealed. Graham wrote on it: "only once the two surveys disagree".':'Cachetée. Graham a écrit dessus : « seulement quand les deux relevés se contredisent ».';}
+
+/* the magnifier: drag it; it settles on details */
+function placeLoupe(){const L=$('#loupe');S.lp=S.lp||{x:DK.lay.W-170,y:DK.lay.H-170};const put=()=>{L.style.transform=`translate(${S.lp.x}px,${S.lp.y}px)`;};put();
+  let drag=null,still=null;
+  L.addEventListener('pointerdown',ev=>{ev.preventDefault();const p=deskPt(ev);drag=[p[0]-S.lp.x,p[1]-S.lp.y];L.setPointerCapture(ev.pointerId);L.classList.add('lift');play('lens');});
+  L.addEventListener('pointermove',ev=>{if(!drag)return;const p=deskPt(ev);S.lp.x=p[0]-drag[0];S.lp.y=p[1]-drag[1];put();lensView();clearTimeout(still);still=setTimeout(lensProbe,380);});
+  L.addEventListener('pointerup',()=>{drag=null;L.classList.remove('lift');lensProbe();vlog('loupe_drop');});lensView();}
+function docUnder(x,y){const els=$$('.ddoc').reverse();for(const el of els){const id=el.dataset.id,d=docState(id),g=DOCGEO[id],a=-d.r*Math.PI/180;
+  const dx=x-d.x,dy=y-d.y,lx=(dx*Math.cos(a)-dy*Math.sin(a))/d.s,ly=(dx*Math.sin(a)+dy*Math.cos(a))/d.s;if(lx>=0&&ly>=0&&lx<=g.w&&ly<=g.h)return {id,el,lx,ly,g};}return null;}
+function lensView(){const c=[S.lp.x+70,S.lp.y+70],u=docUnder(c[0],c[1]),lz=$('#lz');if(!u){lz.innerHTML='';return;}const Z=2.4,R=70;
+  if(lz.dataset.id!==u.id){lz.dataset.id=u.id;lz.innerHTML=u.el.querySelector('img,svg').outerHTML;}const inner=lz.firstElementChild;inner.style.cssText=`position:absolute;width:${u.g.w}px;height:${u.g.h}px;transform-origin:0 0;transform:translate(${R-u.lx*Z}px,${R-u.ly*Z}px) scale(${Z})`;}
+function lensProbe(){const c=[S.lp.x+70,S.lp.y+70],u=docUnder(c[0],c[1]);if(!u||!u.g.det)return;const t=V3T();
+  const sx=u.g.nat?u.g.nat[0]/u.g.w:1,sy=u.g.nat?u.g.nat[1]/u.g.h:1;
+  for(const [k,x,y,r] of u.g.det){if(Math.hypot(u.lx*sx-x,u.ly*sy-y)<r){if(k==='bevel'&&S.jres.band&&!S.ev.has('bevel')){if(!S.obs.includes(k))S.obs.push(k);addEv('bevel');play('chime');vlog('reinterpret',{k});drawMarks(u.id);$('#dkMsg').textContent=t.found.bevel2;v3Save();return;}
+   if(!S.obs.includes(k)){S.obs.push(k);play('pencil');vlog('detail',{id:u.id,k});drawMarks(u.id);$('#dkMsg').textContent=t.found[k];
+      if(k==='tight')addEv('tight');if(k==='pits')addEv('pits');if(k==='void'||k==='shims')addEv('void');checkAnomaly();v3Save();}return;}}}
+function drawMarks(id){const el=$(`.ddoc[data-id="${id}"] .marks`);if(!el)return;const g=DOCGEO[id];if(!g.det)return;const t=V3T();const sx=g.nat?g.w/g.nat[0]:1,sy=g.nat?g.h/g.nat[1]:1;
+  el.innerHTML=g.det.filter(d=>S.obs.includes(d[0])).map(([k,x,y])=>`<span class="pmark" style="left:${x*sx}px;top:${y*sy}px"><i></i><em>${t.found[k]}</em></span>`).join('');}
+function checkAnomaly(){if(S.anom)return;if(S.ev.has('tight')&&S.ev.has('void')){S.anom=true;vlog('anomaly_solved');play('chime');$('#dkMsg').textContent=V3T().anomaly;
+  setTimeout(()=>{const env=$('.dd-envelope');if(env){env.classList.add('opening');setTimeout(()=>{env.remove();mkDoc('lit');mkDoc('calque');play('flip');},700);}},900);chrome();v3Save();}}
+
+/* overlay: explicit geometry — the three face points and the scale bar must agree */
+function checkOverlay(final){if(S.ov.ok||!$('.dd-lit'))return;const L=docState('lit'),C=docState('calque');
+  const tf=(d,[x,y])=>{const a=d.r*Math.PI/180;return [d.x+(x*Math.cos(a)-y*Math.sin(a))*d.s,d.y+(x*Math.sin(a)+y*Math.cos(a))*d.s];};
+  const pl=LIT.face.map(p=>tf(L,p)),pc=CAL.face.map(p=>tf(C,p));const err=Math.max(...pl.map((p,i)=>Math.hypot(p[0]-pc[i][0],p[1]-pc[i][1])));
+  const scaleOk=Math.abs((C.s*CAL.bar)/(L.s*LIT.bar)-1)<.08;const el=$('.dd-calque');el.classList.toggle('near',scaleOk&&err<60);
+  if(scaleOk&&err<16){S.ov.ok=true;vlog('overlay_solved');
+    const a0=L.r*Math.PI/180;C.r=L.r;C.s=L.s*LIT.bar/CAL.bar;const off=[LIT.face[0][0]-CAL.face[0][0]*C.s/L.s,LIT.face[0][1]-CAL.face[0][1]*C.s/L.s];C.x=L.x+(off[0]*Math.cos(a0)-off[1]*Math.sin(a0))*L.s;C.y=L.y+(off[0]*Math.sin(a0)+off[1]*Math.cos(a0))*L.s;
+    applyDoc(el,'calque');el.classList.add('snapped');play('drop');setTimeout(()=>play('chime'),300);addEv('band');$('#dkMsg').textContent=V3T().overlayOk;chrome();v3Save();}
+  else if(final&&scaleOk&&err<60)play('pick');}
+
+/* ============ III · WORKSHOP with a goal ============ */
+function v3Atelier(){if(!E.v3)return;const R=$('.spr[data-n="4"] .page.R');if(!R||R.querySelector('.jmode'))return;const t=V3T();
+  const box=document.createElement('div');box.className='jmode';box.innerHTML=`<span class="tiny">${t.jMode}</span><button class="lbl" data-m="band">${t.jBand}</button><button class="lbl" data-m="full">${t.jFull}</button><button class="lbl" id="jAgain" hidden>${t.jAgain}</button>`;
+  R.querySelector('.jointfig').before(box);
+  const sync=()=>{box.querySelectorAll('[data-m]').forEach(b=>{b.setAttribute('aria-pressed',S.jmode===b.dataset.m);b.disabled=S.joined;});$('#jAgain').hidden=!S.joined||!!(S.jres.band&&S.jres.full&&S.jres.full.done);drawJoint();};
+  box.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>{if(S.joined)return;S.jmode=b.dataset.m;S.jstart=S.lifts;play('pick');vlog('atelier_mode',{m:S.jmode});sync();});
+  $('#jAgain').onclick=()=>{S.jmode=S.jmode==='band'?'full':'band';S.joined=false;S.jointInit=false;S.jstart=S.lifts;$('#poseBtn').disabled=false;$('#liftBtn').disabled=true;initJoint();sync();vlog('atelier_again',{m:S.jmode});};
+  sync();}
+function jSpan(){return E&&E.v3&&S.jmode==='band'?Math.round((N-1)*200/L):N-1;}
+function v3JointDone(){const n=S.lifts-(S.jstart||0),t=V3T();if(S.jmode==='band'){S.jres.band=n;addEv('jband');$('#amsg').textContent=t.jDoneBand(n);}else{S.jres.full={n,done:true};addEv('jfull');$('#amsg').textContent=t.jDoneFull(n);}
+  vlog('atelier_done',{m:S.jmode,lifts:n});v3Atelier();const j=$('#jAgain');if(j)j.hidden=!!(S.jres.band&&S.jres.full&&S.jres.full.done);v3Save();}
+
+/* ============ IV · THE CASE FILE ============ */
+function dossierSpread(e){const t=V3T();return `<section class="spr" data-n="5" hidden>
+  <div class="page L"><div class="folio"><span>${t.dF[0]}</span><span>${t.dF[1]}</span></div><h2 class="ptitle">${t.dT}<small>${t.dS}</small></h2>
+   <div class="concl" id="concl"></div><button class="lbl red" id="present">${t.present}</button><p class="hand" id="dMsg" style="font-size:20px"></p>${pageno(9)}${prev()}</div>
+  <div class="page R"><div class="folio"><span>${t.pieces}</span><button class="srcbtn" id="srcBtn2">${t.sources}</button></div><div class="pins" id="pins"></div>${pageno(10)}${next(tr('readEnd'),1)}</div></section>`;}
+function renderDossier(){const t=V3T(),cb=$('#concl');if(!cb)return;cb.innerHTML='';
+  t.concl.forEach(([k,txt])=>{const b=document.createElement('button');b.className='cc'+(S.concl===k?' on':'');b.innerHTML=`<i></i><span>${txt}</span>`;b.disabled=S.solved;b.onclick=()=>{S.concl=k;play('pick');vlog('concl',{k});renderDossier();v3Save();};cb.appendChild(b);});
+  const pb=$('#pins');pb.innerHTML='';
+  EVORDER.forEach(id=>{const c=S.ev.has(id)?evCard(id):null;const d=document.createElement('div');d.className='pcard'+(c?'':' miss');
+    if(!c){d.innerHTML=`<span class="mq">?</span><span>${t.missing}</span>`;pb.appendChild(d);return;}
+    const v=S.pins[id]||'';d.innerHTML=`<div><b>${c.t}</b><span>${c.d}</span><i>${c.k}</i></div><div class="pt"><button data-v="sup" aria-pressed="${v==='sup'}">${t.support}</button><button data-v="lim" aria-pressed="${v==='lim'}">${t.limit}</button></div>`;
+    d.querySelectorAll('button').forEach(b=>{b.disabled=S.solved;b.onclick=()=>{S.pins[id]=S.pins[id]===b.dataset.v?'':b.dataset.v;play('thud');vlog('pin',{id,v:S.pins[id]});renderDossier();v3Save();};});pb.appendChild(d);});
+  $('#present').disabled=S.solved;$('#present').onclick=present;$('#srcBtn2').onclick=openSources;if(S.solved)$('#dMsg').textContent=t.ok+' '+t.okMore;chrome();}
+function present(){const t=V3T(),E2=t.err,P=S.pins,sup=id=>P[id]==='sup',lim=id=>P[id]==='lim';const errs=[];
+  if(!S.concl)errs.push(E2.pick);
+  else if(S.concl==='certain')errs.push(E2.certain);
+  else if(S.concl==='soft')errs.push(E2.soft);
+  else if(S.concl==='machine')errs.push(E2.machine);
+  else{if(!sup('band'))errs.push(E2.needBand);if(!sup('jband')&&!sup('jfull'))errs.push(E2.needExp);if(sup('fawcett'))errs.push(E2.hearsay);
+    if(!['tight','pits','void','bevel','pizarro'].some(sup))errs.push(E2.thin);if(!lim('chron'))errs.push(EVORDER.some(lim)?E2.wrongLimit:E2.limit);}
+  vlog('present',{concl:S.concl,errors:errs.length});
+  if(errs.length){play('nope');S.pen=(S.pen||0)+1;$('#dMsg').textContent=errs.slice(0,2).join(' ');chrome();v3Save();return;}
+  S.solved=true;play('seal');setTimeout(()=>play('fanfare'),700);$('#dMsg').textContent=t.ok+' '+t.okMore;vlog('case_solved');renderDossier();v3Save();}
+
+/* ============ V · GRAHAM'S PAGE ============ */
+function rewardSpread(e){return `<section class="spr" data-n="6" hidden><div class="page L" id="rwL"></div><div class="page R" id="rwR"></div></section>`;}
+function renderReward(){const t=V3T(),t2=VT(),L=$('#rwL'),R=$('#rwR');if(!L)return;const c=t.concl.find(x=>x[0]==='plausible')[1];
+  const sup=EVORDER.filter(id=>S.pins[id]==='sup').map(evCard);
+  L.innerHTML=`<div class="folio"><span>${t.rF[0]}</span><span>${t.rF[1]}</span></div><h2 class="ptitle">${t.rT}</h2><div class="sealbox small">${waxSeal()}</div>
+   <p class="tiny">${t.rLead}</p><p class="hand" style="font-size:21px">${c}</p><ul class="unk">${sup.map(s=>`<li><b>${s.t}</b> : ${s.d}</li>`).join('')}</ul>
+   <div class="ghq"><b>${t.newQ}</b> ${t.newQT}</div>${pageno(11)}${prev()}`;
+  R.innerHTML=`<div class="folio"><span>${t2.unkT}</span><span>${E.name}</span></div><ul class="unk">${t2.unk.map(u=>`<li>${u}</li>`).join('')}</ul>
+   <div class="ghq"><b>${t2.gh}</b> ${t2.ghq}</div><div class="tiny">${tr('frag')(E.frag)} · ${t2.skyT}</div><p class="fragment" style="font-size:19px">${t2.sky}</p>
+   <div class="controls"><button class="lbl red" id="toAtlas">${tr('toAtlas')}</button><button class="lbl" id="v3restart">${tr('replay')}</button>${new URLSearchParams(location.search).has('playtest')?`<button class="lbl" id="v3log">${t.log}</button>`:''}</div>${pageno(12)}`;
+  $('#v3restart').onclick=()=>{v3Clear(E.id);const id=E.id;S=fresh(id);S.cur=6;S.max=1;buildEpisode(E);show(6);goTo(1);};
+  const lg=$('#v3log');if(lg)lg.onclick=()=>{const a=document.createElement('a');a.href='data:application/json,'+encodeURIComponent(JSON.stringify(VLOG,null,1));a.download='vestiges-session.json';a.click();};
+  vlog('reward_seen');}
+
+/* sources and method: every piece with its status */
+function openSources(){const t=V3T();vlog('sources_open');sheet(`<div class="page L"><div class="folio"><span>${t.sources}</span><span>${E.name}</span></div><h2 class="ptitle">${t.sources}</h2>
+  <ul class="srclist">${EVORDER.map(id=>{const c=evCard(id);return `<li><b>${c.t}</b> <i>${c.k}</i><span>${c.d}</span></li>`;}).join('')}</ul></div>
+  <div class="page R"><div class="folio"><span>Méthode</span><span></span></div><p class="body">${LANG==='en'?'Facts come from primary sources (16th-century chroniclers) and published work; the section and the bed surveys are reconstructed for the game from published observations of Inca masonry and are labelled as such. The workshop is a simplified simulation: it shows what is possible, not what was done. Graham\'s notes are written for the game from his publications.':'Les faits viennent de sources primaires (chroniqueurs du XVIe siècle) et de travaux publiés ; la coupe et les relevés du lit sont reconstitués pour le jeu d\'après les observations publiées sur la maçonnerie inca, et signalés comme tels. L\'atelier est une simulation simplifiée : il montre ce qui est possible, pas ce qui a été fait. Les notes de Graham sont écrites pour le jeu d\'après ses publications.'}</p>
+  <p class="body"><a href="https://en.wikipedia.org/wiki/Sacsayhuam%C3%A1n" target="_blank" rel="noopener">Sacsayhuamán (Wikipedia)</a> · Protzen, J.-P., <i>Inca Architecture and Construction at Ollantaytambo</i>, 1993.</p></div>`);}
 
 function wireEpisode(){}
 /* safety net: never leave the open book without a visible page */
