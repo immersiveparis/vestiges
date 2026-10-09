@@ -286,6 +286,9 @@ select.blank:disabled{color:var(--green);border-bottom-color:var(--green);backgr
 .dktool label{display:flex;align-items:center;gap:5px}.dktool input[type=range]{width:80px}.dktool output{font-size:11px;opacity:.8;min-width:28px}.dktool .ic.sm,.dktool .lbl.sm{min-height:30px}
 .dtab{position:absolute;top:-11px;width:26px;height:26px;border-radius:50%;background:#2b2219;color:#ead9b4;border:1.5px solid #c9b285;font-size:15px;line-height:22px;text-align:center;cursor:pointer;z-index:3;padding:0;box-shadow:0 2px 5px rgba(0,0,0,.4);opacity:.9}.dtab:hover{opacity:1;transform:scale(1.1)}.dtab.flip{right:-11px}.dtab.mir{right:20px}.ddoc.back .dtab.mir{display:none}
 .dz-near{box-shadow:0 0 0 3px rgba(255,226,160,.85),0 0 26px rgba(255,220,150,.75)!important;border-color:#ffe2a0!important}
+.lightbox.empty{animation:lbPulse 2.6s ease-in-out infinite}@keyframes lbPulse{50%{box-shadow:0 0 70px rgba(255,236,190,.95),inset 0 0 30px rgba(255,255,255,.6)}}
+.lbcmp{position:absolute;left:0;top:0;pointer-events:none;z-index:20}.ddoc.opn{background:#fbf5e4;box-shadow:0 4px 10px rgba(0,0,0,.35)}.ddoc.opn .dback{padding:10px 14px}.ddoc.opn .dback .hand{font-size:20px;line-height:1.2;color:#2b4a7a}
+.pq{font-family:var(--f-hand);font-size:21px;line-height:1.25;color:var(--pen);margin:-8px 0 0;padding-left:14px;border-left:3px solid rgba(43,74,122,.35)}.pq:empty{display:none}.spr.mtfinal .pq,.spr.mt-lab .pq{display:none}
 .ddoc img,.ddoc svg{display:block;width:100%;height:100%;object-fit:cover;pointer-events:none}
 .ddoc .dcap{position:absolute;left:0;right:0;top:100%;margin-top:4px;font-family:var(--f-hand);font-size:17px;color:#f2e4c4;text-shadow:0 1px 2px #000;white-space:nowrap}
 .ddoc .dnote{position:absolute;left:0;right:0;top:100%;margin-top:26px;font-family:var(--f-type);font-size:10px;color:#d8c39a;opacity:.85}
@@ -3053,6 +3056,12 @@ const MT={
   hint:'Un indice',hintNone:'Rien à ajouter : tout est entre tes mains.',open:{lab:'Ouvrir la chambre',temple:'Déplier le temple',horizon:'Déplier l\'horizon',sun:'Ouvrir l\'atelier',geo:'Étaler les notes',final:'Monter le dispositif',sirius:'Ouvrir le dossier'},
   close:{lab:'Refermer la chambre',temple:'Replier le temple',horizon:'Replier l\'horizon',sun:'Refermer l\'atelier',geo:'Ranger les notes',final:'Refermer le dispositif',sirius:'Refermer le dossier',old:'Refermer la page'},
   titles:{lab:'La chambre photographique',temple:'Le temple de papier',horizon:'L\'horizon déplié',sun:'L\'atelier du Soleil',geo:'Les notes du géomètre',final:'Les Quatre Matins',sirius:'L\'étoile absente'},
+  pq:{lab:['Pourquoi ces deux vues du même temple ne montrent-elles pas la même lumière ?','Quatre plaques dans le bon sens : trois lumières. Depuis où ont-elles été prises ?'],
+   temple:['Faire entrer un rayon de lumière dans le temple.','La lampe éclaire la pierre. Mais cette direction correspond-elle vraiment au lever du Soleil ?','Le temple est orienté. Reste à savoir où se lève le Soleil selon la saison.'],
+   horizon:['Retrouver l\'est tel qu\'on le voyait depuis le temple.','Le nord est retrouvé : l\'axe du temple vise l\'est. La boussole le sait maintenant, dans le temple comme dans l\'atelier.'],
+   sun:['Faire avancer l\'année et regarder où se lève le Soleil.','Le Soleil ne sort jamais de la glissière. Quelles dates donnent les trois lumières du temple ?','Trois configurations notées. Les plaques attendent dans le dispositif.'],
+   geo:['Les deux trous de poteau visent-ils vraiment des levers du Soleil ?','Un repère tombe juste, l\'autre non. Un écart est un résultat.'],
+   final:['Reconstituer les quatre observations : une date, une station, une lumière par plaque.','Quatre matins, trois lumières. Le temple marque les saisons.']},
   pg:{
    lab:{folio:['Carnet de Graham Hancock','Malte · Mnajdra'],title:'Les Pierres du Soleil',sub:'Chapitre III · Mnajdra, Malte',stamp:'MALTE · LES QUATRE MATINS',
     note:'Quatre plaques photographiques, prises dans le même temple. Les dates sont masquées. Quatre observations. Trois lumières. Un seul temple.',
@@ -3081,7 +3090,12 @@ const MT={
    water:'filigrane : tirage 2 refait le 3 mars',
    msg:{onLight:'Sur la table lumineuse, le négatif devient positif.',mirrorEdge:'Les écritures du bord se lisent à l\'envers. Cette plaque est montée à l\'envers.',
     notch:'L\'encoche de la pierre décorée. Elle est d\'un seul côté.',solved:'Quatre plaques dans le bon sens. Trois lumières : gauche, centre, droite. Les plaques deviennent des références.',
-    pouch:'La pochette s\'ouvre : une fiche de prise de vue.',water:'Sur la table lumineuse, un filigrane apparaît sur les notes.'}},
+    pouch:'La pochette s\'ouvre : une fiche de prise de vue.',water:'Sur la table lumineuse, un filigrane apparaît sur les notes.',
+    cmpNo:'Sur la table, l\'encoche de la pierre n\'est pas du même côté sur les deux vues. Même temple, même pierre : l\'une des deux est inversée.',
+    cmpBoth:'Les encoches se correspondent, mais les écritures des deux bords se lisent à l\'envers : les deux plaques sont maintenant montées à l\'envers.',
+    cmpOk:'Les repères se correspondent : l\'encoche est du même côté sur les deux vues. Le tirage 2 avait été inversé.',
+    needCmp:'Dans le bon sens ? Pour le savoir, compare deux plaques sur la table lumineuse.',
+    opennote:'Ces deux vues proviennent du même temple. Pourtant, quelque chose ne correspond pas.',notch:'encoche',same:'même côté',diff:'côtés opposés'}},
   temple:{roofNote:'Reconstitution simplifiée pour le jeu. Les proportions ne sont pas celles du relevé archéologique.',lamp:'Lampe libre',view:'Vue intérieure',axisLbl:'axe du temple',
    obsDoor:'S1 · passage',obsCourt:'S2 · cour',msg:{lit:'La lampe à {a}°, {h}° de hauteur : la lumière touche {z}. Une lampe va où on la met. Le Soleil, non.',
     none:'Rien n\'entre : la lampe est derrière la façade, ou trop haute.',floor:'La lumière tombe sur le sol de la cour avant d\'atteindre la pierre : la lampe est trop haute.',
@@ -3099,7 +3113,8 @@ const MT={
    msg:{noted:'Configuration notée : {d}, lever à {a}°, lumière {z}.',dup:'Déjà notée.',ringOff:'L\'anneau n\'est pas au nord : la boussole et l\'index ne sont pas d\'accord.',ringOk:'Anneau calé sur le nord.',
     impossible:'Ta lampe libre éclairait {z} à {a}°, {h}° de hauteur. La machine ne peut pas y aller : aucun lever ne fait ça.',
     turns:'Trois ans en dix secondes. Le Soleil, lui, ne triche pas. — R. V.',solstice:'La glissière bute : le lever ne va pas plus loin. Il repart dans l\'autre sens.',
-    three:'Trois lumières notées : gauche, centre, droite. Le lever va d\'un bout à l\'autre de la glissière et repasse deux fois par le centre.'}},
+    three:'Trois lumières notées : gauche, centre, droite. Le lever va d\'un bout à l\'autre de la glissière et repasse deux fois par le centre.',
+    swingHook:'Le Soleil ne sort jamais de la glissière : un bout en juin, l\'autre en décembre. Mais la machine est tournée n\'importe comment : l\'anneau d\'orientation et le bouton « Noter » sont maintenant disponibles, la boussole dira où est le nord.'}},
   geo:{plan:'Plan des trous de poteau (fiction d\'après Ventura & Agius 2017)',sight:'Viseur',calque:'Calque des levers',field:'Fiche de terrain',crit:'Notes critiques',O:'point d\'observation',A:'trou A',B:'trou B',
    fieldTxt:['Fiche de terrain (fiction)','Visées depuis le point d\'observation, nord du plan.','trou A : 57,6°','trou B : 90,4°','Horizon : mer, plat.'],
    critTxt:['Notes critiques','Une correspondance partielle vaut mieux qu\'une concordance forcée.','Trois degrés, c\'est six diamètres de Soleil.'],
@@ -3166,6 +3181,12 @@ const MT={
   hint:'A hint',hintNone:'Nothing to add: it is all in your hands.',open:{lab:'Open the darkroom',temple:'Unfold the temple',horizon:'Unfold the horizon',sun:'Open the workshop',geo:'Lay out the notes',final:'Assemble the device',sirius:'Open the file'},
   close:{lab:'Close the darkroom',temple:'Fold the temple',horizon:'Fold the horizon',sun:'Close the workshop',geo:'Put the notes away',final:'Close the device',sirius:'Close the file',old:'Close the page'},
   titles:{lab:'The darkroom',temple:'The paper temple',horizon:'The unfolded horizon',sun:'The Sun workshop',geo:'The surveyor\'s notes',final:'The Four Mornings',sirius:'The absent star'},
+  pq:{lab:['Why do these two views of the same temple not show the same light?','Four plates the right way round: three lights. Where were they taken from?'],
+   temple:['Bring a ray of light into the temple.','The lamp lights the stone. But does this direction really match the sunrise?','The temple is oriented. What remains is where the Sun rises with the season.'],
+   horizon:['Find east as it was seen from the temple.','North is found: the temple axis faces east. The compass knows it now, in the temple as in the workshop.'],
+   sun:['Move the year forward and watch where the Sun rises.','The Sun never leaves the slide. Which dates give the temple\'s three lights?','Three configurations noted. The plates are waiting in the device.'],
+   geo:['Do the two post-holes really aim at sunrises?','One marker falls right, the other does not. A gap is a result.'],
+   final:['Rebuild the four observations: one date, one station, one light per plate.','Four mornings, three lights. The temple marks the seasons.']},
   pg:{
    lab:{folio:["Graham Hancock's notebook",'Malta · Mnajdra'],title:'The Stones of the Sun',sub:'Chapter III · Mnajdra, Malta',stamp:'MALTA · THE FOUR MORNINGS',
     note:'Four photographic plates, taken in the same temple. The dates are masked. Four observations. Three lights. One temple.',
@@ -3194,7 +3215,12 @@ const MT={
    water:'watermark: print 2 redone on 3 March',
    msg:{onLight:'On the light table, the negative becomes positive.',mirrorEdge:'The writing on the edge reads backwards. This plate is mounted backwards.',
     notch:'The notch of the decorated stone. It is on one side only.',solved:'Four plates the right way round. Three lights: left, centre, right. The plates become references.',
-    pouch:'The pouch opens: a shooting sheet.',water:'On the light table, a watermark appears on the notes.'}},
+    pouch:'The pouch opens: a shooting sheet.',water:'On the light table, a watermark appears on the notes.',
+    cmpNo:'On the table, the notch of the stone is not on the same side in the two views. Same temple, same stone: one of the two is reversed.',
+    cmpBoth:'The notches match, but the writing on both edges reads backwards: both plates are now mounted backwards.',
+    cmpOk:'The markers match: the notch is on the same side in both views. Print 2 had been reversed.',
+    needCmp:'The right way round? To know, compare two plates on the light table.',
+    opennote:'These two views come from the same temple. Yet something does not match.',notch:'notch',same:'same side',diff:'opposite sides'}},
   temple:{roofNote:'Simplified reconstruction for the game. The proportions are not those of the archaeological survey.',lamp:'Free lamp',view:'Interior view',axisLbl:'temple axis',
    obsDoor:'S1 · passage',obsCourt:'S2 · court',msg:{lit:'Lamp at {a}°, {h}° high: the light touches {z}. A lamp goes where you put it. The Sun does not.',
     none:'Nothing enters: the lamp is behind the facade, or too high.',floor:'The light falls on the court floor before reaching the stone: the lamp is too high.',
@@ -3212,7 +3238,8 @@ const MT={
    msg:{noted:'Configuration noted: {d}, sunrise at {a}°, light {z}.',dup:'Already noted.',ringOff:'The ring is not on north: the compass and the index disagree.',ringOk:'Ring set to north.',
     impossible:'Your free lamp lit {z} at {a}°, {h}° high. The machine cannot go there: no sunrise does that.',
     turns:'Three years in ten seconds. The Sun does not cheat. — R. V.',solstice:'The slide stops: the sunrise goes no further. It turns back.',
-    three:'Three lights noted: left, centre, right. The sunrise goes from one end of the slide to the other and passes through the centre twice.'}},
+    three:'Three lights noted: left, centre, right. The sunrise goes from one end of the slide to the other and passes through the centre twice.',
+    swingHook:'The Sun never leaves the slide: one end in June, the other in December. But the machine is turned any old way: the orientation ring and the "Note" button are now available, and the compass will say where north is.'}},
   geo:{plan:'Plan of the post-holes (fiction after Ventura & Agius 2017)',sight:'Sight',calque:'Tracing of sunrises',field:'Field sheet',crit:'Critical notes',O:'observation point',A:'hole A',B:'hole B',
    fieldTxt:['Field sheet (fiction)','Sightings from the observation point, plan north.','hole A: 57.6°','hole B: 90.4°','Horizon: sea, flat.'],
    critTxt:['Critical notes','A partial match is worth more than a forced agreement.','Three degrees is six Sun diameters.'],
@@ -3369,7 +3396,7 @@ function mtPlateBack(k){const T=MTT().lab;return `<div class="dback dark"><b>${L
 
 /* ---------- V5 · state ---------- */
 function mtS(){if(!S.mt)S.mt={env:false,mir:{pl1:0,pl2:1,pl3:0,pl4:0},det:[],obs:[],sec:[],docs:{},lp:{},onLight:[],labSolved:false,pouch:false,water:false,
-  axis:140,lamp:{az:150,alt:25},roof:true,vp:'door',first:null,hz:{open:false,ok:false},ring:40,day:80,bm:[],acc:0,turns:false,sun:{imp:false,three:false,sw:[90,90],ringOk:false},
+  axis:140,lamp:{az:219,alt:25},roof:true,vp:'door',first:null,hz:{open:false,ok:false},ring:40,day:80,bm:[],acc:0,turns:false,sun:{imp:false,three:false,sw:[90,90],ringOk:false},
   geo:{A:null,B:null,calque:false,hidden:false},fin:{cur:null,slots:{},cam:'door',done:false},sir:{open:false,c1:[null,null,null,null],c2:[null,null,null,null],needs:[],done:false},hints:{},reveal:false,landSeen:false,old:false,sky:false};return S.mt;}
 function mtObs(id,vals){const m=mtS();if(m.obs.find(o=>o.id===id))return false;m.obs.push({id,v:vals||null});vlog('evidence',{id});play('paste');mtRenderReg();v3Save();return true;}
 function mtSecret(k){const m=mtS();if(m.sec.includes(k))return false;m.sec.push(k);vlog('secret',{k});play('chime');mtRenderReg();v3Save();return true;}
@@ -3384,6 +3411,7 @@ Object.assign(TDOCS,{
  pl2:{w:220,h:176,kind:'plate',front:()=>mtPlateSvg('pl2'),back:()=>mtPlateBack('pl2'),tools:['mirror','flip'],det:mtPlateDet('pl2'),cls:'plt'},
  pl3:{w:220,h:176,kind:'plate',front:()=>mtPlateSvg('pl3'),back:()=>mtPlateBack('pl3'),tools:['mirror','flip'],det:mtPlateDet('pl3'),cls:'plt'},
  pl4:{w:220,h:176,kind:'plate',front:()=>mtPlateSvg('pl4'),back:()=>mtPlateBack('pl4'),tools:['mirror','flip'],det:mtPlateDet('pl4'),cls:'plt'},
+ opennote:{w:236,h:112,front:()=>`<div class="dback"><p class="hand">${MTT().lab.msg.opennote}</p></div>`,tools:['rot'],cls:'opn'},
  pouch:{w:190,h:126,front:()=>`<div class="pouch ${mtS().pouch?'open':''}"><i></i><b>${MTT().lab.pouch}</b>${mtS().pouch?`<small>${MTT().lab.pouchOpen}</small>`:''}</div>`,tools:[],tap:()=>mtPouch()},
  fiche:{w:220,h:156,front:()=>`<div class="dback"><b>${MTT().lab.fiche[0]}</b><p>${MTT().lab.fiche[1]}</p></div>`,tools:['rot']},
  notes:{w:248,h:170,front:()=>`<div class="dback"><b>${MTT().lab.notesTxt[0]}</b><p>${MTT().lab.notesTxt[1]}</p><p>${MTT().lab.notesTxt[2]}</p>${mtS().water?`<p class="water">${MTT().lab.water}</p>`:''}</div>`,tools:['rot']},
@@ -3407,10 +3435,10 @@ Object.assign(TDOCS,{
 function mtSkySvg(){const r=rng(12);let st='';for(let i=0;i<40;i++)st+=`<circle cx="${r()*200}" cy="${r()*60}" r="${.4+r()*.9}" fill="#fff"/>`;return `<svg viewBox="0 0 200 60" style="width:100%;height:auto;display:block"><rect width="200" height="60" fill="#1a1f33"/>${st}<circle cx="152" cy="42" r="2.2" fill="#dff" filter="url(#mtglow)"/><text x="152" y="34" font-size="6" fill="#dff" text-anchor="middle">Sirius</text><line x1="0" y1="52" x2="200" y2="52" stroke="#555" stroke-width=".6"/><text x="150" y="58" font-size="5" fill="#aaa" text-anchor="middle">108°</text></svg>`;}
 /* ---------- layouts ---------- */
 Object.assign(TDLAY,{
- lab:{wide:{W:1180,H:700,lb:{x:430,y:70,w:380,h:300},pos:{pl1:[30,70,-3],pl2:[30,270,2],pl3:[850,70,2],pl4:[850,270,-2],pouch:[430,410,-2],notes:[640,400,2],planS:[920,450,1]},lp:[1000,490]},
-   narrow:{W:400,H:1150,lb:{x:20,y:60,w:360,h:260},pos:{pl1:[12,340,-2,.8],pl2:[200,340,2,.8],pl3:[12,500,2,.8],pl4:[200,500,-2,.8],pouch:[12,660,0,.75],notes:[170,660,0,.75],planS:[12,790,0,.8]},lp:[220,790]}},
- temple:{wide:{W:1180,H:700,model:{x:40,y:60,s:560},view:{x:660,y:70},pos:{lamp:[620,560,0],tview:[660,70,0],compass:[1020,470,0]},lp:[1010,310]},
-   narrow:{W:400,H:1100,model:{x:20,y:60,s:360},view:{x:40,y:450},pos:{lamp:[300,440,0],tview:[40,450,0,1],compass:[20,700,0]},lp:[220,700]}},
+ lab:{wide:{W:1180,H:700,lb:{x:390,y:60,w:420,h:280},pos:{pl2:[70,80,-3,1.15],pl4:[880,80,2,1.15],opennote:[80,330,-2],pl1:[400,362,2,.8],pl3:[600,362,-2,.8],pouch:[880,330,-2],notes:[640,512,2],planS:[880,470,1]},lp:[60,470]},
+   narrow:{W:400,H:1200,lb:{x:20,y:60,w:360,h:260},pos:{pl2:[12,340,-2,.8],pl4:[200,340,2,.8],opennote:[12,500,0,.8],pl1:[12,600,0,.65],pl3:[160,600,0,.65],pouch:[250,500,0,.7],notes:[12,730,0,.75],planS:[220,730,0,.8]},lp:[200,880]}},
+ temple:{wide:{W:1180,H:700,model:{x:40,y:60,s:560},view:{x:660,y:70},pos:{lamp:[60,580,0],tview:[660,70,0],compass:[1020,470,0]},lp:[1010,310]},
+   narrow:{W:400,H:1100,model:{x:20,y:60,s:360},view:{x:40,y:450},pos:{lamp:[20,430,0],tview:[40,450,0,1],compass:[20,700,0]},lp:[220,700]}},
  horizon:{wide:{W:1180,H:700,pano:{x:40,y:70,w:1100,h:260},tapeY:338,pos:{tape:[-200,338,0],sight:[560,120,0],compass:[1000,430,0],hsheet:[40,420,-2],hnote:[290,430,2],hplan:[540,420,-1]},lp:[800,440]},
    narrow:{W:400,H:1200,pano:{x:10,y:60,w:380,h:200},tapeY:268,pos:{tape:[-300,268,0],sight:[170,90,0],compass:[270,330,0],hsheet:[12,340,0,.8],hnote:[12,520,0,.8],hplan:[210,520,0]},lp:[200,780]}},
  sun:{wide:{W:1180,H:700,mach:{x:40,y:60,s:520},plan:{x:600,y:60,s:300},view:{x:600,y:380},pos:{compass:[940,80,0]},lp:[1000,420]},
@@ -3425,12 +3453,12 @@ Object.assign(TDLAY,{
 const mtK=(kind,o)=>Object.assign({st:()=>mtS(),poses:()=>mtPoses(kind),lpKey:'lp_'+kind,title:()=>MTT().titles[kind],close:()=>MTT().close[kind],hintLbl:()=>MTT().hint,cap:()=>'',det:st=>st.det,markLabel:k=>k.split(':')[0]==='notch'?MTT().obs.notch[0]:k.split(':')[0]==='edge'?MTT().lab.edge[k.split(':')[1]]:k==='mark'?'R. V.':k,hint:()=>mtHint(kind)},o);
 Object.assign(TDK,{
  lab:mtK('lab',{extra:lay=>`<div class="lightbox" id="lightbox" style="left:${lay.lb.x}px;top:${lay.lb.y}px;width:${lay.lb.w}px;height:${lay.lb.h}px"><b>${MTT().lab.lightbox}</b></div>`,zones:()=>[{sel:'#lightbox',rect:()=>TD.lay.lb}],
-  docs:st=>['pl1','pl2','pl3','pl4','pouch','notes','planS'].concat(st.pouch?['fiche']:[]),cap:id=>{const t=MTT();return t.pg.lab.docs[id]||(id==='pouch'?'':id==='notes'?t.lab.notes:id==='planS'?t.lab.plan:id==='fiche'?t.lab.fiche[0]:'');},
-  init:st=>{['pl1','pl2','pl3','pl4'].forEach(id=>{const d=tdSt(id);d.m=st.mir[id];tdFace($(`.ddoc[data-id="${id}"]`),id);});mtLabLight();},
-  drop:(id,d0,g)=>{mtLabLight(id);},mirror:(id,d)=>{mtS().mir[id]=d.m;mtLabCheck();},flip:(id,d)=>{if(id==='pl3'&&d.f)mtSecret('s1');},
+  docs:st=>['pl1','pl3','pl2','pl4','opennote','pouch','notes','planS'].concat(st.pouch?['fiche']:[]),cap:id=>{const t=MTT();return t.pg.lab.docs[id]||(id==='pouch'||id==='opennote'?'':id==='notes'?t.lab.notes:id==='planS'?t.lab.plan:id==='fiche'?t.lab.fiche[0]:'');},
+  init:st=>{['pl1','pl2','pl3','pl4'].forEach(id=>{const d=tdSt(id);d.m=st.mir[id];tdFace($(`.ddoc[data-id="${id}"]`),id);});$('#lightbox').classList.toggle('empty',!st.onLight.length);mtLabLight();},
+  drop:(id,d0,g)=>{mtLabLight(id);},mirror:(id,d)=>{mtS().mir[id]=d.m;mtLabCompare(id,true);},flip:(id,d)=>{if(id==='pl3'&&d.f)mtSecret('s1');mtLabCmp();},
   detail:(id,k)=>{const [kk]=k.split(':');const m=mtS();if(kk==='notch'){mtObs('notch');return MTT().lab.msg.notch;}if(kk==='edge'){if(m.mir[id]){mtObs('mirrored');return MTT().lab.msg.mirrorEdge;}return MTT().lab.edge[id];}return '';}}),
  temple:mtK('temple',{extra:lay=>`<div class="mtmodel" id="mtModel" style="left:${lay.model.x}px;top:${lay.model.y}px;width:${lay.model.s}px;height:${lay.model.s}px"></div><div class="mtctl" id="mtCtl" style="left:${lay.view.x}px;top:${lay.view.y+232}px"></div>`,
-  docs:()=>['tview','lamp','compass'],cap:id=>id==='lamp'?MTT().temple.lamp:id==='tview'?MTT().temple.view:id==='compass'?MTT().horizon.compass:'',
+  docs:st=>['tview','lamp'].concat(st.first||st.hz.ok?['compass']:[]),cap:id=>id==='lamp'?MTT().temple.lamp:id==='tview'?MTT().temple.view:id==='compass'?MTT().horizon.compass:'',
   init:()=>{mtTempleInit();},drop:(id)=>{if(id==='lamp')mtLampMove(true);},
   detail:(id,k)=>{if(k==='mark'){mtSecret('s4');return MTT().temple.msg.mark;}return '';}}),
  horizon:mtK('horizon',{extra:lay=>`<div class="mtpano ${mtS().hz.open?'open':''}" id="mtPano" style="left:${lay.pano.x}px;top:${lay.pano.y}px;width:${lay.pano.w}px;height:${lay.pano.h}px">${mtPanoSvg(lay.pano.w,lay.pano.h)}<b class="plbl">${MTT().horizon.pano}</b></div><button class="lbl red unfold" id="mtUnfold" style="left:${lay.pano.x+12}px;top:${lay.pano.y+12}px">${MTT().tools.unfold}</button>`,
@@ -3447,8 +3475,26 @@ Object.assign(TDK,{
  sirius:mtK('sirius',{extra:lay=>mtSiriusExtra(lay),docs:()=>['c1','c1b','c2','c3','c4','c5','c6','c7','c8'],cap:()=>'',init:()=>{mtSiriusInit();},drop:id=>{mtSiriusDrop(id);},zones:()=>['c1','c2'].flatMap(ch=>[0,1,2,3].map(i=>({sel:`#sb_${ch} .sslot[data-i="${i}"]`,rect:()=>mtSiriusSlotRect(ch,i)})))})});
 /* ---------- lab ---------- */
 function mtInRect(id,r){const c=tdCenter(id);return c[0]>=r.x&&c[0]<=r.x+r.w&&c[1]>=r.y&&c[1]<=r.y+r.h;}
-function mtLabLight(moved){const m=mtS(),lay=TD.lay,T=MTT().lab;let any=false;['pl1','pl2','pl3','pl4','notes'].forEach(id=>{const el=$(`.ddoc[data-id="${id}"]`);if(!el)return;const on=mtInRect(id,lay.lb);el.classList.toggle('onlight',on);if(on&&id===moved){if(id==='notes'){if(!m.water){m.water=true;mtSecret('s3');tdFace(el,'notes');mtMsg(T.msg.water);}}else{any=true;if(!m.onLight.includes(id))m.onLight.push(id);}}});if(any)mtMsg(T.msg.onLight);v3Save();}
-function mtLabCheck(){const m=mtS();if(m.labSolved)return;if(['pl1','pl2','pl3','pl4'].every(id=>!m.mir[id])){m.labSolved=true;vlog('lab_solved');mtObs('threeLights');play('chime');mtMsg(MTT().lab.msg.solved);chrome();v3Save();}}
+function mtLabLight(moved){const m=mtS(),lay=TD.lay,T=MTT().lab;let any=false;['pl1','pl2','pl3','pl4','notes'].forEach(id=>{const el=$(`.ddoc[data-id="${id}"]`);if(!el)return;const on=mtInRect(id,lay.lb);el.classList.toggle('onlight',on);if(on&&id===moved){if(id==='notes'){if(!m.water){m.water=true;mtSecret('s3');tdFace(el,'notes');mtMsg(T.msg.water);}}else{any=true;if(!m.onLight.includes(id))m.onLight.push(id);}}});
+  const lb=$('#lightbox');if(lb)lb.classList.toggle('empty',!m.onLight.length);
+  if(any)mtMsg(T.msg.onLight);if(moved&&moved.startsWith('pl'))mtLabCompare(moved,false);else mtLabCmp();v3Save();}
+/* notch of the decorated stone, in desk coordinates, for a plate lying on the table (mirroring taken into account) */
+function mtNotchPt(id){const d=tdSt(id),g=TDOCS[id];const det=g.det.find(x=>x[0].startsWith('notch'));let x=det[1];const y=det[2];if(d.m)x=g.w-x;return tdTf(d,[x,y]);}
+/* the light table compares the two plates lying on it: the notch must sit on the same side in both views */
+function mtLabCmp(){const m=mtS(),T=MTT().lab.msg;let ov=$('#lbCmp');if(!ov){ov=document.createElementNS('http://www.w3.org/2000/svg','svg');ov.id='lbCmp';ov.setAttribute('class','lbcmp');ov.setAttribute('width',TD.lay.W);ov.setAttribute('height',TD.lay.H);TD.desk.insertBefore(ov,$('#dkTools'));}
+  const on=['pl1','pl2','pl3','pl4'].filter(id=>{const el=$(`.ddoc[data-id="${id}"]`);return el&&el.classList.contains('onlight')&&!tdSt(id).f;});
+  if(on.length<2){ov.innerHTML='';return null;}
+  const a=on[0],b=on[1],pa=mtNotchPt(a),pb=mtNotchPt(b),same=!!m.mir[a]===!!m.mir[b],col=same?'#46653a':'#a3322a';
+  ov.innerHTML=`<line x1="${pa[0]}" y1="${pa[1]}" x2="${pb[0]}" y2="${pb[1]}" stroke="${col}" stroke-width="2" stroke-dasharray="6 5"/>`+[pa,pb].map(p=>`<circle cx="${p[0]}" cy="${p[1]}" r="14" fill="none" stroke="${col}" stroke-width="2.5"/>`).join('')+`<text x="${(pa[0]+pb[0])/2}" y="${(pa[1]+pb[1])/2-12}" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="12" font-weight="700" fill="${col}" stroke="#fff8e8" stroke-width="3" paint-order="stroke">${T.notch} : ${same?T.same:T.diff}</text>`;
+  m.lab=m.lab||{};m.lab.cmp=true;return {same,a,b};}
+/* called after a plate moved onto the table or was mirrored: the world explains the mismatch, or validates */
+function mtLabCompare(id,fromMirror){const m=mtS(),T=MTT().lab.msg;const c=mtLabCmp();if(m.labSolved){if(c)mtMsg(c.same?T.cmpOk:T.cmpNo);return;}
+  const allOk=['pl1','pl2','pl3','pl4'].every(k=>!m.mir[k]);
+  if(!c){if(fromMirror)mtMsg(allOk?T.needCmp:T.mirrorEdge);return;}
+  if(!c.same){mtMsg(T.cmpNo);play('nope');return;}
+  if(m.mir[c.a]&&m.mir[c.b]){mtMsg(T.cmpBoth);play('nope');return;}
+  if(allOk)mtLabCheck(true);}
+function mtLabCheck(compared){const m=mtS();if(m.labSolved)return;if(compared&&['pl1','pl2','pl3','pl4'].every(id=>!m.mir[id])){m.labSolved=true;vlog('lab_solved');mtObs('threeLights');play('chime');mtMsg(MTT().lab.msg.cmpOk+' '+MTT().lab.msg.solved);chrome();v3Save();}}
 function mtPouch(){const m=mtS();if(m.pouch)return;m.pouch=true;play('creak');mtSecret('s2');mtObs('twoStations');const el=$('.dd-pouch');if(el)tdFace(el,'pouch');tdMk('fiche');mtMsg(MTT().lab.msg.pouch);v3Save();}
 /* ---------- temple ---------- */
 function mtTempleInit(){const m=mtS();mtTempleRender();mtLampMove();
@@ -3461,7 +3507,7 @@ function mtTempleInit(){const m=mtS();mtTempleRender();mtLampMove();
 function mtTempleRender(){const m=mtS(),lay=TD.lay;const el=$('#mtModel');if(!el)return;el.innerHTML=mtPlanSvg({W:lay.model.s,H:lay.model.s,u:lay.model.s/8.2,axis:m.axis,light:mtCurLight(),roof:m.roof,obs:true,vp:m.vp})+`<div class="turn"></div>`;}
 function mtTempleUpdate(quiet){mtTempleRender();const v=$('.dd-tview');if(v)tdFace(v,'tview');if(!quiet)mtFirstLight();}
 function mtLampMove(final){const m=mtS(),lay=TD.lay;const d=tdSt('lamp'),cx=lay.model.x+lay.model.s/2,cy=lay.model.y+lay.model.s/2,lx=d.x+38,ly=d.y+38;const az=mtNorm(Math.atan2(lx-cx,-(ly-cy))*180/Math.PI);m.lamp.az=Math.round(az);d.r=0;const bm=$('.dd-lamp .beam');if(bm)bm.setAttribute("transform",`rotate(${mtNorm(az+90)} 38 38)`);mtTempleUpdate(!final);if(final)v3Save();}
-function mtFirstLight(){const m=mtS(),l=mtCurLight(),T=MTT().temple;if(l.none){mtMsg(T.msg.none);return;}if(l.floor){mtMsg(T.msg.floor);return;}const z=mtZoneName(l);if(Object.keys(l.zones).length){mtMsg(dgf(T.msg.lit,{a:m.lamp.az,h:m.lamp.alt,z}));if(!m.first){m.first={az:m.lamp.az,alt:m.lamp.alt,z,key:mtKey(l)};vlog('first_light',m.first);mtObs('firstLight',{a:m.lamp.az,h:m.lamp.alt,z});}}}
+function mtFirstLight(){const m=mtS(),l=mtCurLight(),T=MTT().temple;if(l.none){mtMsg(T.msg.none);return;}if(l.floor){mtMsg(T.msg.floor);return;}const z=mtZoneName(l);if(Object.keys(l.zones).length){mtMsg(dgf(T.msg.lit,{a:m.lamp.az,h:m.lamp.alt,z}));if(!m.first){m.first={az:m.lamp.az,alt:m.lamp.alt,z,key:mtKey(l)};vlog('first_light',m.first);mtObs('firstLight',{a:m.lamp.az,h:m.lamp.alt,z});play('chime');mtMsg(dgf(T.msg.lit,{a:m.lamp.az,h:m.lamp.alt,z})+' '+MTT().pq.temple[1]);if(!$('.dd-compass'))tdMk('compass');}}}
 /* ---------- horizon ---------- */
 const MTHZ={a0:40,a1:140,marks:{cairn:60,rock:94,wall:119}};
 function mtPanoSvg(W,H){const px=a=>(a-MTHZ.a0)/(MTHZ.a1-MTHZ.a0)*W;const T=MTT().horizon.marks;const hz=H*.62;
@@ -3472,7 +3518,7 @@ function mtPanoSvg(W,H){const px=a=>(a-MTHZ.a0)/(MTHZ.a1-MTHZ.a0)*W;const T=MTT(
   return `<svg viewBox="0 0 ${W} ${H}" class="panosvg2"><defs><linearGradient id="pz" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#dfe6e3"/><stop offset="1" stop-color="#f1ecd8"/></linearGradient></defs><rect width="${W}" height="${H}" fill="url(#pz)"/><rect y="${hz}" width="${W}" height="${H-hz}" fill="#b9c9c4"/><path d="M0,${hz+16} C${W*.3},${hz+2} ${W*.6},${hz+30} ${W},${hz+10} L${W},${H} L0,${H}Z" fill="#cdbf9d"/><path d="M0,${hz} L${W},${hz}" stroke="#5a6a70" stroke-width="1"/>${cairn}${rock}${wall}${folds}</svg>`;}
 function mtTapeAz(x){const d=tdSt('tape');return (x-d.x)/11+20;}
 function mtTapeCheck(final){const m=mtS(),lay=TD.lay,T=MTT().horizon;if(!m.hz.open)return;const px=a=>lay.pano.x+(a-MTHZ.a0)/(MTHZ.a1-MTHZ.a0)*lay.pano.w;const c=mtTapeAz(px(60));const ok=Math.abs(c-60)<=1.5;
-  if(ok&&!m.hz.ok){m.hz.ok=true;const d=tdSt('tape');d.x=px(60)-40*11;tdApply($('.dd-tape'),'tape');play('drop');vlog('tape_ok');mtObs('north');mtMsg(T.msg.tapeOk);v3Save();}
+  if(ok&&!m.hz.ok){m.hz.ok=true;const d=tdSt('tape');d.x=px(60)-40*11;tdApply($('.dd-tape'),'tape');play('drop');vlog('tape_ok');mtObs('north');mtMsg(T.msg.tapeOk+' '+MTT().pq.horizon[1]);v3Save();}
   else if(!ok&&m.hz.ok){m.hz.ok=false;v3Save();}else if(final&&!ok)mtMsg(T.msg.tapeNo);}
 function mtSightCheck(){const m=mtS(),lay=TD.lay,T=MTT().horizon;if(!m.hz.open)return;const c=tdCenter('sight');if(c[1]<lay.pano.y||c[1]>lay.pano.y+lay.pano.h){mtMsg(T.msg.sightOff);return;}const az=MTHZ.a0+(c[0]-lay.pano.x)/lay.pano.w*(MTHZ.a1-MTHZ.a0);
   const mk=Object.entries(MTHZ.marks).find(([k,a])=>Math.abs(a-az)<2.5);if(!mk){mtMsg(T.msg.sightOff);return;}const rd=mtTapeAz(c[0]);vlog('sight',{m:mk[0],rd:Math.round(rd)});mtMsg(dgf(T.msg.sightOn,{m:T.marks[mk[0]],d:Math.round(rd)}));}
@@ -3483,10 +3529,10 @@ function mtSunInit(){const m=mtS();m.lastDay=m.day;mtSunRender();const ctl=$('#m
   const M=$('#mtMach');let drag=null;
   M.addEventListener('pointerdown',ev=>{const t=ev.target.closest('[data-part]');if(!t)return;ev.preventDefault();const r=M.getBoundingClientRect(),s=r.width/520;const part=t.dataset.part;const c=part==='wheel'?[r.left+130*s,r.top+400*s]:[r.left+260*s,r.top+230*s];drag={part,c,a0:Math.atan2(ev.clientY-c[1],ev.clientX-c[0])*180/Math.PI,v0:part==='wheel'?m.day:m.ring,acc:0,last:null};M.setPointerCapture(ev.pointerId);play('pick');});
   M.addEventListener('pointermove',ev=>{if(!drag)return;const a=Math.atan2(ev.clientY-drag.c[1],ev.clientX-drag.c[0])*180/Math.PI;if(drag.last!==null)drag.acc+=mtRel(a-drag.last);drag.last=a;
-    if(drag.part==='wheel')m.day=((drag.v0+drag.acc/360*365)%365+365)%365;else m.ring=mtRel(drag.v0+drag.acc);mtSunRender(true);});
+    if(drag.part==='wheel'){m.day=((drag.v0+drag.acc/360*365)%365+365)%365;const az=mtAz(m.day);m.sun.sw[0]=Math.min(m.sun.sw[0],az);m.sun.sw[1]=Math.max(m.sun.sw[1],az);}else m.ring=mtRel(drag.v0+drag.acc);mtSunRender(true);});
   M.addEventListener('pointerup',()=>{if(!drag)return;const part=drag.part;if(part==='wheel'){m.acc=(m.acc||0)+Math.abs(drag.acc)/360;const keys=[MTDAYS.eqS,MTDAYS.sol,MTDAYS.eqA,MTDAYS.win];for(const k of keys){if(Math.abs(mtRel((m.day-k)/365*360))*365/360<=4){m.day=k;play('drop');break;}}m.day=Math.round(m.day);
       const az=mtAz(m.day);if(az<61.2)m.sun.sw[0]=Math.min(m.sun.sw[0],az);if(az>118.8)m.sun.sw[1]=Math.max(m.sun.sw[1],az);m.sun.sw[0]=Math.min(m.sun.sw[0],az);m.sun.sw[1]=Math.max(m.sun.sw[1],az);
-      if(m.sun.sw[0]<61.5&&m.sun.sw[1]>118.5)mtObs('swing');if(m.acc>=3&&!m.turns){m.turns=true;mtSecret('s7');mtMsg(MTT().sun.msg.turns);}
+      if(m.sun.sw[0]<61.5&&m.sun.sw[1]>118.5&&!m.obs.some(o=>o.id==='swing')){mtObs('swing');play('chime');mtMsg(MTT().sun.msg.swingHook);}if(m.acc>=3&&!m.turns){m.turns=true;mtSecret('s7');mtMsg(MTT().sun.msg.turns);}
       if(Math.abs(az-60.6)<.3||Math.abs(az-119.4)<.3)mtMsg(MTT().sun.msg.solstice);vlog('wheel',{day:m.day});}
     else{if(Math.abs(m.ring)<=4.5){m.ring=0;play('drop');mtObs('ringOk');mtMsg(MTT().sun.msg.ringOk);}else{m.ring=Math.round(m.ring);mtMsg(MTT().sun.msg.ringOff);}vlog('ring',{r:m.ring});}drag=null;mtSunRender();v3Save();});}
 function mtMachSvg(s){const m=mtS(),T=MTT().sun;const S=520,cx=260,cy=230,R=150;const az=mtAz(m.day),eff=az+m.ring;const P=(a,r)=>[cx+r*Math.sin(a*Math.PI/180),cy-r*Math.cos(a*Math.PI/180)];
@@ -3496,12 +3542,14 @@ function mtMachSvg(s){const m=mtS(),T=MTT().sun;const S=520,cx=260,cy=230,R=150;
   const wr=78,wx=130,wy=400;const wa=m.day/365*360;let months='';for(let i=0;i<12;i++){const a=i*30+15-wa;const [mx,my]=[wx+wr*.72*Math.sin(a*Math.PI/180),wy-wr*.72*Math.cos(a*Math.PI/180)];months+=`<text x="${mx}" y="${my+4}" text-anchor="middle" font-size="11" fill="#2b2219">${T.months[i]}</text>`;const [tx1,ty1]=[wx+wr*.9*Math.sin((i*30-wa)*Math.PI/180),wy-wr*.9*Math.cos((i*30-wa)*Math.PI/180)],[tx2,ty2]=[wx+wr*Math.sin((i*30-wa)*Math.PI/180),wy-wr*Math.cos((i*30-wa)*Math.PI/180)];months+=`<line x1="${tx1}" y1="${ty1}" x2="${tx2}" y2="${ty2}" stroke="#6b5a40"/>`;}
   const keyMarks=[[MTDAYS.eqS,'#2b4a7a'],[MTDAYS.sol,'#e0a830'],[MTDAYS.eqA,'#2b4a7a'],[MTDAYS.win,'#a3322a']].map(([d,c])=>{const a=d/365*360-wa;const [x,y]=[wx+wr*.5*Math.sin(a*Math.PI/180),wy-wr*.5*Math.cos(a*Math.PI/180)];return `<circle cx="${x}" cy="${y}" r="3.5" fill="${c}"/>`;}).join('');
   const wheel=`<g data-part="wheel" style="cursor:grab"><circle cx="${wx}" cy="${wy}" r="${wr}" fill="#e9dfc4" stroke="#7a6a4a" stroke-width="3"/><circle cx="${wx}" cy="${wy}" r="${wr*.55}" fill="none" stroke="#7a6a4a" stroke-width=".6"/>${months}${keyMarks}<path d="M${wx},${wy-wr-14} L${wx+6},${wy-wr-2} L${wx-6},${wy-wr-2}Z" fill="#a3322a"/><text x="${wx}" y="${wy+5}" text-anchor="middle" font-size="13" font-weight="700" fill="#2b2219">${mtDayLbl(m.day)}</text></g>`;
-  const ring=`<g data-part="ring" style="cursor:grab"><circle cx="${cx}" cy="${cy}" r="${R+22}" fill="none" stroke="#c9b285" stroke-width="22" opacity=".8"/>${ticks}<path d="M${P(m.ring,R+34)[0]},${P(m.ring,R+34)[1]} L${P(m.ring+4,R+14)[0]},${P(m.ring+4,R+14)[1]} L${P(m.ring-4,R+14)[0]},${P(m.ring-4,R+14)[1]}Z" fill="#a3322a"/></g>`;
+  const ringOn=mtSunStage()>=1;const ring=`<g ${ringOn?'data-part="ring" style="cursor:grab"':'opacity=".45"'}><circle cx="${cx}" cy="${cy}" r="${R+22}" fill="none" stroke="#c9b285" stroke-width="22" opacity=".8"/>${ticks}${ringOn?`<path d="M${P(m.ring,R+34)[0]},${P(m.ring,R+34)[1]} L${P(m.ring+4,R+14)[0]},${P(m.ring+4,R+14)[1]} L${P(m.ring-4,R+14)[0]},${P(m.ring-4,R+14)[1]}Z" fill="#a3322a"/>`:''}</g>`;
   const read=`<text x="${cx+95}" y="${S-16}" text-anchor="middle" font-size="13" fill="#2b2219">${dgf(T.read,{d:mtDayLbl(m.day),a:az.toFixed(1),z:T.readZ[mtKey(mtSunLight()).split('-')[0]]||T.readZ.none})}</text>`;
   const lbl=`<text x="${cx}" y="${cy-R-52}" text-anchor="middle" font-size="11.5" fill="#6b5a40">${T.ring}</text><text x="${sl2[0]+16}" y="${sl2[1]+14}" font-size="11.5" fill="#6b5a40">${T.slide}</text><text x="${wx}" y="${wy+wr+22}" text-anchor="middle" font-size="11.5" fill="#6b5a40">${T.wheel}</text>`;
   return `<svg viewBox="0 0 ${S} ${S}" class="machsvg" font-family="IBM Plex Mono,monospace"><rect width="${S}" height="${S}" fill="#e7dcc3" rx="10"/>${ring}<circle cx="${cx}" cy="${cy}" r="${R-8}" fill="#dccfb0" stroke="#8a7a5a"/>${slide}${ind}<circle cx="${cx}" cy="${cy}" r="10" fill="#8a6a3a"/>${wheel}${read}${lbl}
    <text x="${cx+95}" y="${S-34}" text-anchor="middle" font-size="10.5" fill="#6b5a40">${LANG==='en'?'flat horizon · lat 35.8° · no refraction':'horizon plat · lat 35,8° · sans réfraction'}</text></svg>`;}
-function mtSunRender(quiet){const m=mtS(),lay=TD.lay;const M=$('#mtMach');if(!M)return;M.innerHTML=mtMachSvg(lay.mach.s);const l=mtSunLight();
+/* one new difficulty at a time: 0 = turn the wheel and watch; 1 = the ring and the note button, once the Sun has been seen going from one end of the slide to the other */
+function mtSunStage(){const m=mtS();return (m.obs.some(o=>o.id==='swing')||m.ring===0||m.bm.length)?1:0;}
+function mtSunRender(quiet){const m=mtS(),lay=TD.lay;const M=$('#mtMach');if(!M)return;M.innerHTML=mtMachSvg(lay.mach.s);const l=mtSunLight();const nb=$('#mtNote');if(nb)nb.hidden=mtSunStage()<1;
   const P=$('#mtSunPlan');if(P)P.innerHTML=mtPlanSvg({W:lay.plan.s,H:lay.plan.s,u:lay.plan.s/8.2,axis:m.axis,light:l,roof:m.roof,obs:true,vp:m.vp});
   const V=$('#mtSunView');if(V)V.innerHTML=mtViewSvg(l,m.vp,{});const B=$('#mtBml');if(B)B.innerHTML=m.bm.map((b,i)=>`<i class="bmk k-${b.key.split('-')[0]}" title="${mtDayLbl(b.day)}">${i+1}</i>`).join('');
   if(P)P.querySelectorAll('[data-vp]').forEach(e=>e.onclick=()=>{m.vp=e.dataset.vp;play('pick');mtSunRender();v3Save();});if($('#fView'))mtFinalRender();}
@@ -3567,7 +3615,7 @@ function mtHint(kind){const m=mtS(),H=MTT().hints[kind];if(!H)return MTT().hintN
 /* ---------- pages ---------- */
 function mtEnvSvg(open){const t=MTT().pg.lab.stamp;return dgEnvSvg(open).replace(DGT().env.stamp,t);}
 function mtSpread(n,kind,inner,extraCls){const t=MTT(),p=t.pg[kind];return `<section class="spr mt mt-${kind} ${extraCls||''}" data-n="${n}" hidden>
-  <div class="page L"><div class="folio"><span>${p.folio[0]}</span><span>${p.folio[1]}</span></div><h2 class="ptitle">${kind==='lab'?p.title:t.titles[kind]}<small>${p.sub}</small></h2>${inner.L}${pageno(n*2-1)}${n>1?prev():''}</div>
+  <div class="page L"><div class="folio"><span>${p.folio[0]}</span><span>${p.folio[1]}</span></div><h2 class="ptitle">${kind==='lab'?p.title:t.titles[kind]}<small>${p.sub}</small></h2><p class="pq" id="mtPq${n}"></p>${inner.L}${pageno(n*2-1)}${n>1?prev():''}</div>
   <div class="page R"><div class="folio"><span>${t.reg.t}</span><span>${p.folio[1]}</span></div>${inner.R||`<h2 class="ptitle">${t.reg.t}<small>${t.reg.s}</small></h2><div class="evlist reg" id="mtreg${n}"></div>`}${pageno(n*2)}${n<6?next(t.titles[['lab','temple','horizon','sun','geo','final'][n]]):''}</div>${inner.X||''}</section>`;}
 const MTINV={lab:['loupe','plates'],temple:['loupe','compass','machine'],horizon:['compass','sight','calque'],sun:['compass','machine'],geo:['sight','calque','loupe'],final:['plates','machine']};
 function mtThumb(kind,html){const t=MTT().inv;return `<button class="deskthumb mtthumb" data-open="${kind}">${html}<b>${MTT().open[kind]}</b></button><div class="invrow"><b>${t.t}</b>${MTINV[kind].map(k=>`<span>${t[k]}</span>`).join('')}</div>`;}
@@ -3587,7 +3635,10 @@ const MTMILE=['threeLights','firstLight','north','impossible','three','holeA','h
 function mtRenderReg(){const T=MTT().obs,m=mtS();const row=o=>{const t=T[o.id];if(!t)return '';const f=s=>o.v?dgf(s,o.v):s;return `<div class="evc k-${o.id}"><b>${f(t[0])}</b><span>${f(t[1])}</span><i>${t[2]}</i></div>`;};const html=m.obs.map(row).join('');
   $$('[id^="mtreg"]').forEach(r=>{const mile=r.id==='mtreg6';const h=mile?m.obs.filter(o=>MTMILE.includes(o.id)).map(row).join(''):html;r.innerHTML=h||`<p class="hand" style="font-size:19px">${MTT().reg.empty}</p>`;});
   const sec=$('#mtSec');if(sec){const S2=MTT().secrets;sec.innerHTML=`<b>${MTT().pg.final.secrets} : ${m.sec.length} / 8</b>`+m.sec.map(k=>`<span>${S2[k]}</span>`).join('');}}
-function mtEnterPage(n){const m=mtS(),t=MTT();mtRenderReg();$$('[data-open]').forEach(b=>{b.onclick=()=>{if(b.dataset.open==='lab'&&b.id==='envlay'){tdOpen('lab');return;}tdOpen(b.dataset.open);};});
+/* the question of the page: what the player has a reason to find out, given what is known */
+function mtPageQ(kind){const m=mtS(),q=MTT().pq[kind];if(!q)return '';switch(kind){case 'lab':return q[m.labSolved?1:0];case 'temple':return q[m.axis===90?2:m.first?1:0];case 'horizon':return q[m.hz.ok?1:0];
+  case 'sun':return q[m.sun.three?2:m.obs.some(o=>o.id==='swing')?1:0];case 'geo':return q[(m.geo.A||m.geo.B)?1:0];case 'final':return q[m.reveal?1:0];}return '';}
+function mtEnterPage(n){const m=mtS(),t=MTT();mtRenderReg();const pq=$('#mtPq'+n);if(pq)pq.textContent=mtPageQ(['lab','temple','horizon','sun','geo','final'][n-1]);$$('[data-open]').forEach(b=>{b.onclick=()=>{if(b.dataset.open==='lab'&&b.id==='envlay'){tdOpen('lab');return;}tdOpen(b.dataset.open);};});
   if(n===1){const b=$('#envbtn');if(b)b.onclick=()=>{if(m.env)return;m.env=true;vlog('env_open');play('creak');$('#envbox').classList.add('open');b.innerHTML=mtEnvSvg(true);$('#envlay').hidden=false;v3Save();};}
   if(n===2){const r=$('#mtRibbon');if(r)r.onclick=()=>{mtSecret('s5');m.old=true;vlog('old_page');sheet(`<div class="page L"><div class="folio"><span>${t.old[0]}</span><span>Mnajdra</span></div><h2 class="ptitle">${t.pg.temple.old}</h2><p class="hand" style="font-size:22px">${t.old[1]}</p></div><div class="page R"><div class="folio"><span>Mnajdra</span><span>R. V.</span></div><div class="cmpmap" style="width:70%">${mtViewSvg(mtLight(60.6,90,1),'door',{})}</div></div>`);$('#pclose span').textContent=t.close.old;};}
   if(n===3){const el=$('#mtlights3');if(el)el.innerHTML=`<span class="tl ${m.hz.ok?'on':''}"><i></i>${t.obs.north[0]}</span><span class="tl ${m.axis===90?'on':''}"><i></i>${t.obs.axisSet[0]}</span><span class="tl ${m.ring===0?'on':''}"><i></i>${t.obs.ringOk[0]}</span>`;}
