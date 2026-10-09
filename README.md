@@ -23,6 +23,15 @@ Cas 08, sous la mer du Nord. Une boucle de dix à quinze minutes : l'enveloppe e
 - Sources : Rijksmuseum van Oudheden (os de bison gravé, 2018) ; Walker et al., *Antiquity*, 2020 ; Gaffney et al., *Geosciences*, 2020 ; Université de Bradford, 2025 et 2026 (Allaby et al., *PNAS*). Liste complète dans la page « Sources et méthode » du cas.
 - Tests : `?playtest=1` expose `window.__dg` et `vestigesLog()` ; le parcours complet est rejoué par Playwright (`dgloop.js`) en français et en anglais, à 1440 et à 390 px.
 
+## Branche `malte` : chapitre complet « Les Pierres du Soleil »
+
+Cas 09, Mnajdra (Malte). Six doubles pages jouables (chambre photographique, temple de papier, horizon déplié, atelier du Soleil, notes du géomètre, les Quatre Matins), deux enquêtes facultatives (les repères incertains, l'étoile absente), huit secrets, inventaire par page, trois niveaux d'indices par énigme, sauvegarde et reprise, français et anglais. La branche contient aussi la vertical slice Doggerland et le moteur de bureau générique (`TDK`) qui sert aux deux chapitres.
+
+- Un seul moteur géométrique (`MTG`, `mtDecl`, `mtAz`, `mtLight`) calcule la déclinaison, l'azimut du lever (horizon plat, sans réfraction, latitude 35,8°) et la bande de lumière qui traverse l'entrée : les trois éclairages (gauche, axe, droite) en découlent, sur la maquette comme dans le dispositif final.
+- Le plan du temple est une reconstruction simplifiée, étiquetée comme telle dans le jeu ; les plaques, la machine solaire, les relevés et le chercheur R. V. sont de la fiction narrative. Les hypothèses (Sirius, chronologie ancienne) sont attribuées à leurs auteurs et restent des hypothèses.
+- Sources : Heritage Malta (phénomène attesté aux équinoxes et aux solstices) ; Ventura & Agius, *Journal of Skyscape Archaeology*, 2017 (alignement d'équinoxe et deux trous de poteau) ; Agius & Ventura, 1980 (azimuts des temples) ; Reedijk, grahamhancock.com, 2019 (hypothèse Sirius). Registre consultable depuis la page « Sources et méthode » du cas.
+- Tests : `?playtest=1` expose `window.__dg` ; le parcours complet (17 observations, 8 secrets, dossier Sirius) est rejoué par Playwright (`mtloop.js`) en français et en anglais, à 1440 et à 390 px ; sauvegarde, reprise et réinitialisation par `mtsave.js`.
+
 ## Lancer
 
 Un seul fichier statique, sans build. Ouvrir `index.html`, ou servir le dossier :
