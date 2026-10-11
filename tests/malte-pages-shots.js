@@ -6,5 +6,5 @@ await p.$eval(`#atlMap [data-site="malte"]`,e=>e.dispatchEvent(new MouseEvent("c
 const m=await p.evaluate(()=>[...document.querySelectorAll('.spr:not([hidden]) .page')].map(e=>e.scrollHeight+'/'+e.clientHeight).join(' '));console.log('M p1',m);
 await p.screenshot({path:`${L.OUT}/p1-${tag}.png`});
 await p.click('#envbtn');await W(900);await p.click('#envlay');await W(1200);await p.screenshot({path:`${L.OUT}/p1-${tag}-lab.png`});
-for(const n of [2,3,4,5]){await p.click('.tab[data-to="'+n+'"]',{position:{x:20,y:12}});await W(1300);const m=await p.evaluate(()=>[...document.querySelectorAll('.spr:not([hidden]) .page')].map(e=>e.scrollHeight+'/'+e.clientHeight).join(' '));console.log('M p'+n,m);await p.screenshot({path:`${L.OUT}/p${n}-${tag}.png`});}
+for(const n of [2,3,4,5,6,7]){await p.click('.tab[data-to="'+n+'"]',{position:{x:20,y:12}});await W(1300);const m=await p.evaluate(()=>[...document.querySelectorAll('.spr:not([hidden]) .page')].map(e=>e.scrollHeight+'/'+e.clientHeight).join(' '));console.log('M p'+n,m);await p.screenshot({path:`${L.OUT}/p${n}-${tag}.png`});}
 await b.close();})();

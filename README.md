@@ -32,6 +32,15 @@ Cas 09, Mnajdra (Malte). Six doubles pages jouables (chambre photographique, tem
 - Sources : Heritage Malta (phénomène attesté aux équinoxes et aux solstices) ; Ventura & Agius, *Journal of Skyscape Archaeology*, 2017 (alignement d'équinoxe et deux trous de poteau) ; Agius & Ventura, 1980 (azimuts des temples) ; Reedijk, grahamhancock.com, 2019 (hypothèse Sirius). Registre consultable depuis la page « Sources et méthode » du cas.
 - Tests : `?playtest=1` expose `window.__dg` ; le parcours complet (17 observations, 8 secrets, dossier Sirius) est rejoué par Playwright (`mtloop.js`) en français et en anglais, à 1440 et à 390 px ; sauvegarde, reprise et réinitialisation par `mtsave.js`.
 
+## Branche `feature/malte-story` : récit et vraies photos
+
+Le chapitre Malte se raconte avant de se jouer. Sept doubles pages : une page d'arrivée (photo du site en pleine page, note de carnet à la première personne écrite d'après la visite de Graham Hancock et un Soleil que l'on fait glisser le long de l'année sur une photo du vrai passage), puis les six énigmes, chacune avec une photographie du temple et des notes autour. Les plaques de R. V. sont désormais de vraies photographies de Mnajdra sur lesquelles le modèle du jeu dessine la bande de lumière (négatifs hors de la table lumineuse, positifs dessus) ; le registre devient une bande de tampons au bas des pages ; chaque page garde une petite animation continue (panoramique lent, aiguille de boussole, balayage d'aube, légendes qui apparaissent) et respecte `prefers-reduced-motion`.
+
+- La note de carnet est une fiction : elle paraphrase la visite et les positions de Hancock (*Underworld*, 2002) sans reproduire son texte, et le jeu le dit sur la page et dans les sources.
+- Les bandes de lumière dessinées sur les photos sont calculées par le modèle (`mtLight`), pas photographiées ; la page le précise. Le repère « encoche » des plaques correspond au sommet ébréché du pilier gauche du passage, visible sur les deux vues.
+- Les anciennes sauvegardes (six pages) sont décalées d'une page à la reprise (`mt.story`).
+- Tests : `tests/malte-*.js` suivent la nouvelle numérotation (arrivée = page 1, énigmes = pages 2 à 7).
+
 ## Lancer
 
 Un seul fichier statique, sans build. Ouvrir `index.html`, ou servir le dossier :
@@ -75,6 +84,15 @@ Toutes les images viennent de Wikimedia Commons.
 
 **Graham Hancock**
 - Cpt.Muji, CC BY 3.0 — [Graham-Hancock.jpg](https://commons.wikimedia.org/wiki/File:Graham-Hancock.jpg) (2010)
+
+**Mnajdra (Malte)**
+- Gerd Eichmann, 1989, CC BY-SA 4.0 — [08 Durchgang](https://commons.wikimedia.org/wiki/File:Mnajdra-08-Durchgang-1989-gje.jpg), [14 Blick hinaus](https://commons.wikimedia.org/wiki/File:Mnajdra-14-Blick_hinaus-1989-gje.jpg), [16 Totale](https://commons.wikimedia.org/wiki/File:Mnajdra-16-Totale-1989-gje.jpg)
+- Nitramserolf, CC BY-SA 4.0 — [Mnajdra South Temple](https://commons.wikimedia.org/wiki/File:Mnajdra_South_Temple.jpg) (1987), [Mnajdra elevated view](https://commons.wikimedia.org/wiki/File:Mnajdra_elevated_view.jpg) (1991)
+- ImagesMALTA, 2004, CC BY-SA 4.0 — [Mnajdra Temples Malta Equinox](https://commons.wikimedia.org/wiki/File:Mnajdra_Temples_Malta_Equinox.jpg)
+- Hamelin de Guettelet, 2008, CC BY-SA 3.0 — [Mnajdra Filfla](https://commons.wikimedia.org/wiki/File:Mnajdra_Filfla.jpg)
+- Auteur inconnu, vers 1900, domaine public — [Scene at Mnajdra South Temple Malta circa 1900](https://commons.wikimedia.org/wiki/File:Scene_at_Mnajdra_South_Temple_Malta_circa_1900.jpg)
+
+Les vues « S1 » et « S2 » du chapitre (`img/malte/vue-s1.jpg`, `vue-s2.jpg`) sont des recadrages de la photo de Nitramserolf (temple sud) et de celle d'ImagesMALTA (équinoxe) ; les bandes de lumière y sont dessinées par le jeu.
 
 **Nan Madol**
 - NOAA, domaine public — [Nan madol](https://commons.wikimedia.org/wiki/File:Nan_madol.jpg)

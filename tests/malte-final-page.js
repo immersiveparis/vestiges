@@ -5,6 +5,6 @@ await p.evaluate(()=>{localStorage.clear();document.querySelector('#intro').hidd
 await p.$eval(`#atlMap [data-site="malte"]`,e=>e.dispatchEvent(new MouseEvent("click",{bubbles:true})));await W(300);await p.click("#atlCard .ac-go");await W(3200);await p.click('#pclose');await W(600);
 await p.evaluate(()=>{const m=__dg.mtS();m.reveal=true;m.fin.done=true;m.landSeen=true;m.sky=true;m.sir.done=true;m.fin.slots={pl1:1,pl2:1,pl3:1,pl4:1};
  m.obs=[{id:'mirrored'},{id:'threeLights'},{id:'twoStations'},{id:'firstLight'},{id:'axisSet'},{id:'north'},{id:'cairn'},{id:'impossible'},{id:'ringOk'},{id:'swing'},{id:'three'},{id:'holeA',v:{a:'57.6',e:'3.0'}},{id:'holeB',v:{b:'90.4',e:'0.4'}},{id:'calque'},{id:'four'},{id:'chains'},{id:'needs'}];m.sec=['s1','s2','s3','s4','s5','s6','s7','s8'];});
-await p.click('.tab[data-to="6"]',{position:{x:20,y:12}});await W(1500);
+await p.click('.tab[data-to="7"]',{position:{x:20,y:12}});await W(1500);
 const m=await p.evaluate(()=>[...document.querySelectorAll('.spr:not([hidden]) .page')].map(e=>e.scrollHeight+'/'+e.clientHeight).join(' '));console.log('M p6',m);
 await p.screenshot({path:`${L.OUT}/mtp6-${tag}.png`,fullPage:w<500});console.log(errs);await b.close();})();

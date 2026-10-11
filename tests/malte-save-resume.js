@@ -6,9 +6,9 @@ await p.evaluate(()=>{localStorage.clear();document.querySelector('#intro').hidd
 console.log('first open label:',await openCase());
 /* play a bit: solve the darkroom via state + save, go to page 3, open horizon, move a doc */
 await p.evaluate(()=>{const m=__dg.mtS();m.labSolved=true;m.mir.pl2=0;m.obs.push({id:'mirrored'},{id:'threeLights'});m.sec.push('s1');m.hints.lab=2;});
-await p.click('.tab[data-to="3"]',{position:{x:20,y:12}});await W(1300);await p.click('[data-open="horizon"]');await W(1000);
+await p.click('.tab[data-to="4"]',{position:{x:20,y:12}});await W(1300);await p.click('[data-open="horizon"]');await W(1000);
 await p.evaluate(()=>{const d=__dg.tdSt('sight');d.x=333;d.y=222;});await p.click('#pclose');await W(600);
-await p.click('.tab[data-to="2"]',{position:{x:20,y:12}});await W(1300);
+await p.click('.tab[data-to="3"]',{position:{x:20,y:12}});await W(1300);
 const before=await p.evaluate(()=>{const m=__dg.mtS();return {cur:__dg.cur(),lab:m.labSolved,obs:m.obs.map(o=>o.id),sec:m.sec,hints:m.hints,sight:m.lp.horizon&&m.lp.horizon.sight||(m.poses&&m.poses.horizon),raw:Object.keys(m)};});
 console.log('before reload',JSON.stringify({cur:before.cur,lab:before.lab,obs:before.obs,sec:before.sec,hints:before.hints}));
 const saved=await p.evaluate(()=>{const o=JSON.parse(localStorage.getItem('ghn-save-malte'));return {cur:o.cur,hasMt:!!o.mt,obs:o.mt&&o.mt.obs.length,poses:o.mt&&o.mt.poses?Object.keys(o.mt.poses):Object.keys(o.mt).filter(k=>/pose|lp|docs/.test(k))};});console.log('saved',JSON.stringify(saved));
@@ -18,9 +18,9 @@ console.log('resume label:',await openCase());
 const after=await p.evaluate(()=>{const m=__dg.mtS();return {cur:__dg.cur(),lab:m.labSolved,obs:m.obs.map(o=>o.id),sec:m.sec,hints:m.hints,mir:m.mir.pl2};});
 console.log('after reload',JSON.stringify(after));
 await p.click('[data-open="temple"]');await W(1000);console.log('desk opens after resume:',!!(await p.$('#desk')),'tdSt model',JSON.stringify(await p.evaluate(()=>__dg.tdSt('model'))));await p.click('#pclose');await W(500);
-await p.click('.tab[data-to="3"]',{position:{x:20,y:12}});await W(1300);await p.click('[data-open="horizon"]');await W(1000);console.log('sight pose restored',JSON.stringify(await p.evaluate(()=>{const d=__dg.tdSt('sight');return [d.x,d.y];})));await p.click('#pclose');await W(500);
+await p.click('.tab[data-to="4"]',{position:{x:20,y:12}});await W(1300);await p.click('[data-open="horizon"]');await W(1000);console.log('sight pose restored',JSON.stringify(await p.evaluate(()=>{const d=__dg.tdSt('sight');return [d.x,d.y];})));await p.click('#pclose');await W(500);
 /* reset via Rejouer */
-await p.click('.tab[data-to="6"]',{position:{x:20,y:12}});await W(1300);await p.click('#mtReplay');await W(2500);
+await p.click('.tab[data-to="7"]',{position:{x:20,y:12}});await W(1300);await p.click('#mtReplay');await W(2500);
 const reset=await p.evaluate(()=>{const m=__dg.mtS();return {cur:__dg.cur(),lab:m.labSolved,obs:m.obs.length,sec:m.sec.length,mir:m.mir.pl2,save:localStorage.getItem('ghn-save-malte')?JSON.parse(localStorage.getItem('ghn-save-malte')).mt.obs.length:'none'};});console.log('after replay',JSON.stringify(reset));
 await p.screenshot({path:L.OUT+'/mtsave-'+loc.slice(0,2)+w+'.png'});
 console.log('errs',errs);await b.close();})();
