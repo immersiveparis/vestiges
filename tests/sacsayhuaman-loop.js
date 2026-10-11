@@ -1,9 +1,9 @@
-const {chromium}=require('playwright');const L=require('./lib');
+const {chromium}=require('playwright');const LIB=require('./lib');
 (async()=>{const loc=process.argv[2]||'fr-FR',w=+(process.argv[3]||1440),h=+(process.argv[4]||900),tag=loc.slice(0,2)+w;
-const b=await L.launch();
+const b=await LIB.launch();
 const p=await b.newPage({viewport:{width:w,height:h},locale:loc,hasTouch:w<500});const errs=[];p.on('pageerror',e=>errs.push(e.message+' | '+(e.stack||'').split('\n')[1]));
-await L.fonts(p);await p.goto(L.URL+'/index.html?lang='+loc.slice(0,2)+'&playtest=1');await p.waitForTimeout(900);
-const W=t=>p.waitForTimeout(t);const shot=async n=>{const m=await p.evaluate(()=>[...document.querySelectorAll('.spr:not([hidden]) .page, #psheet:not([hidden]) .page')].map(e=>e.scrollHeight+'/'+e.clientHeight).join(' '));console.log('M',n,m);await p.screenshot({path:`${L.OUT}/v3-${tag}-${n}.png`});};
+await LIB.fonts(p);await p.goto(LIB.URL+'/index.html?lang='+loc.slice(0,2)+'&playtest=1');await p.waitForTimeout(900);
+const W=t=>p.waitForTimeout(t);const shot=async n=>{const m=await p.evaluate(()=>[...document.querySelectorAll('.spr:not([hidden]) .page, #psheet:not([hidden]) .page')].map(e=>e.scrollHeight+'/'+e.clientHeight).join(' '));console.log('M',n,m);await p.screenshot({path:`${LIB.OUT}/v3-${tag}-${n}.png`});};
 const dsk=async(x,y)=>p.evaluate(([x,y])=>{const d=document.querySelector('#desk'),r=d.getBoundingClientRect(),W=parseFloat(d.style.width),H=parseFloat(d.style.height);return [r.left+x*r.width/W,r.top+y*r.height/H];},[x,y]);
 const st=()=>p.evaluate(()=>window.__st&&window.__st());
 const drag=async(fx,fy,tx,ty)=>{const a=await dsk(fx,fy),c=await dsk(tx,ty);await p.mouse.move(a[0],a[1]);await p.mouse.down();await p.mouse.move((a[0]+c[0])/2,(a[1]+c[1])/2,{steps:6});await p.mouse.move(c[0],c[1],{steps:6});await W(500);await p.mouse.up();await W(400);};
